@@ -67,6 +67,25 @@
     --ele-dur-base:220ms;
     --ele-dur-slow:420ms;
     --ele-ease:cubic-bezier(.16,.84,.32,1);
+
+    /* Phase 3 — Status Color System (Per-Kategorie) */
+    --status-low:#D85C4A;
+    --status-low-soft:rgba(216,92,74,0.14);
+    --status-mid:#D4AF37;
+    --status-mid-soft:rgba(212,175,55,0.14);
+    --status-high:#6FA260;
+    --status-high-soft:rgba(111,162,96,0.14);
+
+    /* Phase 4 — Total-Score Color Scale (0–39 / 40–79 / 80–100) */
+    --score-low:#D85C4A;
+    --score-low-soft:rgba(216,92,74,0.18);
+    --score-low-glow:rgba(216,92,74,0.32);
+    --score-mid:#E59A3A;
+    --score-mid-soft:rgba(229,154,58,0.18);
+    --score-mid-glow:rgba(229,154,58,0.32);
+    --score-high:#6FA260;
+    --score-high-soft:rgba(111,162,96,0.18);
+    --score-high-glow:rgba(111,162,96,0.30);
   }
 
   *{box-sizing:border-box;margin:0;padding:0}
@@ -99,16 +118,14 @@
     filter:drop-shadow(0 6px 22px rgba(217,178,90,0.20));
   }
   .brand-bar .brand-title{
-    margin-top:24px;
+    margin-top:var(--ele-s-3);
     font-family:'Inter',sans-serif;
-    font-size:18px;
+    font-size:14px;
     font-weight:700;
-    letter-spacing:0.5em;
+    letter-spacing:0.32em;
     text-transform:uppercase;
     color:var(--ele-accent);
   }
-  /* Page 1 uses the new gold accent in the header */
-  body.intro-mode .brand-bar .brand-title{ color:#D4AF37 }
 
   /* =========================================================
      Eyebrow
@@ -116,8 +133,8 @@
   .eyebrow{
     font-family:'Inter',sans-serif;
     font-size:12px;
-    font-weight:600;
-    letter-spacing:0.2em;
+    font-weight:700;
+    letter-spacing:0.28em;
     text-transform:uppercase;
     color:var(--ele-accent);
     display:inline-flex;
@@ -128,22 +145,26 @@
   /* =========================================================
      Progress
      ========================================================= */
-  .progress-wrap{margin-bottom:var(--ele-s-6);transition:opacity .3s}
+  .progress-wrap{margin-bottom:var(--ele-s-5);transition:opacity .3s}
   .progress-meta{
     display:flex;justify-content:space-between;
-    font-size:11px;color:var(--ele-fg-3);
+    font-size:13px;color:var(--ele-fg-2);
     margin-bottom:var(--ele-s-2);
-    text-transform:uppercase;letter-spacing:0.2em;
-    font-weight:600;
+    letter-spacing:0.04em;font-weight:700;
   }
   .progress-bar{
-    height:3px;background:rgba(217,178,90,0.08);
+    height:8px;background:rgba(255,255,255,0.08);
     border-radius:var(--ele-r-pill);overflow:hidden;
   }
   .progress-fill{
     height:100%;width:0%;
-    background:var(--ele-grad-gold);
+    background:linear-gradient(90deg,#B8871F 0%,#F2D675 100%);
+    box-shadow:0 0 14px rgba(212,175,55,0.25);
     transition:width var(--ele-dur-slow) var(--ele-ease);
+  }
+  .progress-motiv{
+    font-size:12px;color:#9FA7B8;
+    margin-top:8px;letter-spacing:0.01em;
   }
 
   /* =========================================================
@@ -180,9 +201,9 @@
   h2{
     font-family:'Inter',sans-serif;
     font-weight:700;
-    font-size:24px;
-    line-height:1.2;
-    letter-spacing:-0.01em;
+    font-size:clamp(24px,2.4vw,28px);
+    line-height:1.15;
+    letter-spacing:-0.015em;
     margin-bottom:var(--ele-s-3);
     color:var(--ele-fg-1);
   }
@@ -474,11 +495,11 @@
      ========================================================= */
   .result-hero{
     text-align:center;
-    padding:var(--ele-s-7) var(--ele-s-5) var(--ele-s-6);
+    padding:var(--ele-s-4) var(--ele-s-4) var(--ele-s-4);
   }
   .score-gauge{
-    position:relative;width:240px;height:240px;
-    margin:var(--ele-s-5) auto var(--ele-s-5);
+    position:relative;width:180px;height:180px;
+    margin:var(--ele-s-3) auto var(--ele-s-3);
   }
   .score-gauge svg{width:100%;height:100%;transform:rotate(-90deg)}
   .score-gauge-track{stroke:rgba(217,178,90,0.08);fill:none;stroke-width:10}
@@ -492,11 +513,11 @@
   }
   .score-gauge-num .big{
     font-family:'Inter',sans-serif;
-    font-size:64px;font-weight:700;
+    font-size:54px;font-weight:700;
     letter-spacing:-0.04em;line-height:1;
   }
   .score-gauge-num .pct{
-    font-size:22px;color:var(--ele-fg-3);font-weight:500;margin-left:2px;
+    font-size:20px;color:var(--ele-fg-3);font-weight:500;margin-left:2px;
   }
   .score-label-eyebrow{
     font-size:11px;text-transform:uppercase;letter-spacing:0.2em;
@@ -522,15 +543,167 @@
 
   /* Executive Summary */
   .exec-summary{
-    margin:var(--ele-s-6) auto 0;
+    margin:var(--ele-s-4) auto 0;
     max-width:60ch;
-    padding:var(--ele-s-5) var(--ele-s-6);
+    padding:var(--ele-s-4) var(--ele-s-5);
     background:var(--ele-ink-1);
     border:1px solid var(--ele-border);
     border-radius:var(--ele-r-md);
     text-align:left;
     position:relative;
   }
+  /* Above-the-fold result hero compactness */
+  .result-card-hero{padding:var(--ele-s-5) var(--ele-s-6) var(--ele-s-5)}
+  /* Subtiler Gold-Fade am unteren Rand der Hero-Card — deutet weiteren Inhalt an */
+  .result-card-hero::after{
+    content:"";position:absolute;
+    left:0;right:0;bottom:0;height:80px;
+    background:linear-gradient(180deg,
+      transparent 0%,
+      rgba(212,175,55,0.04) 60%,
+      rgba(212,175,55,0.10) 100%);
+    pointer-events:none;
+    border-bottom-left-radius:var(--ele-r-md);
+    border-bottom-right-radius:var(--ele-r-md);
+  }
+
+  /* =========================================================
+     Größter Hebel — Premium Lever Card
+     ========================================================= */
+  .lever-card{
+    border:1px solid rgba(217,178,90,0.32);
+    background:linear-gradient(135deg,rgba(217,178,90,0.06) 0%,rgba(217,178,90,0.02) 100%);
+  }
+  .lever-content{
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    gap:var(--ele-s-5);
+    align-items:center;
+    margin-top:var(--ele-s-4);
+  }
+  .lever-icon{
+    width:56px;height:56px;border-radius:var(--ele-r-md);
+    background:rgba(212,175,55,0.10);
+    border:1px solid rgba(212,175,55,0.32);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--ele-accent);flex-shrink:0;
+  }
+  .lever-icon svg{width:28px;height:28px;stroke-width:1.5}
+  .lever-title{
+    font-family:'Inter',sans-serif;
+    font-size:24px;font-weight:700;
+    color:var(--ele-fg-1);
+    letter-spacing:-0.02em;
+    line-height:1.15;
+    margin-bottom:6px;
+  }
+  .lever-explain{
+    font-family:'Inter',sans-serif;
+    font-size:14px;line-height:1.55;
+    color:var(--ele-fg-2);
+    max-width:60ch;
+  }
+  .lever-score{
+    font-family:'Inter',sans-serif;
+    font-size:48px;font-weight:700;
+    letter-spacing:-0.04em;line-height:1;
+  }
+  .lever-score-pct{
+    font-size:18px;color:var(--ele-fg-3);
+    font-weight:500;margin-left:2px;
+  }
+  @media(max-width:640px){
+    .lever-content{
+      grid-template-columns:auto 1fr;
+      gap:var(--ele-s-3);
+    }
+    .lever-score-wrap{
+      grid-column:1 / -1;
+      text-align:center;
+      margin-top:var(--ele-s-2);
+    }
+    .lever-title{font-size:20px}
+    .lever-score{font-size:40px}
+  }
+
+  /* Section subtitle reuse */
+  .section-sub{
+    font-family:'Inter',sans-serif;
+    color:var(--ele-fg-2);
+    font-size:15px;line-height:1.55;
+    margin-bottom:var(--ele-s-4);
+    max-width:60ch;
+  }
+
+  /* =========================================================
+     Typische operative Auswirkungen
+     ========================================================= */
+  .impact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:var(--ele-s-3);
+    margin-top:var(--ele-s-3);
+  }
+  @media(max-width:640px){
+    .impact-grid{grid-template-columns:1fr}
+  }
+  .impact-item{
+    display:flex;align-items:flex-start;gap:var(--ele-s-3);
+    padding:var(--ele-s-4) var(--ele-s-5);
+    background:var(--ele-ink-1);
+    border:1px solid var(--ele-border);
+    border-radius:var(--ele-r-md);
+    transition:border-color var(--ele-dur-fast) var(--ele-ease);
+  }
+  .impact-item:hover{border-color:var(--ele-border-strong)}
+  .impact-bullet{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--ele-accent);
+    margin-top:9px;flex-shrink:0;
+    box-shadow:0 0 8px rgba(212,175,55,0.4);
+  }
+  .impact-text{
+    font-family:'Inter',sans-serif;
+    font-size:15px;line-height:1.5;
+    color:var(--ele-fg-1);font-weight:500;
+  }
+
+  /* =========================================================
+     Zwischen-CTA (Mid-CTA, dezent)
+     ========================================================= */
+  .mid-cta{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:var(--ele-s-5);flex-wrap:wrap;
+    padding:var(--ele-s-5) var(--ele-s-6);
+    background:linear-gradient(135deg,rgba(217,178,90,0.05) 0%,rgba(217,178,90,0.015) 100%);
+    border:1px solid var(--ele-border);
+    border-radius:var(--ele-r-md);
+    margin-top:var(--ele-s-5);
+  }
+  .mid-cta-text{
+    font-family:'Inter',sans-serif;
+    font-size:15px;line-height:1.5;
+    color:var(--ele-fg-1);
+    font-weight:500;flex:1;min-width:280px;
+  }
+  .btn-mid{
+    display:inline-flex;align-items:center;gap:var(--ele-s-2);
+    padding:13px 22px;
+    border-radius:var(--ele-r-sm);
+    background:transparent;
+    color:var(--ele-accent);
+    border:1px solid var(--ele-border-strong);
+    font-family:'Inter',sans-serif;
+    font-size:14px;font-weight:600;letter-spacing:0.01em;
+    cursor:pointer;
+    transition:all var(--ele-dur-fast) var(--ele-ease);
+    white-space:nowrap;
+  }
+  .btn-mid:hover{
+    border-color:var(--ele-accent);
+    background:rgba(217,178,90,0.06);
+  }
+  .btn-mid svg{width:14px;height:14px;stroke-width:2}
   .exec-summary::before{
     content:"";position:absolute;
     top:0;left:var(--ele-s-5);right:var(--ele-s-5);height:1px;
@@ -568,11 +741,14 @@
     background:var(--ele-ink-1);
     border:1px solid var(--ele-border);
     border-radius:var(--ele-r-md);
-    padding:var(--ele-s-5) var(--ele-s-3);
+    padding:var(--ele-s-4) var(--ele-s-3);
     text-align:center;
-    display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+    display:flex;flex-direction:column;align-items:center;justify-content:space-between;
     gap:var(--ele-s-3);
+    min-height:170px;
+    transition:border-color var(--ele-dur-fast) var(--ele-ease),transform var(--ele-dur-fast) var(--ele-ease);
   }
+  .cat-card:hover{border-color:var(--ele-border-strong);transform:translateY(-1px)}
   .cat-icon-result{
     width:32px;height:32px;
     color:var(--ele-accent);
@@ -617,17 +793,6 @@
   .red-text{color:var(--ele-danger)}
   .yellow-text{color:var(--ele-warning)}
   .green-text{color:var(--ele-success)}
-
-  /* =========================================================
-     Spider
-     ========================================================= */
-  .spider-wrap{display:flex;justify-content:center;padding:var(--ele-s-5) 0}
-  .spider{width:100%;max-width:460px;height:auto}
-  .spider-grid{stroke:rgba(217,178,90,0.10);fill:none}
-  .spider-axis{stroke:rgba(217,178,90,0.15);fill:none}
-  .spider-fill{fill:rgba(217,178,90,0.18);stroke:var(--ele-accent);stroke-width:1.5}
-  .spider-point{fill:var(--ele-gold-100);stroke:var(--ele-accent-strong);stroke-width:1.5}
-  .spider-label{fill:var(--ele-fg-2);font-size:11px;font-weight:500;font-family:'Inter',sans-serif}
 
   /* =========================================================
      Top Hebel
@@ -717,6 +882,86 @@
   }
 
   /* =========================================================
+     Finaler Premium-CTA (Auswertungsseite)
+     ========================================================= */
+  .cta-final{
+    text-align:center;
+    padding:clamp(48px,5vw,72px) clamp(28px,4vw,56px);
+    background:linear-gradient(135deg,rgba(217,178,90,0.06) 0%,rgba(217,178,90,0.015) 100%);
+    border:1px solid var(--ele-border-strong);
+  }
+  .cta-headline{
+    font-family:'Inter',sans-serif;
+    font-weight:700;
+    font-size:clamp(34px,4vw,56px);
+    line-height:1.08;
+    letter-spacing:-0.025em;
+    color:#F5F1E8;
+    max-width:920px;
+    margin:0 auto clamp(20px,2.2vw,30px);
+  }
+  .cta-subtext{
+    font-family:'Inter',sans-serif;
+    font-weight:400;
+    font-size:clamp(18px,1.5vw,24px);
+    line-height:1.5;
+    color:var(--ele-fg-2);
+    max-width:920px;
+    margin:0 auto clamp(28px,3.4vw,44px);
+  }
+  .cta-final-btn{
+    display:inline-flex;
+    align-items:center;justify-content:center;
+    gap:14px;
+    min-height:72px;
+    min-width:380px;
+    padding:0 38px;
+    border-radius:16px;
+    border:1px solid rgba(242,214,117,0.45);
+    background:linear-gradient(135deg,#B8871F 0%,#F2D675 50%,#C9972B 100%);
+    color:#07101F;
+    font-family:'Inter',sans-serif;
+    font-size:24px;font-weight:700;
+    letter-spacing:-0.01em;
+    cursor:pointer;
+    box-shadow:0 14px 36px rgba(212,175,55,0.22),inset 0 1px 0 rgba(255,255,255,0.45);
+    transition:transform 200ms ease,filter 200ms ease,box-shadow 200ms ease;
+  }
+  .cta-final-btn:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.06);
+    box-shadow:0 20px 50px rgba(212,175,55,0.30),inset 0 1px 0 rgba(255,255,255,0.5);
+  }
+  .cta-final-btn:active{transform:translateY(0)}
+  .cta-final-btn svg{
+    width:22px;height:22px;stroke-width:2.2;flex-shrink:0;
+  }
+
+  /* Dezente Vertrauenszeile unter dem Lead-Form-Button */
+  .trust-line{
+    text-align:center;
+    font-family:'Inter',sans-serif;
+    font-size:13px;line-height:1.5;
+    color:#9FA7B8;
+    max-width:560px;
+    margin:18px auto 0;
+  }
+  /* Lead-Form (Step 7) — etwas kompakter */
+  #step-7 .card{padding:var(--ele-s-6) var(--ele-s-6) var(--ele-s-6)}
+  @media(max-width:768px){
+    #step-7 .card{padding:var(--ele-s-5) var(--ele-s-4)}
+  }
+  @media(max-width:768px){
+    .cta-final{padding:44px 22px}
+    .cta-headline{font-size:clamp(28px,6.5vw,40px);line-height:1.1;margin-bottom:18px}
+    .cta-subtext{font-size:16px;line-height:1.5;margin-bottom:28px}
+    .cta-final-btn{
+      min-width:0;width:100%;max-width:420px;
+      min-height:60px;font-size:17px;padding:0 24px;
+    }
+  }
+
+  /* =========================================================
      Success
      ========================================================= */
   .success-wrap{
@@ -741,18 +986,888 @@
   .step.active{display:block;animation:fadeUp var(--ele-dur-slow) var(--ele-ease)}
   @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
+  /* =========================================================
+     Hero (Step 0)
+     WICHTIG: #step-0 hat kein display:flex — damit .step{display:none}
+     greift wenn Step 0 inaktiv wird. Flex liegt auf .hero-inner.
+     ========================================================= */
+  #step-0{ /* kein display override — Sichtbarkeit via .step / .step.active */ }
+  .hero-inner{
+    min-height:calc(100vh - var(--ele-s-7) - var(--ele-s-9));
+    display:flex;flex-direction:column;align-items:center;
+    justify-content:center;text-align:center;width:100%;
+  }
+  .hero-content{
+    position:relative;z-index:2;
+    display:flex;flex-direction:column;align-items:center;
+    text-align:center;width:100%;
+  }
+  .hero-logo{display:flex;flex-direction:column;align-items:center}
+  .hero-logo img{
+    width:82px;height:auto;margin-bottom:12px;
+    filter:drop-shadow(0 4px 16px rgba(212,175,55,0.22));
+  }
+  .hero-lbl{
+    font-size:13px;font-weight:700;letter-spacing:7px;
+    color:#D4AF37;text-transform:uppercase;margin-bottom:28px;
+  }
+  .hero-headline{
+    font-size:clamp(30px,3.6vw,50px);line-height:1.13;font-weight:700;
+    color:#F5F1E8;max-width:740px;margin:0 auto;letter-spacing:-0.03em;
+    position:relative;z-index:1;
+  }
+  .hero-headline .gold{color:#D4AF37}
+  .hero-divider{
+    width:44px;height:2px;background:#D4AF37;opacity:0.9;
+    margin:26px auto 22px;border-radius:999px;
+    position:relative;z-index:1;
+  }
+  .hero-trust{
+    display:flex;align-items:center;justify-content:center;
+    gap:36px;margin-bottom:32px;position:relative;z-index:1;
+  }
+  .hero-trust-item{
+    display:flex;align-items:center;gap:14px;
+    text-align:left;min-width:200px;
+  }
+  .hero-trust-icon{flex-shrink:0;display:flex}
+  .hero-trust-icon svg{width:36px;height:36px;stroke:#D4AF37;stroke-width:1.8;fill:none}
+  .hero-trust-divider{
+    width:1px;height:52px;background:rgba(212,175,55,0.25);flex-shrink:0;
+  }
+  .hero-trust-lbl{
+    font-size:16px;font-weight:700;line-height:1.2;color:#F5F1E8;margin-bottom:3px;
+  }
+  .hero-trust-sub{font-size:13px;font-weight:400;line-height:1.35;color:#C9C3B5}
+  .hero-cta{
+    display:inline-flex;align-items:center;justify-content:center;gap:16px;
+    width:min(460px,100%);height:58px;border-radius:10px;
+    border:1px solid rgba(242,214,117,0.45);
+    background:linear-gradient(135deg,#B8871F 0%,#F2D675 52%,#C9972B 100%);
+    color:#07101F;font-family:'Inter',sans-serif;font-size:18px;font-weight:700;
+    cursor:pointer;
+    box-shadow:0 14px 36px rgba(212,175,55,0.22),inset 0 1px 0 rgba(255,255,255,0.45);
+    transition:transform 180ms ease,filter 180ms ease,box-shadow 180ms ease;
+    letter-spacing:-0.01em;position:relative;z-index:1;
+  }
+  .hero-cta:hover{
+    transform:translateY(-2px);filter:brightness(1.06);
+    box-shadow:0 18px 44px rgba(212,175,55,0.28),inset 0 1px 0 rgba(255,255,255,0.5);
+  }
+  .hero-cta:active{transform:translateY(1px)}
+  .hero-cta svg{width:20px;height:20px;stroke-width:2.2;flex-shrink:0}
+  .hero-security{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    margin-top:14px;font-size:13px;font-weight:400;color:#C9C3B5;
+    position:relative;z-index:1;
+  }
+  .hero-security svg{width:15px;height:15px;stroke:#D4AF37;stroke-width:1.8;fill:none;flex-shrink:0}
+
+  @media(max-width:768px){
+    .hero-inner{min-height:auto;padding:8px 0 20px}
+    .hero-logo img{width:70px;margin-bottom:10px}
+    .hero-lbl{font-size:11px;letter-spacing:5px;margin-bottom:22px}
+    .hero-headline{font-size:clamp(26px,8vw,36px)}
+    .hero-divider{margin:20px auto 18px}
+    .hero-trust{
+      flex-direction:column;gap:18px;margin-bottom:26px;
+      align-items:flex-start;padding:0 8px;
+    }
+    .hero-trust-item{min-width:unset;width:100%;max-width:320px}
+    .hero-trust-divider{display:none}
+    .hero-cta{height:52px;font-size:16px;width:100%;max-width:380px;gap:14px}
+    .hero-security{font-size:12px;margin-top:12px}
+  }
+
+  /* =========================================================
+     Fragen-Karten (Seite 2–6, neue Design)
+     ========================================================= */
+  .q-card{
+    max-width:860px;margin:0 auto;
+    padding:26px 36px 24px;border-radius:18px;
+    background:rgba(16,28,49,0.88);
+    border:1px solid rgba(212,175,55,0.14);
+    box-shadow:0 20px 50px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.03);
+    backdrop-filter:blur(6px);
+    position:relative;z-index:2;
+  }
+  .cat-label{
+    font-size:11px;letter-spacing:3px;
+    color:#D4AF37;text-transform:uppercase;
+    margin-bottom:12px;font-weight:600;
+  }
+  .cat-head-new{display:flex;align-items:center;gap:14px;margin-bottom:4px}
+  .cat-icon-new{
+    width:44px;height:44px;border-radius:10px;flex-shrink:0;
+    background:rgba(212,175,55,0.10);
+    border:1px solid rgba(212,175,55,0.28);
+    display:flex;align-items:center;justify-content:center;color:#D4AF37;
+  }
+  .cat-icon-new svg{width:22px;height:22px;stroke-width:1.5}
+  .cat-title-new{
+    font-size:clamp(22px,2.6vw,34px);font-weight:700;
+    line-height:1.1;color:#F5F1E8;letter-spacing:-0.02em;margin:0;
+  }
+  .cat-aim-new{font-size:14px;font-style:italic;color:#C9C3B5;margin-top:3px}
+  .cat-divider{
+    width:36px;height:2px;background:#D4AF37;opacity:0.7;
+    margin:14px 0 16px;border-radius:999px;
+  }
+  .q-num{
+    font-size:11px;letter-spacing:2px;color:#9FA7B8;
+    text-transform:uppercase;margin-bottom:8px;font-weight:600;
+  }
+  .q-text{
+    font-size:clamp(16px,1.8vw,20px);font-weight:600;
+    line-height:1.4;color:#F5F1E8;margin-bottom:16px;
+  }
+  .q-options{display:flex;flex-direction:column;gap:7px}
+  .q-option{
+    display:flex;align-items:center;gap:14px;
+    padding:11px 18px;border-radius:10px;
+    background:#0C1528;border:1px solid rgba(255,255,255,0.06);
+    cursor:pointer;
+    transition:background .18s ease,border-color .18s ease,transform .18s ease;
+  }
+  .q-option:hover{
+    background:#13213B;border-color:rgba(212,175,55,0.28);transform:translateY(-1px);
+  }
+  .q-option:has(input:checked){
+    background:#1B2B49;border-color:#D4AF37;
+    box-shadow:0 0 0 1px rgba(212,175,55,0.18);
+  }
+  .q-option input[type=radio]{
+    appearance:none;width:20px;height:20px;flex-shrink:0;
+    border:1.5px solid rgba(212,175,55,0.45);border-radius:50%;cursor:pointer;
+    transition:all .15s ease;
+  }
+  .q-option input[type=radio]:checked{
+    border-color:#D4AF37;
+    background:radial-gradient(circle,#D4AF37 40%,transparent 45%);
+  }
+  .q-option-text{font-size:15px;line-height:1.45;color:#F5F1E8;font-weight:400}
+  .q-nav{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-top:18px;gap:12px;
+  }
+  .btn-back{
+    display:inline-flex;align-items:center;gap:8px;
+    background:transparent;border:none;cursor:pointer;
+    color:#C9C3B5;font-family:'Inter',sans-serif;
+    font-size:15px;font-weight:500;padding:12px 4px;
+    transition:color .15s ease;
+  }
+  .btn-back:hover{color:#F5F1E8}
+  .btn-back svg{width:16px;height:16px;stroke-width:2}
+  .btn-next{
+    display:inline-flex;align-items:center;gap:10px;
+    height:48px;padding:0 26px;border-radius:10px;
+    border:1px solid rgba(242,214,117,0.45);
+    background:linear-gradient(135deg,#B8871F 0%,#F2D675 50%,#C9972B 100%);
+    color:#07101F;font-family:'Inter',sans-serif;
+    font-size:16px;font-weight:700;cursor:pointer;
+    box-shadow:0 10px 26px rgba(212,175,55,0.20),inset 0 1px 0 rgba(255,255,255,0.4);
+    transition:transform .15s ease,filter .15s ease;letter-spacing:-0.01em;
+  }
+  .btn-next:hover{transform:translateY(-1px);filter:brightness(1.05)}
+  .btn-next:active{transform:translateY(1px)}
+  .btn-next svg{width:18px;height:18px;stroke-width:2.2}
+
+  @media(max-width:768px){
+    .q-card{padding:20px 16px 18px;border-radius:14px}
+    .cat-title-new{font-size:22px}
+    .q-text{font-size:16px}
+    .q-option{padding:10px 13px;border-radius:9px}
+    .q-option-text{font-size:14px}
+    .q-nav{flex-direction:column-reverse;gap:8px}
+    .btn-next{width:100%;justify-content:center;height:48px;font-size:15px}
+    .btn-back{width:100%;justify-content:center}
+    .q-compact-header{margin-bottom:6px}
+    .q-motiv-text{margin-bottom:10px}
+  }
+
+  /* =========================================================
+     Fragen-Seiten: Kopfzeile + Fortschritt (Steps 1–5)
+     ========================================================= */
+  .q-page-wrapper{position:relative}
+  /* Kompakte Kopfzeile */
+  .q-compact-header{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:8px;
+    position:relative;z-index:2;
+  }
+  .q-brand-label{
+    font-size:11px;font-weight:700;letter-spacing:3.5px;
+    color:#D4AF37;text-transform:uppercase;
+  }
+  .q-step-label{
+    font-size:12px;font-weight:600;color:#9FA7B8;
+    letter-spacing:0.02em;
+  }
+  .q-prog-bar-wrap{
+    height:3px;background:rgba(255,255,255,0.08);
+    border-radius:999px;overflow:hidden;margin-bottom:6px;
+    position:relative;z-index:2;
+  }
+  .q-prog-fill{
+    height:100%;
+    background:linear-gradient(90deg,#B8871F 0%,#F2D675 100%);
+    box-shadow:0 0 8px rgba(212,175,55,0.25);
+    transition:width 0.4s ease;
+  }
+  .q-motiv-text{
+    font-size:11px;color:#9FA7B8;
+    margin-bottom:14px;letter-spacing:0.01em;
+    position:relative;z-index:2;
+  }
+
+  /* DSGVO Checkbox */
+  .dsgvo-wrap{
+    display:flex;align-items:flex-start;gap:var(--ele-s-3);
+    padding:var(--ele-s-3) var(--ele-s-4);
+    border-radius:var(--ele-r-sm);
+    background:var(--ele-ink-0);
+    border:1px solid var(--ele-border);
+    cursor:pointer;margin-top:var(--ele-s-4);
+    transition:border-color var(--ele-dur-fast) var(--ele-ease);
+  }
+  .dsgvo-wrap:hover{border-color:var(--ele-border-strong)}
+  .dsgvo-wrap input[type=checkbox]{
+    width:18px;height:18px;flex-shrink:0;margin-top:2px;
+    accent-color:var(--ele-accent);cursor:pointer;
+  }
+  .dsgvo-text{font-size:13px;line-height:1.5;color:var(--ele-fg-2)}
+  .dsgvo-text span{color:var(--ele-fg-3)}
+
+  /* =========================================================
+     PHASE 3: Executive Dashboard Hero (Result Page)
+     ========================================================= */
+
+  /* Container im Result-Mode breiter */
+  .container.wide{max-width:1320px}
+
+  /* Hero-Wrapper — kein Card-Background */
+  .results-hero{
+    max-width:1320px;margin:0 auto;
+    padding:28px 48px 0;
+  }
+
+  /* Topbar — minimal, nur zentrales Label */
+  .results-topbar{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:32px;
+  }
+  .results-label{
+    display:inline-flex;
+    align-items:center;justify-content:center;
+    padding:12px 30px;
+    border:1px solid rgba(212,175,55,0.24);
+    border-radius:999px;
+    background:rgba(255,255,255,0.025);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    color:var(--ele-accent);
+    font-family:'Inter',sans-serif;
+    font-size:18px;font-weight:700;
+    letter-spacing:8px;text-transform:uppercase;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.02),
+      0 10px 30px rgba(0,0,0,0.24);
+  }
+  .topbar-left{display:flex;align-items:center;gap:12px}
+  .topbar-logo{
+    width:36px;height:36px;
+    filter:drop-shadow(0 4px 14px rgba(212,175,55,0.18));
+  }
+  .topbar-brand{
+    font-family:'Inter',sans-serif;
+    font-size:14px;font-weight:600;color:var(--ele-fg-1);
+    letter-spacing:-0.01em;
+  }
+  .topbar-title{
+    font-family:'Inter',sans-serif;
+    font-size:12px;font-weight:700;
+    letter-spacing:0.32em;text-transform:uppercase;
+    color:var(--ele-accent);text-align:center;
+  }
+  .topbar-right{display:flex;justify-content:flex-end}
+  .btn-print{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:10px 18px;
+    border-radius:var(--ele-r-sm);
+    background:transparent;
+    color:var(--ele-fg-1);
+    border:1px solid var(--ele-border-strong);
+    font-family:'Inter',sans-serif;
+    font-size:13px;font-weight:500;
+    cursor:pointer;
+    transition:all var(--ele-dur-fast) var(--ele-ease);
+  }
+  .btn-print:hover{border-color:var(--ele-accent);color:var(--ele-accent)}
+  .btn-print svg{width:14px;height:14px;stroke-width:2}
+
+  /* Hero Stack — alles zentriert vertikal */
+  .results-hero-grid{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin-bottom:0;
+  }
+  .score-side{
+    display:flex;flex-direction:column;align-items:center;
+    text-align:center;
+    position:relative;
+    margin-bottom:22px;
+  }
+  .score-eyebrow{
+    font-family:'Inter',sans-serif;
+    font-size:13px;font-weight:700;
+    letter-spacing:4px;text-transform:uppercase;
+    color:var(--ele-accent);
+    margin-bottom:6px;
+    text-align:center;
+  }
+  /* Tone-aware wrapper — setzt Score-Farbvariablen */
+  .score-side.s-low{
+    --score-color:var(--score-low);
+    --score-soft:var(--score-low-soft);
+    --score-glow:var(--score-low-glow);
+  }
+  .score-side.s-mid{
+    --score-color:var(--score-mid);
+    --score-soft:var(--score-mid-soft);
+    --score-glow:var(--score-mid-glow);
+  }
+  .score-side.s-high{
+    --score-color:var(--score-high);
+    --score-soft:var(--score-high-soft);
+    --score-glow:var(--score-high-glow);
+  }
+  /* Premium Score-Ring — dezenter Rahmen um den Score */
+  .score-ring{
+    position:relative;
+    width:clamp(220px,21vw,285px);
+    height:clamp(220px,21vw,285px);
+    display:flex;align-items:center;justify-content:center;
+    margin:10px auto 14px;
+    border-radius:50%;
+    border:1.5px solid rgba(255,255,255,0.08);
+    background:radial-gradient(circle, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0) 68%);
+    box-shadow:
+      inset 0 0 50px rgba(255,255,255,0.018),
+      0 0 90px var(--score-glow);
+    isolation:isolate;
+  }
+  /* Subtiler dynamischer Ring-Akzent (conic-gradient mit Mask) */
+  .score-ring::before{
+    content:"";
+    position:absolute;
+    inset:-1px;
+    border-radius:50%;
+    background:conic-gradient(
+      from 220deg,
+      var(--score-color) 0deg,
+      var(--score-color) 70deg,
+      rgba(255,255,255,0.05) 72deg,
+      rgba(255,255,255,0.05) 360deg
+    );
+    opacity:0.45;
+    filter:blur(0.2px);
+    mask:radial-gradient(farthest-side, transparent calc(100% - 3px), black calc(100% - 2px));
+    -webkit-mask:radial-gradient(farthest-side, transparent calc(100% - 3px), black calc(100% - 2px));
+    pointer-events:none;
+  }
+  .score-block{
+    position:relative;
+    display:inline-block;
+  }
+  .result-score{
+    font-family:'Inter',sans-serif;
+    font-size:clamp(86px,7.6vw,128px);
+    font-weight:800;line-height:0.85;letter-spacing:-0.07em;
+    color:var(--score-color);
+    text-shadow:0 0 36px var(--score-glow);
+    display:inline-block;
+    position:relative;
+    text-align:center;
+  }
+  .result-score-pct{
+    font-size:0.38em;font-weight:700;
+    margin-left:6px;letter-spacing:-0.03em;
+    color:var(--score-color);
+  }
+
+  .result-badge{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:10px 22px;border-radius:999px;
+    border:1px solid var(--score-color);
+    background:var(--score-soft);
+    font-family:'Inter',sans-serif;
+    font-size:12px;font-weight:700;letter-spacing:2.2px;
+    text-transform:uppercase;
+    color:var(--score-color);
+    margin-top:12px;
+  }
+  .result-badge::before{
+    content:"";width:6px;height:6px;border-radius:50%;flex-shrink:0;
+    background:var(--score-color);
+    box-shadow:0 0 14px var(--score-glow);
+  }
+
+  /* Summary — zentriert, breit, ohne Card-Look */
+  .summary-side{
+    display:flex;flex-direction:column;
+    max-width:1180px;width:100%;
+    margin:0 auto 26px;
+    text-align:center;
+  }
+  .summary-eyebrow{
+    font-family:'Inter',sans-serif;
+    font-size:13px;font-weight:700;
+    letter-spacing:4px;text-transform:uppercase;
+    color:var(--ele-accent);
+    margin-bottom:14px;
+    text-align:center;
+  }
+  .executive-summary-text{
+    font-family:'Inter',sans-serif;
+    font-size:clamp(18px,1.45vw,24px);
+    line-height:1.38;
+    color:var(--ele-fg-1);
+    font-weight:400;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .summary-divider{
+    width:72px;height:1px;
+    background:linear-gradient(90deg,transparent,#D4AF37,transparent);
+    margin:16px auto 0;
+    opacity:0.75;
+  }
+
+  /* Größter Wirkhebel — Hero-Card */
+  .main-lever-card{
+    display:grid;
+    grid-template-columns:104px 1fr 180px;
+    gap:28px;
+    align-items:center;
+    padding:26px 34px;
+    border-radius:18px;
+    background:rgba(8,14,28,0.72);
+    border:1px solid rgba(212,175,55,0.22);
+    box-shadow:0 24px 70px rgba(0,0,0,0.32);
+    max-width:1180px;
+    margin:0 auto 20px;
+    position:relative;overflow:hidden;
+  }
+  .main-lever-card::before{
+    content:"";position:absolute;
+    top:0;left:0;width:3px;height:100%;
+    background:var(--ele-grad-gold);opacity:0.85;
+  }
+  .ml-icon{
+    width:88px;height:88px;border-radius:18px;
+    background:rgba(212,175,55,0.10);
+    border:1px solid rgba(212,175,55,0.32);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--ele-accent);justify-self:center;
+  }
+  .ml-icon svg{width:42px;height:42px;stroke-width:1.4}
+  .main-lever-eyebrow{
+    font-family:'Inter',sans-serif;
+    font-size:11px;font-weight:700;letter-spacing:0.32em;
+    text-transform:uppercase;color:var(--ele-accent);
+    margin-bottom:6px;
+  }
+  .main-lever-title{
+    font-family:'Inter',sans-serif;
+    font-size:clamp(24px,2.4vw,30px);font-weight:700;
+    color:var(--ele-fg-1);letter-spacing:-0.02em;
+    line-height:1.15;margin-bottom:8px;
+  }
+  .main-lever-explain{
+    font-family:'Inter',sans-serif;
+    font-size:15px;line-height:1.55;
+    color:var(--ele-fg-2);max-width:60ch;
+  }
+  .ml-score-wrap{text-align:right}
+  .ml-score{
+    font-family:'Inter',sans-serif;
+    font-size:60px;font-weight:700;
+    letter-spacing:-0.04em;line-height:1;
+  }
+  .ml-score.low{color:var(--status-low)}
+  .ml-score.mid{color:var(--status-mid)}
+  .ml-score.high{color:var(--status-high)}
+  .ml-score-pct{
+    font-size:22px;color:var(--ele-fg-3);
+    font-weight:500;margin-left:2px;
+  }
+  .ml-score-label{
+    font-size:11px;font-weight:600;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--ele-fg-3);
+    margin-top:6px;
+  }
+
+  /* Dashboard Grid */
+  .dashboard-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+    margin-bottom:var(--ele-s-8);
+    align-items:stretch;
+  }
+  .dashboard-card{
+    background:rgba(16,28,49,0.72);
+    border:1px solid var(--ele-border);
+    border-radius:14px;
+    padding:24px 28px;
+    position:relative;
+  }
+  .dashboard-card-eyebrow{
+    font-family:'Inter',sans-serif;
+    font-size:11px;font-weight:700;letter-spacing:0.32em;
+    text-transform:uppercase;color:var(--ele-accent);
+    margin-bottom:18px;
+  }
+  /* Impact-Rows — Verbesserungen mit Icon + Title + Description */
+  .impact-rows{display:flex;flex-direction:column;gap:10px}
+  .impact-row{
+    display:flex;align-items:flex-start;gap:16px;
+    padding:14px 16px;
+    border-radius:14px;
+    background:rgba(255,255,255,0.025);
+    border:1px solid rgba(212,175,55,0.10);
+    transition:background var(--ele-dur-fast) var(--ele-ease),border-color var(--ele-dur-fast) var(--ele-ease),transform var(--ele-dur-fast) var(--ele-ease);
+  }
+  .impact-row:hover{
+    background:rgba(255,255,255,0.04);
+    border-color:rgba(212,175,55,0.22);
+    transform:translateX(2px);
+  }
+  .impact-icon{
+    width:38px;height:38px;min-width:38px;
+    border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--ele-accent);
+    background:rgba(212,175,55,0.08);
+    border:1px solid rgba(212,175,55,0.16);
+  }
+  .impact-icon svg{width:18px;height:18px;stroke-width:1.6}
+  .impact-text{flex:1;min-width:0}
+  .impact-title{
+    font-family:'Inter',sans-serif;
+    font-size:15px;font-weight:700;
+    color:var(--ele-fg-1);
+    letter-spacing:-0.005em;
+    line-height:1.25;
+    margin-bottom:3px;
+  }
+  .impact-description{
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;line-height:1.45;
+    color:var(--ele-fg-2);
+  }
+
+  /* Kategorie-Liste (kompakt, dashboard-style) */
+  .cat-list{display:flex;flex-direction:column;gap:8px}
+  .cat-row{
+    display:grid;
+    grid-template-columns:auto 1fr 90px auto;
+    gap:14px;
+    align-items:center;
+    padding:10px 12px;
+    border-radius:10px;
+    background:rgba(255,255,255,0.02);
+    transition:background var(--ele-dur-fast) var(--ele-ease);
+  }
+  .cat-row:hover{background:rgba(212,175,55,0.04)}
+  .cat-row-icon{
+    width:32px;height:32px;flex-shrink:0;
+    border-radius:8px;
+    background:rgba(212,175,55,0.08);
+    border:1px solid rgba(212,175,55,0.18);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--ele-accent);
+  }
+  .cat-row-icon svg{width:16px;height:16px;stroke-width:1.5}
+  .cat-row-title{
+    font-family:'Inter',sans-serif;
+    font-size:13px;font-weight:600;
+    color:var(--ele-fg-1);line-height:1.2;
+  }
+  .cat-row-bar{
+    height:5px;background:rgba(255,255,255,0.06);
+    border-radius:999px;overflow:hidden;width:100%;
+  }
+  .cat-row-bar-fill{
+    height:100%;border-radius:999px;
+    transition:width 1s var(--ele-ease);
+  }
+  .cat-row-meta{display:flex;align-items:center;gap:10px}
+  .cat-row-score{
+    font-family:'Inter',sans-serif;
+    font-size:14px;font-weight:700;letter-spacing:-0.02em;
+    text-align:right;min-width:38px;
+  }
+  .cat-row-dot{
+    width:8px;height:8px;border-radius:50%;flex-shrink:0;
+  }
+
+  /* Status Tone Klassen — neue Aliasse für Phase 3 Komponenten */
+  .low-text{color:var(--status-low)}
+  .mid-text{color:var(--status-mid)}
+  .high-text{color:var(--status-high)}
+  .low-fill{background:linear-gradient(90deg,rgba(216,92,74,0.55),var(--status-low))}
+  .mid-fill{background:linear-gradient(90deg,rgba(212,175,55,0.55),var(--status-mid))}
+  .high-fill{background:linear-gradient(90deg,rgba(111,162,96,0.55),var(--status-high))}
+  .cat-row-dot.low{background:var(--status-low);box-shadow:0 0 8px rgba(216,92,74,0.5)}
+  .cat-row-dot.mid{background:var(--status-mid);box-shadow:0 0 8px rgba(212,175,55,0.5)}
+  .cat-row-dot.high{background:var(--status-high);box-shadow:0 0 8px rgba(111,162,96,0.5)}
+
+  /* Mehr-Details-Zone */
+  .more-details-zone{
+    display:flex;flex-direction:column;align-items:center;
+    text-align:center;
+    padding:var(--ele-s-7) 0 var(--ele-s-5);
+    margin-bottom:var(--ele-s-7);
+    border-top:1px solid rgba(212,175,55,0.10);
+  }
+  .more-details-label{
+    font-family:'Inter',sans-serif;
+    font-size:11px;font-weight:700;letter-spacing:0.32em;
+    text-transform:uppercase;color:var(--ele-accent);
+  }
+  .more-details-sub{
+    font-family:'Inter',sans-serif;
+    font-size:13px;font-weight:500;color:var(--ele-fg-3);
+    margin-top:8px;
+  }
+  .more-details-chevron{
+    width:32px;height:32px;
+    border-radius:50%;
+    background:rgba(212,175,55,0.06);
+    border:1px solid rgba(212,175,55,0.18);
+    display:flex;align-items:center;justify-content:center;
+    margin-top:14px;color:var(--ele-accent);
+  }
+  .more-details-chevron svg{width:14px;height:14px;stroke-width:2}
+
+  /* Detail-Bereich (below the fold) — schmaler Wrapper für Lesbarkeit */
+  .results-detail-wrap{max-width:880px;margin:0 auto}
+
+  /* Mobile Responsive für Hero */
+  @media(max-width:1100px){
+    .main-lever-card{grid-template-columns:80px 1fr}
+    .ml-score-wrap{
+      grid-column:1 / -1;
+      text-align:center;margin-top:8px;
+      padding-top:14px;
+      border-top:1px solid rgba(212,175,55,0.10);
+    }
+    .ml-icon{width:64px;height:64px;border-radius:14px}
+    .ml-icon svg{width:32px;height:32px}
+    .ml-score{font-size:48px}
+    .dashboard-grid{grid-template-columns:1fr;gap:18px}
+  }
+  @media(max-width:768px){
+    .results-hero{padding:22px 20px 0}
+    .results-topbar{margin-bottom:24px}
+    .results-label{font-size:15px;letter-spacing:6px;padding:10px 24px}
+    .score-side{margin-bottom:18px}
+    .summary-side{margin-bottom:20px}
+    .score-ring{
+      width:clamp(190px,60vw,240px);height:clamp(190px,60vw,240px);
+      margin:6px auto 10px;
+      box-shadow:inset 0 0 40px rgba(255,255,255,0.018),0 0 70px var(--score-glow);
+    }
+    .result-score{font-size:clamp(72px,20vw,108px)}
+    .executive-summary-text{font-size:17px;line-height:1.4}
+    .main-lever-card{padding:20px 22px;gap:18px;margin-bottom:14px}
+    .main-lever-title{font-size:22px}
+    .main-lever-explain{font-size:14px}
+    .dashboard-card{padding:20px 22px}
+    .more-details-zone{padding:var(--ele-s-6) 0 var(--ele-s-5)}
+  }
+  @media(max-width:480px){
+    .results-label{font-size:13px;letter-spacing:5px;padding:9px 20px}
+    .result-badge{font-size:11px;letter-spacing:1.8px;padding:8px 16px}
+    .score-ring{width:clamp(170px,62vw,210px);height:clamp(170px,62vw,210px)}
+    .result-score{font-size:clamp(64px,18vw,92px)}
+  }
+
   @media print{
     body{background:white;color:black;padding:0}
-    .btn,.nav-row,.progress-wrap,.brand-bar{display:none}
+    .btn,.nav-row,.progress-wrap,.brand-bar,.btn-print,.more-details-zone,.btn-mid,.mid-cta{display:none}
     .card{box-shadow:none;border:1px solid #ccc;page-break-inside:avoid}
+    .container.wide{max-width:none}
+    .result-score,.result-score-pct{
+      color:#0A1020;text-shadow:none;
+    }
+    .score-ring{
+      box-shadow:none;border:1px solid #ccc;background:none;
+    }
+    .score-ring::before{display:none}
+    .results-label{
+      background:none;backdrop-filter:none;-webkit-backdrop-filter:none;
+      box-shadow:none;border:1px solid #ccc;color:#0A1020;
+    }
+  }
+
+  /* =========================================================
+     Footer + Datenschutz-Modal
+     ========================================================= */
+  .page-footer{
+    margin-top:56px;
+    padding:20px 16px 8px;
+    text-align:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .footer-link{
+    display:inline-flex;align-items:center;
+    font-family:'Inter',sans-serif;
+    font-size:12px;font-weight:500;
+    letter-spacing:0.06em;
+    color:var(--ele-fg-3);
+    text-decoration:none;cursor:pointer;
+    background:transparent;border:none;
+    padding:6px 4px;
+    transition:color var(--ele-dur-fast) var(--ele-ease);
+  }
+  .footer-link:hover{color:var(--ele-accent)}
+  .footer-disabled{
+    font-family:'Inter',sans-serif;
+    font-size:12px;font-weight:500;
+    color:var(--ele-fg-3);opacity:0.45;
+    cursor:not-allowed;padding:6px 4px;
+  }
+  .footer-sep{
+    color:var(--ele-fg-3);opacity:0.5;font-size:12px;
+  }
+
+  /* Datenschutz-Modal */
+  .legal-modal{
+    position:fixed;inset:0;
+    display:none;
+    align-items:flex-start;
+    justify-content:center;
+    background:rgba(5,8,15,0.78);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    z-index:1000;
+    overflow-y:auto;
+    padding:48px 16px;
+    animation:legalFade 240ms ease;
+  }
+  .legal-modal.active{display:flex}
+  @keyframes legalFade{from{opacity:0}to{opacity:1}}
+
+  .legal-card{
+    position:relative;
+    width:100%;max-width:760px;
+    background:var(--ele-bg-elev);
+    border:1px solid var(--ele-border);
+    border-radius:var(--ele-r-md);
+    padding:48px clamp(28px,4vw,56px);
+    box-shadow:var(--ele-shadow-3);
+    margin:auto 0;
+  }
+  .legal-card::before{
+    content:"";position:absolute;
+    top:0;left:var(--ele-s-6);right:var(--ele-s-6);height:1px;
+    background:var(--ele-grad-divider);
+  }
+  .legal-close{
+    position:absolute;
+    top:14px;right:14px;
+    width:36px;height:36px;border-radius:50%;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.08);
+    color:var(--ele-fg-2);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    transition:all var(--ele-dur-fast) var(--ele-ease);
+  }
+  .legal-close:hover{
+    border-color:var(--ele-accent);
+    color:var(--ele-accent);
+  }
+  .legal-close svg{width:16px;height:16px;stroke-width:2}
+
+  .legal-eyebrow{
+    font-family:'Inter',sans-serif;
+    font-size:11px;font-weight:700;
+    letter-spacing:0.32em;text-transform:uppercase;
+    color:var(--ele-accent);margin-bottom:14px;
+  }
+  .legal-title{
+    font-family:'Inter',sans-serif;
+    font-size:28px;font-weight:700;
+    line-height:1.15;letter-spacing:-0.02em;
+    color:var(--ele-fg-1);
+    margin-bottom:32px;
+  }
+  .legal-section{margin-bottom:24px}
+  .legal-section:last-child{margin-bottom:0}
+  .legal-h{
+    font-family:'Inter',sans-serif;
+    font-size:13px;font-weight:700;
+    letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--ele-fg-1);
+    margin-bottom:8px;
+  }
+  .legal-p{
+    font-family:'Inter',sans-serif;
+    font-size:14.5px;line-height:1.6;
+    color:var(--ele-fg-2);
+    margin-bottom:6px;
+  }
+  .legal-p:last-child{margin-bottom:0}
+  .legal-list{
+    list-style:none;padding:0;margin:6px 0 0;
+  }
+  .legal-list li{
+    font-family:'Inter',sans-serif;
+    font-size:14.5px;line-height:1.55;
+    color:var(--ele-fg-2);
+    padding-left:18px;position:relative;
+    margin-bottom:2px;
+  }
+  .legal-list li::before{
+    content:"·";color:var(--ele-accent);
+    position:absolute;left:6px;font-weight:700;
+  }
+  .legal-mail{
+    color:var(--ele-accent);
+    text-decoration:none;
+  }
+  .legal-mail:hover{text-decoration:underline}
+
+  @media(max-width:640px){
+    .legal-card{padding:36px 22px;border-radius:12px}
+    .legal-title{font-size:22px;margin-bottom:24px}
+    .legal-h{font-size:12px}
+    .legal-p,.legal-list li{font-size:14px;line-height:1.55}
+    .legal-modal{padding:24px 12px}
+    .page-footer{margin-top:40px;gap:10px}
+  }
+
+  @media print{
+    .page-footer,.legal-modal{display:none !important}
   }
 </style>
 </head>
 <body>
 <div class="container">
 
-  <!-- ============= UNIVERSAL HEADER ============= -->
-  <div class="brand-bar">
+  <!-- ============= UNIVERSAL HEADER (hidden on step 0) ============= -->
+  <div class="brand-bar" id="brandBar" style="display:none">
     <img src="assets/logo-mark.png" alt="eLearneffect" />
     <div class="brand-title">Potenzialanalyse</div>
   </div>
@@ -764,52 +1879,63 @@
       <span id="progressPct">0 %</span>
     </div>
     <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-motiv" id="progressMotiv"></div>
   </div>
 
-  <!-- ============= STEP 0: INTRO (Premium Hero, no card) ============= -->
+  <!-- ============= STEP 0: HERO ============= -->
   <div class="step active" id="step-0">
-    <div class="hero-stage">
-      <h1 class="hero-headline">Erkennen, wie viel Potenzial im Führungssystem <span class="hero-accent">verborgen liegt.</span></h1>
-      <p class="hero-sub">Viele Unternehmen haben Führungskräfte.<br/>Wenige haben ein <span class="hero-accent">wirksames Führungssystem</span>.</p>
+  <div class="hero-inner">
+
+    <!-- Hero Content -->
+    <div class="hero-content">
+
+      <div class="hero-logo">
+        <img src="assets/logo-mark.png" alt="eLearneffect" />
+        <div class="hero-lbl">Potenzialanalyse</div>
+      </div>
+
+      <h1 class="hero-headline">Erkennen, wie viel Potenzial im<br>Führungssystem <span class="gold">verborgen liegt.</span></h1>
 
       <div class="hero-divider"></div>
 
-      <div class="trust-row">
-        <div class="trust-item">
-          <div class="trust-icon"><i data-lucide="timer"></i></div>
-          <div class="trust-text">
-            <div class="trust-main">In nur 5 Minuten</div>
-            <div class="trust-sub">schnell und unkompliziert</div>
+      <div class="hero-trust">
+        <div class="hero-trust-item">
+          <div class="hero-trust-icon"><i data-lucide="clock"></i></div>
+          <div>
+            <div class="hero-trust-lbl">In nur 5 Minuten</div>
+            <div class="hero-trust-sub">schnell und unkompliziert</div>
           </div>
         </div>
-        <div class="trust-divider-v"></div>
-        <div class="trust-item">
-          <div class="trust-icon"><i data-lucide="shield-check"></i></div>
-          <div class="trust-text">
-            <div class="trust-main">100&nbsp;% vertraulich</div>
-            <div class="trust-sub">Ihre Daten sind sicher</div>
+        <div class="hero-trust-divider"></div>
+        <div class="hero-trust-item">
+          <div class="hero-trust-icon"><i data-lucide="shield-check"></i></div>
+          <div>
+            <div class="hero-trust-lbl">100 % vertraulich</div>
+            <div class="hero-trust-sub">Ihre Daten sind sicher</div>
           </div>
         </div>
-        <div class="trust-divider-v"></div>
-        <div class="trust-item">
-          <div class="trust-icon"><i data-lucide="target"></i></div>
-          <div class="trust-text">
-            <div class="trust-main">Für Produktion &amp; Logistik</div>
-            <div class="trust-sub">speziell entwickelt</div>
+        <div class="hero-trust-divider"></div>
+        <div class="hero-trust-item">
+          <div class="hero-trust-icon"><i data-lucide="target"></i></div>
+          <div>
+            <div class="hero-trust-lbl">Für Produktion &amp; Logistik</div>
+            <div class="hero-trust-sub">speziell entwickelt</div>
           </div>
         </div>
       </div>
 
       <button class="hero-cta" onclick="goTo(1)">
-        <span>Potenzial jetzt prüfen</span>
-        <i data-lucide="arrow-right"></i>
+        Potenzial jetzt prüfen <i data-lucide="arrow-right"></i>
       </button>
 
-      <div class="security-line">
+      <div class="hero-security">
         <i data-lucide="lock"></i>
-        <span>Keine Verpflichtung. Keine Kosten.</span>
+        Keine Verpflichtung. Keine Kosten.
       </div>
-    </div>
+
+    </div><!-- /hero-content -->
+
+  </div>
   </div>
 
   <!-- ============= STEPS 1–5: CATEGORIES (rendered by JS) ============= -->
@@ -825,9 +1951,8 @@
   <!-- ============= STEP 7: LEAD FORM (Stammdaten) ============= -->
   <div class="step" id="step-7">
     <div class="card">
-      <div class="eyebrow" style="margin-bottom:16px">Letzter Schritt</div>
-      <h1>Wir besprechen deine Auswertung</h1>
-      <p class="lead">Wenn du eine persönliche Einordnung deiner Ergebnisse möchtest, hinterlasse kurz deine Kontaktdaten. Wir melden uns mit einem konkreten Vorschlag für die nächsten Schritte.</p>
+      <h1>Gespräch anfragen</h1>
+      <p class="lead">Hinterlasse kurz deine Kontaktdaten. Wir melden uns innerhalb von 48 Stunden mit einem konkreten Vorschlag für die nächsten Schritte.</p>
 
       <div class="form-grid">
         <div class="field full">
@@ -855,11 +1980,27 @@
         </div>
       </div>
 
-      <div class="error-msg" id="md_error">Bitte alle Pflichtfelder (*) ausfüllen.</div>
+      <label class="dsgvo-wrap" for="md_dsgvo">
+        <input type="checkbox" id="md_dsgvo" />
+        <div class="dsgvo-text">
+          Ich stimme zu, dass eLearneffect meine Angaben zur Bearbeitung meiner Anfrage und zur Kontaktaufnahme verarbeitet. Eine Weitergabe an Dritte erfolgt nicht. Die Einwilligung kann jederzeit widerrufen werden.
+          <span class="req"> *</span>
+        </div>
+      </label>
+
+      <!-- Honeypot — versteckt für Bots, von Menschen nicht ausfüllbar -->
+      <div style="position:absolute;left:-9999px;height:0;overflow:hidden" aria-hidden="true">
+        <label>Webseite (bitte leer lassen)</label>
+        <input type="text" id="md_hp" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <div class="error-msg" id="md_error">Bitte alle Pflichtfelder ausfüllen und der Datenschutzerklärung zustimmen.</div>
+      <div class="error-msg" id="md_send_error">Die Anfrage konnte nicht gesendet werden. Bitte versuche es erneut.</div>
 
       <div class="nav-row" style="justify-content:center">
-        <button class="btn btn-primary" onclick="submitLead()">Absenden <i data-lucide="send"></i></button>
+        <button class="btn btn-primary" id="submitBtn" onclick="submitLead()">Gespräch anfragen <i data-lucide="arrow-right"></i></button>
       </div>
+      <div class="trust-line">Keine Weitergabe an Dritte. Die Analyse wird nur zur Kontaktaufnahme und Einordnung der Ergebnisse genutzt.</div>
     </div>
   </div>
 
@@ -868,12 +2009,91 @@
     <div class="card">
       <div class="success-wrap">
         <div class="success-icon"><i data-lucide="check"></i></div>
-        <h1>Deine Anfrage ist auf dem Weg</h1>
-        <p class="lead" style="margin-left:auto;margin-right:auto;text-align:center">Wir melden uns innerhalb von 1–2 Werktagen mit einer persönlichen Einordnung deiner Auswertung und einem konkreten Vorschlag für die nächsten Schritte.</p>
+        <h1>Danke. Deine Anfrage wurde erfolgreich gesendet.</h1>
+        <p class="lead" style="margin-left:auto;margin-right:auto;text-align:center">Wir melden uns innerhalb von 48 Stunden mit einer konkreten Einordnung deiner größten Hebel und den nächsten sinnvollen Umsetzungsschritten.</p>
       </div>
     </div>
   </div>
 
+</div>
+
+<!-- ============= FOOTER ============= -->
+<footer class="page-footer">
+  <button class="footer-link" type="button" onclick="openPrivacy()">Datenschutz</button>
+  <span class="footer-sep">·</span>
+  <span class="footer-disabled" title="Folgt in Kürze">Impressum</span>
+</footer>
+
+<!-- ============= DATENSCHUTZ-MODAL ============= -->
+<div class="legal-modal" id="legalModal" role="dialog" aria-modal="true" aria-labelledby="legalTitle" onclick="if(event.target===this) closePrivacy()">
+  <div class="legal-card">
+    <button class="legal-close" type="button" onclick="closePrivacy()" aria-label="Schließen">
+      <i data-lucide="x"></i>
+    </button>
+
+    <div class="legal-eyebrow">Datenschutz</div>
+    <h2 class="legal-title" id="legalTitle">Datenschutzerklärung</h2>
+
+    <div class="legal-section">
+      <div class="legal-h">Verantwortlicher</div>
+      <p class="legal-p">Verantwortlich für diese Webseite:</p>
+      <p class="legal-p">Mario Gott<br />
+        <a class="legal-mail" href="mailto:mariogott90@gmail.com">mariogott90@gmail.com</a>
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <div class="legal-h">Zweck der Verarbeitung</div>
+      <p class="legal-p">Die Daten werden ausschließlich verarbeitet, um Ihre Anfrage zur Potenzialanalyse und ein mögliches Folgegespräch zu bearbeiten.</p>
+    </div>
+
+    <div class="legal-section">
+      <div class="legal-h">Welche Daten verarbeitet werden</div>
+      <p class="legal-p">Erst nach aktivem Klick auf „Gespräch anfragen" werden folgende Daten übertragen:</p>
+      <ul class="legal-list">
+        <li>Name</li>
+        <li>Rolle</li>
+        <li>E-Mail-Adresse</li>
+        <li>Ergebnisse Ihrer Potenzialanalyse</li>
+      </ul>
+    </div>
+
+    <div class="legal-section">
+      <div class="legal-h">Keine dauerhafte Speicherung</div>
+      <p class="legal-p">Die Analyse selbst wird nicht dauerhaft auf dieser Webseite gespeichert. Sie läuft ausschließlich im Browser des Nutzers.</p>
+    </div>
+
+    <div class="legal-section">
+      <div class="legal-h">Versanddienstleister</div>
+      <p class="legal-p">Die Übermittlung Ihrer Anfrage erfolgt über den Dienstleister Formspree. Formspree leitet die Anfrage als E-Mail an die hinterlegte Empfängeradresse weiter.</p>
+    </div>
+
+    <div class="legal-section">
+      <div class="legal-h">Rechtsgrundlage</div>
+      <p class="legal-p">Die Verarbeitung erfolgt auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO.</p>
+    </div>
+
+    <div class="legal-section">
+      <div class="legal-h">Widerruf</div>
+      <p class="legal-p">Die Einwilligung kann jederzeit ohne Angabe von Gründen widerrufen werden. Eine kurze Mitteilung per E-Mail an <a class="legal-mail" href="mailto:mariogott90@gmail.com">mariogott90@gmail.com</a> genügt.</p>
+    </div>
+
+    <div class="legal-section">
+      <div class="legal-h">Keine Weitergabe</div>
+      <p class="legal-p">Eine Weitergabe an unbeteiligte Dritte findet nicht statt. Die Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage und für die Kontaktaufnahme verwendet.</p>
+    </div>
+
+    <div class="legal-section">
+      <div class="legal-h">Cookies, Tracking, Analyse</div>
+      <p class="legal-p">Diese Webseite setzt keine Cookies, kein Tracking, keine Analyse-Tools und keine externen Skripte zur Profilbildung ein.</p>
+    </div>
+
+    <div class="legal-section">
+      <div class="legal-h">Ihre Rechte</div>
+      <p class="legal-p">Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung sowie auf Datenübertragbarkeit. Sie können der Verarbeitung jederzeit widersprechen und sich bei einer Datenschutz-Aufsichtsbehörde beschweren.</p>
+    </div>
+
+  </div>
 </div>
 
 <script>
@@ -1129,99 +2349,143 @@ const RECOMMENDATIONS = {
    STATE
    ========================================================= */
 let currentStep = 0;
+let currentQuestionIdx = 0; // 0-2 innerhalb einer Kategorie
 const TOTAL_STEPS = 9; // 0=intro, 1-5=cats, 6=result, 7=lead, 8=success
 const answers = {};
 const masterData = {};
-let lastResults = null; // cached for sendByMail
+let lastResults = null;
 
 /* =========================================================
-   RENDER CATEGORY STEPS
+   RENDER SINGLE QUESTION (eine Frage pro Screen)
    ========================================================= */
-function renderCategorySteps(){
-  CATEGORIES.forEach((cat, idx)=>{
-    const step = document.getElementById(`step-${idx+1}`);
-    let html = `
-      <div class="card">
-        <div class="eyebrow" style="margin-bottom:16px">Kategorie ${idx+1} von 5</div>
-        <div class="category-head">
-          <div class="category-icon"><i data-lucide="${cat.icon}"></i></div>
+function renderSingleQuestion(stepNum){
+  const catIdx = stepNum - 1;
+  const cat = CATEGORIES[catIdx];
+  const qIdx = currentQuestionIdx;
+  const q = cat.questions[qIdx];
+  const qNumOverall = catIdx * 3 + qIdx + 1;
+  const isLast = (catIdx === CATEGORIES.length - 1 && qIdx === cat.questions.length - 1);
+
+  // Fortschritt berechnen
+  const pct = Math.round((qNumOverall / 15) * 100);
+  const rem = 15 - qNumOverall;
+  const motivText = rem > 0
+    ? `✦  Noch ${rem} ${rem === 1 ? 'Schritt' : 'Schritte'} bis zu Ihrer persönlichen Auswertung.`
+    : `✦  Letzte Frage — gleich erhalten Sie Ihre Auswertung.`;
+
+  const step = document.getElementById(`step-${stepNum}`);
+  step.innerHTML = `
+    <div class="q-page-wrapper">
+
+      <!-- Kompakte Kopfzeile: links Label, rechts Schritt + % -->
+      <div class="q-compact-header">
+        <span class="q-brand-label">Potenzialanalyse</span>
+        <span class="q-step-label">Schritt ${stepNum} von 5 · ${pct}&thinsp;%</span>
+      </div>
+      <div class="q-prog-bar-wrap">
+        <div class="q-prog-fill" style="width:${pct}%"></div>
+      </div>
+      <div class="q-motiv-text">${motivText}</div>
+
+      <!-- Fragen-Karte -->
+      <div class="q-card">
+        <div class="cat-label">Kategorie ${stepNum} von 5</div>
+        <div class="cat-head-new">
+          <div class="cat-icon-new"><i data-lucide="${cat.icon}"></i></div>
           <div>
-            <h1 style="margin-bottom:4px">${cat.title}</h1>
-            <div class="category-aim">${cat.aim}</div>
+            <div class="cat-title-new">${cat.title}</div>
+            <div class="cat-aim-new">${cat.aim}</div>
           </div>
         </div>
+        <div class="cat-divider"></div>
 
-        ${cat.questions.map((q)=>`
-          <div class="question">
-            <div class="question-num">Frage ${q.id.replace("Q","")} / 15</div>
-            <div class="question-text">${q.text}</div>
-            <div class="options" data-qid="${q.id}">
-              ${q.anchors.map((a,i)=>`
-                <label class="option">
-                  <input type="radio" name="${q.id}" value="${i+1}" />
-                  <div class="option-text">${a}</div>
-                </label>
-              `).join("")}
-            </div>
-          </div>
-        `).join("")}
+        <div class="q-num">Frage ${qNumOverall} / 15</div>
+        <div class="q-text">${q.text}</div>
 
-        <div class="error-msg" id="err-${cat.id}">Bitte alle ${cat.questions.length} Fragen dieser Kategorie beantworten.</div>
+        <div class="q-options">
+          ${q.anchors.map((a, i) => {
+            const val = i + 1;
+            const checked = answers[q.id] && answers[q.id].score === val;
+            return `<label class="q-option">
+              <input type="radio" name="${q.id}" value="${val}"${checked ? ' checked' : ''} />
+              <span class="q-option-text">${a}</span>
+            </label>`;
+          }).join('')}
+        </div>
 
-        <div class="nav-row">
-          <button class="btn btn-ghost" onclick="goTo(${idx===0?0:idx})"><i data-lucide="arrow-left"></i> Zurück</button>
-          <button class="btn btn-primary" onclick="validateCategory('${cat.id}', ${idx+1}, ${idx+2})">${idx===CATEGORIES.length-1?"Auswertung anzeigen":"Weiter"} <i data-lucide="arrow-right"></i></button>
+        <div class="error-msg" id="err-q-${q.id}">Bitte wählen Sie eine Antwort aus.</div>
+
+        <div class="q-nav">
+          <button class="btn-back" onclick="goPrevQuestion(${stepNum})">
+            <i data-lucide="arrow-left"></i> Zurück
+          </button>
+          <button class="btn-next" onclick="goNextQuestion('${cat.id}', ${stepNum}, ${qIdx})">
+            ${isLast ? 'Auswertung anzeigen' : 'Weiter'} <i data-lucide="arrow-right"></i>
+          </button>
         </div>
       </div>
-    `;
-    step.innerHTML = html;
-  });
+
+    </div>
+  `;
+  if(window.lucide) lucide.createIcons();
 }
-renderCategorySteps();
 
 /* =========================================================
    NAVIGATION
    ========================================================= */
-function goTo(step){
+function goTo(step, qIdx){
+  if(step >= 1 && step <= 5){
+    currentQuestionIdx = (qIdx !== undefined) ? qIdx : 0;
+  }
   document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
   document.getElementById(`step-${step}`).classList.add("active");
   currentStep = step;
   updateProgress();
+  // brandBar nur bei Steps 7–8 (Lead-Formular, Erfolg) — Step 6 hat eigenen Topbar
+  document.getElementById("brandBar").style.display = step >= 7 ? "" : "none";
+  // Container im Result-Mode breiter (Executive Dashboard)
+  document.querySelector(".container").classList.toggle("wide", step === 6);
   window.scrollTo({top:0, behavior:"smooth"});
-  if(step===6) renderResult();
+  if(step >= 1 && step <= 5) renderSingleQuestion(step);
+  if(step === 6) renderResult();
   if(window.lucide) lucide.createIcons();
 }
 
-function updateProgress(){
-  const wrap = document.getElementById("progressWrap");
-  // Zeige Progress nur während der 5 Frage-Schritte
-  if(currentStep>=1 && currentStep<=5){
-    wrap.style.display="block";
-    const pct = Math.round((currentStep/5)*100);
-    document.getElementById("progressFill").style.width = pct+"%";
-    document.getElementById("progressLabel").textContent = `Schritt ${currentStep} von 5`;
-    document.getElementById("progressPct").textContent = pct+" %";
+function goNextQuestion(catId, stepNum, qIdx){
+  const cat = CATEGORIES.find(c=>c.id===catId);
+  const q = cat.questions[qIdx];
+  const sel = document.querySelector(`input[name="${q.id}"]:checked`);
+  const errEl = document.getElementById(`err-q-${q.id}`);
+  if(!sel){ if(errEl) errEl.classList.add("show"); return; }
+  if(errEl) errEl.classList.remove("show");
+  answers[q.id] = { score: parseInt(sel.value, 10), evidence: "" };
+
+  if(qIdx < cat.questions.length - 1){
+    currentQuestionIdx = qIdx + 1;
+    renderSingleQuestion(stepNum);
+    updateProgress();
+    window.scrollTo({top:0, behavior:"smooth"});
   } else {
-    wrap.style.display="none";
+    currentQuestionIdx = 0;
+    goTo(stepNum < 5 ? stepNum + 1 : 6);
   }
 }
 
-/* =========================================================
-   VALIDATION
-   ========================================================= */
-function validateCategory(catId, _curStep, nextStep){
-  const cat = CATEGORIES.find(c=>c.id===catId);
-  let ok = true;
-  cat.questions.forEach(q=>{
-    const sel = document.querySelector(`input[name="${q.id}"]:checked`);
-    if(!sel){ ok=false; }
-    else{
-      answers[q.id] = { score: parseInt(sel.value,10), evidence: "" };
-    }
-  });
-  document.getElementById(`err-${catId}`).classList.toggle("show", !ok);
-  if(!ok) return;
-  goTo(nextStep);
+function goPrevQuestion(stepNum){
+  if(currentQuestionIdx > 0){
+    currentQuestionIdx--;
+    renderSingleQuestion(stepNum);
+    updateProgress();
+    window.scrollTo({top:0, behavior:"smooth"});
+  } else {
+    if(stepNum > 1){ goTo(stepNum - 1, 2); }
+    else { goTo(0); }
+  }
+}
+
+function updateProgress(){
+  // Globaler Progress-Wrap dauerhaft ausgeblendet — Fortschritt läuft inline in renderSingleQuestion()
+  document.getElementById("progressWrap").style.display = "none";
 }
 
 function validateLead(){
@@ -1237,16 +2501,44 @@ function validateLead(){
     document.getElementById("md_email").style.borderColor="var(--ele-danger)";
     ok=false;
   }
+  const dsgvo = document.getElementById("md_dsgvo");
+  if(!dsgvo.checked){
+    dsgvo.style.outline="2px solid var(--ele-danger)";
+    dsgvo.style.borderRadius="3px";
+    ok=false;
+  } else {
+    dsgvo.style.outline="";
+  }
   document.getElementById("md_error").classList.toggle("show", !ok);
   if(!ok) return false;
   ids.forEach(id=>masterData[id]=document.getElementById(id).value.trim());
+  masterData.md_consent = dsgvo.checked;
   return true;
 }
 
-function submitLead(){
+async function submitLead(){
+  if(leadSubmitted) return;            // Mehrfachsendung verhindern
   if(!validateLead()) return;
-  sendByMail();
-  goTo(8);
+
+  const btn      = document.getElementById("submitBtn");
+  const errBox   = document.getElementById("md_error");
+  const sendErr  = document.getElementById("md_send_error");
+
+  if(sendErr) sendErr.classList.remove("show");
+  if(errBox) errBox.classList.remove("show");
+  if(btn){ btn.disabled = true; btn.innerHTML = "Wird gesendet …"; }
+
+  try {
+    await sendAnalysis();
+    leadSubmitted = true;
+    if(btn){ btn.innerHTML = "Anfrage gesendet"; }
+    goTo(8);
+  } catch(e){
+    console.error("Versand fehlgeschlagen:", e);
+    if(btn){ btn.disabled = false; btn.innerHTML = 'Gespräch anfragen <i data-lucide="arrow-right"></i>'; }
+    if(window.lucide) lucide.createIcons();
+    if(sendErr) sendErr.classList.add("show");
+  }
 }
 
 /* =========================================================
@@ -1273,9 +2565,9 @@ function trafficLight(pct){
 }
 function verdictText(zone){
   return {
-    red:    "Akuter Handlungsbedarf",
+    red:    "Hoher Entwicklungshebel",
     yellow: "Gezielte Optimierung",
-    green:  "Feinjustierung"
+    green:  "Stabiler Wirkungsgrad"
   }[zone];
 }
 function verdictDetail(zone){
@@ -1286,23 +2578,55 @@ function verdictDetail(zone){
   }[zone];
 }
 
-/* Executive Summary — dynamisch */
+/* Verbesserungen durch den größten Wirkhebel — Title + Description + Icon, dynamisch */
+const OPERATIVE_IMPACTS = {
+  C1: [
+    { icon:"filter",        title:"Weniger Prioritätskonflikte",     desc:"Tägliche Entscheidungen orientieren sich klar an den wichtigsten Zielen." },
+    { icon:"bar-chart-3",   title:"Klarere KPI-Ausrichtung",          desc:"Teams arbeiten konsistent an den Kennzahlen mit der größten Wirkung." },
+    { icon:"compass",       title:"Weniger Aktionismus",              desc:"Kurzfristige Themen werden bewusster eingeordnet, Energie fließt ins Wesentliche." },
+    { icon:"list-checks",   title:"Übersetzung in den Alltag",        desc:"Strategische Ziele werden in konkretes Verhalten und Routinen überführt." }
+  ],
+  C2: [
+    { icon:"shield-check",  title:"Klarere Verantwortlichkeiten",     desc:"Abweichungen werden schneller eingeordnet und entschieden." },
+    { icon:"message-circle",title:"Weniger Abstimmungsaufwand",       desc:"Teams verbringen weniger Zeit in Rückfragen und Eskalationen." },
+    { icon:"check-circle",  title:"Schnellere Entscheidungen",        desc:"Kritische Themen werden früher priorisiert und gelöst." },
+    { icon:"bar-chart-3",   title:"Stabilere KPI-Steuerung",          desc:"Abweichungen lösen klarere Folgeaktionen aus." }
+  ],
+  C3: [
+    { icon:"user-check",    title:"Klarere Erwartungen",              desc:"Leistung und Verhalten sind transparent und werden konsistent eingeordnet." },
+    { icon:"trending-up",   title:"Gezieltere Entwicklung",           desc:"Lernpfade richten sich an den tatsächlichen operativen Anforderungen aus." },
+    { icon:"users",         title:"Weniger Schlüsselpersonen-Risiko", desc:"Wissen und Leistung verteilen sich breiter im Team." },
+    { icon:"zap",           title:"Höhere Umsetzungsfähigkeit",       desc:"Pläne werden zuverlässiger im Alltag in Ergebnisse überführt." }
+  ],
+  C4: [
+    { icon:"search-check",  title:"Schnellere Ursachenklärung",       desc:"Ursachen werden methodisch ermittelt, statt an Symptomen zu arbeiten." },
+    { icon:"wrench",        title:"Weniger wiederkehrende Probleme",  desc:"Maßnahmen wirken nachhaltig, weil sie an der Ursache ansetzen." },
+    { icon:"arrow-up-right",title:"Bessere Eskalationslogik",         desc:"Themen kommen rechtzeitig an die richtige Stelle." },
+    { icon:"check-circle",  title:"Höhere Umsetzungskonsequenz",      desc:"Beschlossene Maßnahmen werden konsequent nachverfolgt und abgeschlossen." }
+  ],
+  C5: [
+    { icon:"eye",           title:"Probleme werden früher sichtbar",  desc:"Frühwarnsignale werden offen adressiert statt verdeckt." },
+    { icon:"alert-circle",  title:"Weniger verdeckte Eskalationen",   desc:"Themen werden direkt angesprochen statt umgangen." },
+    { icon:"message-circle",title:"Offenere Kommunikation",           desc:"Abweichungen werden faktenbasiert und ohne Schuldzuweisung diskutiert." },
+    { icon:"zap",           title:"Schnellere Reaktion",              desc:"Kritische Entwicklungen werden zügiger erkannt und priorisiert." }
+  ]
+};
+
+/* Executive Summary — dynamisch, 2–3 Sätze, managementtauglich */
 function executiveSummary(catResults, totalZone){
   const sorted = [...catResults].sort((a,b)=>a.pct-b.pct);
   const weakest = sorted[0];
   const strongest = sorted[sorted.length-1];
 
   const opening = {
-    red:    `Dein Führungssystem befindet sich noch im Aufbau und zeigt deutliche Lücken in ${weakest.title}.`,
-    yellow: `Dein Führungssystem zeigt erste stabile Ansätze, besitzt jedoch klare Hebel in ${weakest.title}.`,
-    green:  `Dein Führungssystem ist überdurchschnittlich entwickelt — mit Feinjustierungspotenzial in ${weakest.title}.`
+    red:    `Das Führungssystem steht noch am Anfang seiner Entwicklung.`,
+    yellow: `Das Führungssystem zeigt stabile Ansätze mit klarem Optimierungspotenzial.`,
+    green:  `Das Führungssystem ist bereits überdurchschnittlich entwickelt.`
   }[totalZone];
 
-  const middle = `Besonders durch ${weakest.leverShort} kann kurzfristig wirtschaftlicher Impact entstehen.`;
+  const middle = `Der größte Hebel liegt aktuell in ${weakest.title}, da hier die größte Wirkung auf Steuerung, Problemlösung und Umsetzungsgeschwindigkeit entstehen kann.`;
 
-  const closing = strongest.pct - weakest.pct >= 15
-    ? `Stärkster Bereich: ${strongest.title} — eine solide Basis, auf der aufgebaut werden kann.`
-    : `Insgesamt zeigt sich ein gleichmäßiges Profil ohne klaren Spitzenbereich.`;
+  const closing = `Der stärkste Bereich ist ${strongest.title} und bildet eine stabile Basis für die weitere Entwicklung.`;
 
   return `${opening} ${middle} ${closing}`;
 }
@@ -1330,95 +2654,154 @@ function renderResult(){
   items.sort((a,b)=>b.deficit - a.deficit);
   const top3 = items.slice(0,3);
 
-  // Cache for sendByMail
-  lastResults = { total, totalZone, catResults, top3 };
-
   const summary = executiveSummary(catResults, totalZone);
+
+  // Schwächste / stärkste Kategorie — für Hero, Mail & Operative Auswirkungen
+  const sortedCats = [...catResults].sort((a,b)=>a.pct-b.pct);
+  const weakest = sortedCats[0];
+  const strongest = sortedCats[sortedCats.length - 1];
+  const impacts = OPERATIVE_IMPACTS[weakest.id] || [];
+
+  // Cache für Mailversand
+  lastResults = { total, totalZone, catResults, top3, weakest, strongest };
+
+  // Zone → Tone (low / mid / high) für Per-Kategorie-Komponenten
+  const tone = z => z === 'red' ? 'low' : (z === 'yellow' ? 'mid' : 'high');
+  const weakestTone = tone(weakest.zone);
+
+  // Phase 6: Total-Score nutzt dynamische Farbskala 0–39 / 40–69 / 70–100
+  const scoreTone = pct => pct < 40 ? 'low' : (pct < 70 ? 'mid' : 'high');
+  const totalScoreTone = scoreTone(total);
+  const heroBadgeText = ({
+    low:  'Hoher Entwicklungshebel',
+    mid:  'Gezielte Optimierung',
+    high: 'Stabiler Wirkungsgrad'
+  })[totalScoreTone];
 
   const step = document.getElementById("step-6");
   step.innerHTML = `
-    <div class="card">
-      <div class="result-hero">
-        <div class="score-label-eyebrow">Gesamt-Reifegrad</div>
-        <div class="score-gauge">
-          ${gaugeSvg(total, totalZone)}
-          <div class="score-gauge-num">
-            <div class="big ${totalZone}-text">${Math.round(total)}<span class="pct">%</span></div>
-          </div>
-        </div>
-        <div class="verdict ${totalZone}">${verdictText(totalZone)} — ${verdictDetail(totalZone)}</div>
+    <!-- ============= EXECUTIVE DASHBOARD HERO ============= -->
+    <div class="results-hero">
 
-        <div class="exec-summary">
-          <span class="eyebrow-inline">Executive Summary</span>
-          <p>${summary}</p>
-        </div>
+      <!-- Topbar: nur zentrales Label „AUSWERTUNG" -->
+      <div class="results-topbar">
+        <div class="results-label">Auswertung</div>
       </div>
 
-      <h2 style="margin-top:32px;margin-bottom:16px;text-align:center">Auswertung pro Kategorie</h2>
-      <div class="category-grid">
-        ${catResults.map(c=>`
-          <div class="cat-card">
-            <div class="cat-icon-result"><i data-lucide="${c.icon}"></i></div>
-            <div class="cat-name">${c.title}</div>
-            <div class="cat-score ${c.zone}-text">${Math.round(c.pct)}<span class="cat-score-pct">%</span></div>
-            <div class="cat-bar"><div class="cat-bar-fill ${c.zone}-fill" style="width:${c.pct}%"></div></div>
-          </div>
-        `).join("")}
-      </div>
-    </div>
+      <!-- Hero Grid: SCORE · SUMMARY -->
+      <div class="results-hero-grid">
 
-    <div class="card">
-      <div class="eyebrow" style="margin-bottom:16px">Profil</div>
-      <h2>Stärken-/Schwächen-Profil</h2>
-      <p class="lead">Visualisierung über alle fünf Kategorien.</p>
-      <div class="spider-wrap">${spiderSvg(catResults)}</div>
-    </div>
-
-    <div class="card">
-      <div class="eyebrow" style="margin-bottom:16px">Top 3 Hebel</div>
-      <h2>Höchstes Wirkpotenzial</h2>
-      <p class="lead">Niedriger Reifegrad × hohes Kategoriegewicht — hier liegt der größte Hebel.</p>
-      <div class="hebel-list">
-        ${top3.map((h,i)=>`
-          <div class="hebel-item">
-            <div class="hebel-rank">${i+1}</div>
-            <div>
-              <div class="hebel-cat">${h.cat}</div>
-              <div class="hebel-text">${h.qtext}</div>
-              <div class="hebel-meta">Stufe ${h.score}/5 · ${Math.round(h.pct)} %</div>
+        <!-- Score Side — dynamische Farbe via .s-low / .s-mid / .s-high -->
+        <div class="score-side s-${totalScoreTone}">
+          <div class="score-eyebrow">Gesamt-Reifegrad</div>
+          <div class="score-ring">
+            <div class="score-block">
+              <div class="result-score">${Math.round(total)}<span class="result-score-pct">%</span></div>
             </div>
           </div>
-        `).join("")}
-      </div>
-    </div>
+          <div class="result-badge">${heroBadgeText}</div>
+        </div>
 
-    <div class="card">
-      <div class="eyebrow" style="margin-bottom:16px">Empfehlungen</div>
-      <h2>Konkrete nächste Schritte</h2>
-      <p class="lead">Pro Kategorie eine Maßnahme — die mit der größten Hebelwirkung.</p>
-      <div class="reco-section">
-        ${catResults.map(c=>{
-          const reco = RECOMMENDATIONS[c.id][c.zone];
-          return `
-            <div class="reco-cat">
-              <div class="reco-cat-head">
-                <div class="reco-cat-title"><i data-lucide="${c.icon}"></i>${c.title}</div>
-                <span class="verdict ${c.zone}">${Math.round(c.pct)}&nbsp;% · ${verdictText(c.zone)}</span>
+        <!-- Summary Side -->
+        <div class="summary-side">
+          <div class="summary-eyebrow">Executive Summary</div>
+          <p class="executive-summary-text">${summary}</p>
+          <div class="summary-divider"></div>
+        </div>
+
+      </div>
+
+      <!-- Größter Wirkhebel — Hero Card -->
+      <div class="main-lever-card">
+        <div class="ml-icon"><i data-lucide="${weakest.icon}"></i></div>
+        <div class="ml-body">
+          <div class="main-lever-eyebrow">Größter Wirkhebel</div>
+          <div class="main-lever-title">${weakest.title}</div>
+          <div class="main-lever-explain">Hier liegt aktuell das größte Entwicklungspotenzial, weil dieser Bereich die Wirksamkeit des gesamten Führungssystems stark beeinflusst.</div>
+        </div>
+        <div class="ml-score-wrap">
+          <div class="ml-score ${weakestTone}">${Math.round(weakest.pct)}<span class="ml-score-pct">%</span></div>
+          <div class="ml-score-label">Reifegrad</div>
+        </div>
+      </div>
+
+      <!-- Dashboard Grid: Operative Auswirkungen · Kategorien -->
+      <div class="dashboard-grid">
+
+        <!-- Verbesserungen durch den größten Wirkhebel — Impact Rows -->
+        <div class="dashboard-card">
+          <div class="dashboard-card-eyebrow">Verbesserungen durch den größten Wirkhebel</div>
+          <div class="impact-rows">
+            ${impacts.map(it => `
+              <div class="impact-row">
+                <div class="impact-icon"><i data-lucide="${it.icon}"></i></div>
+                <div class="impact-text">
+                  <div class="impact-title">${it.title}</div>
+                  <div class="impact-description">${it.desc}</div>
+                </div>
               </div>
-              <div class="reco-text">${reco}</div>
-            </div>
-          `;
-        }).join("")}
+            `).join("")}
+          </div>
+        </div>
+
+        <!-- Auswertung nach Kategorien -->
+        <div class="dashboard-card">
+          <div class="dashboard-card-eyebrow">Auswertung nach Kategorien</div>
+          <div class="cat-list">
+            ${catResults.map(c => {
+              const t = tone(c.zone);
+              return `
+                <div class="cat-row">
+                  <div class="cat-row-icon"><i data-lucide="${c.icon}"></i></div>
+                  <div class="cat-row-title">${c.title}</div>
+                  <div class="cat-row-bar">
+                    <div class="cat-row-bar-fill ${t}-fill" style="width:${c.pct}%"></div>
+                  </div>
+                  <div class="cat-row-meta">
+                    <div class="cat-row-score ${t}-text">${Math.round(c.pct)}%</div>
+                    <div class="cat-row-dot ${t}"></div>
+                  </div>
+                </div>
+              `;
+            }).join("")}
+          </div>
+        </div>
+
       </div>
+
     </div>
 
-    <div class="card cta-card">
-      <h1 style="margin-bottom:8px">Gespräch zu nächsten Schritten anfragen</h1>
-      <p class="lead">Wir besprechen deine Auswertung in 30 Minuten — mit konkreter Einordnung deiner Hebel und einem klaren Vorschlag, wie es weitergeht.</p>
-      <div class="cta-buttons">
-        <button class="btn btn-primary" onclick="goTo(7)">Gespräch anfragen <i data-lucide="arrow-right"></i></button>
-        <button class="btn btn-secondary" onclick="window.print()"><i data-lucide="printer"></i> Auswertung drucken</button>
+    <!-- ============= DETAIL-BEREICH (below the fold) ============= -->
+    <div class="results-detail-wrap">
+
+      <!-- Konkrete nächste Schritte -->
+      <div class="card">
+        <div class="eyebrow" style="margin-bottom:12px">Empfehlungen</div>
+        <h2>Konkrete nächste Schritte</h2>
+        <p class="section-sub">Pro Kategorie eine Maßnahme — die mit der größten Hebelwirkung.</p>
+        <div class="reco-section">
+          ${catResults.map(c=>{
+            const reco = RECOMMENDATIONS[c.id][c.zone];
+            return `
+              <div class="reco-cat">
+                <div class="reco-cat-head">
+                  <div class="reco-cat-title"><i data-lucide="${c.icon}"></i>${c.title}</div>
+                  <span class="verdict ${c.zone}">${Math.round(c.pct)}&nbsp;% · ${verdictText(c.zone)}</span>
+                </div>
+                <div class="reco-text">${reco}</div>
+              </div>
+            `;
+          }).join("")}
+        </div>
       </div>
+
+      <!-- Finaler Premium-CTA -->
+      <div class="card cta-final">
+        <h1 class="cta-headline">Die Analyse zeigt den Hebel.<br>Die Wirkung entsteht in der Umsetzung.</h1>
+        <p class="cta-subtext">Wir zeigen dir konkret, welche Veränderungen jetzt die größte Wirkung erzeugen, wie du sie operativ einführst und worauf es in der täglichen Umsetzung wirklich ankommt, damit aus Maßnahmen messbare Ergebnisse entstehen.</p>
+        <button class="cta-final-btn" onclick="goTo(7)">Hebel konkret besprechen <i data-lucide="arrow-right"></i></button>
+      </div>
+
     </div>
   `;
   if(window.lucide) lucide.createIcons();
@@ -1439,106 +2822,126 @@ function gaugeSvg(pct, zone){
   `;
 }
 
-function spiderSvg(catResults){
-  const cx=200, cy=200, r=140, n=catResults.length;
-  const angle = i => -Math.PI/2 + (2*Math.PI*i/n);
-  const point = (i, frac) => [cx + frac*r*Math.cos(angle(i)), cy + frac*r*Math.sin(angle(i))];
-  let grid="";
-  [0.2,0.4,0.6,0.8,1.0].forEach(f=>{
-    const pts = catResults.map((_,i)=>point(i,f).join(",")).join(" ");
-    grid += `<polygon class="spider-grid" points="${pts}" />`;
+
+/* =========================================================
+   SERVERSEITIGER MAILVERSAND via FORMSPREE
+   - Kein mailto, kein lokaler Mailclient
+   - Mail wird automatisch von Formspree-Servern an MAIL_TO gesendet
+   - Nutzer bleibt auf der Seite
+   - Bitte echten Formspree-Endpoint eintragen (Formspree.io → Form anlegen → URL)
+   ========================================================= */
+const FORMSPREE_URL = "https://formspree.io/f/xkoypvrw";
+let leadSubmitted = false; // Mehrfachsendung verhindern
+
+async function sendAnalysis(){
+  if(!lastResults) throw new Error("Keine Analyse-Daten vorhanden.");
+  const { total, totalZone, catResults, weakest, strongest } = lastResults;
+  const summary = executiveSummary(catResults, totalZone);
+  const impacts = OPERATIVE_IMPACTS[weakest.id] || [];
+
+  // Strukturierter Plain-Text Mail-Body
+  const lines = [];
+  lines.push("Neue Gesprächsanfrage aus der Potenzialanalyse");
+  lines.push("");
+  lines.push("KONTAKT");
+  lines.push("-------");
+  lines.push(`Name:           ${masterData.md_name}`);
+  lines.push(`Rolle:          ${masterData.md_role}`);
+  lines.push(`E-Mail:         ${masterData.md_email}`);
+  lines.push(`Consent:        ${masterData.md_consent ? "ja" : "nein"}`);
+  lines.push("");
+  lines.push("ERGEBNIS");
+  lines.push("--------");
+  lines.push(`Gesamt-Reifegrad:   ${Math.round(total)} %`);
+  lines.push(`Reifegrad-Label:    ${verdictText(totalZone)}`);
+  lines.push(`Größter Wirkhebel:  ${weakest.title} (${Math.round(weakest.pct)} %)`);
+  lines.push(`Stärkster Bereich:  ${strongest.title} (${Math.round(strongest.pct)} %)`);
+  lines.push("");
+  lines.push("EXECUTIVE SUMMARY");
+  lines.push("-----------------");
+  lines.push(summary);
+  lines.push("");
+  lines.push("KATEGORIE-SCORES");
+  lines.push("----------------");
+  catResults.forEach(c => {
+    lines.push(`• ${c.title}: ${Math.round(c.pct)} %`);
   });
-  let axes="", labels="";
-  catResults.forEach((c,i)=>{
-    const [x,y] = point(i,1);
-    axes += `<line class="spider-axis" x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" />`;
-    const [lx,ly] = point(i,1.18);
-    const anchor = Math.abs(lx-cx)<2 ? "middle" : (lx>cx ? "start" : "end");
-    const colorVar = c.zone==='red' ? '#A8423A' : c.zone==='yellow' ? '#C99A3D' : '#5C8A5A';
-    labels += `
-      <text class="spider-label" x="${lx}" y="${ly}" text-anchor="${anchor}" dominant-baseline="middle">
-        <tspan x="${lx}" dy="-2">${c.title.split(" & ")[0]}</tspan>
-        ${c.title.includes(" & ") ? `<tspan x="${lx}" dy="14">&amp; ${c.title.split(" & ")[1]}</tspan>`:""}
-        <tspan x="${lx}" dy="14" fill="${colorVar}" font-weight="700">${Math.round(c.pct)}&#37;</tspan>
-      </text>
-    `;
+  lines.push("");
+  lines.push("VERBESSERUNGEN DURCH GRÖSSTEN WIRKHEBEL");
+  lines.push("---------------------------------------");
+  impacts.forEach(it => {
+    lines.push(`• ${it.title}`);
+    lines.push(`  ${it.desc}`);
   });
-  const dataPts = catResults.map((c,i)=>point(i, c.pct/100).join(",")).join(" ");
-  const points = catResults.map((c,i)=>{
-    const [x,y]=point(i, c.pct/100);
-    return `<circle class="spider-point" cx="${x}" cy="${y}" r="4" />`;
-  }).join("");
-  return `
-    <svg class="spider" viewBox="0 0 400 400">
-      ${grid}
-      ${axes}
-      <polygon class="spider-fill" points="${dataPts}" />
-      ${points}
-      ${labels}
-    </svg>
-  `;
+  lines.push("");
+  lines.push("EMPFEHLUNGEN");
+  lines.push("------------");
+  catResults.forEach(c => {
+    const reco = (RECOMMENDATIONS[c.id] && RECOMMENDATIONS[c.id][c.zone]) || "";
+    lines.push(`[${c.title}]`);
+    lines.push(reco);
+    lines.push("");
+  });
+  lines.push("--");
+  lines.push("Automatisch gesendet aus der eLearneffect Potenzialanalyse");
+
+  const messageBody = lines.join("\n");
+
+  const payload = {
+    _subject: "Neue Gesprächsanfrage aus der Potenzialanalyse",
+    name:    masterData.md_name,
+    role:    masterData.md_role,
+    email:   masterData.md_email,
+    consent: masterData.md_consent ? "ja" : "nein",
+    score:   `${Math.round(total)} %`,
+    label:   verdictText(totalZone),
+    weakest: `${weakest.title} (${Math.round(weakest.pct)} %)`,
+    strongest: `${strongest.title} (${Math.round(strongest.pct)} %)`,
+    summary,
+    message: messageBody,
+    // Honeypot — falls ausgefüllt, ist's ein Bot
+    _gotcha: document.getElementById("md_hp") ? document.getElementById("md_hp").value : ""
+  };
+
+  // Honeypot-Check vor Versand
+  if(payload._gotcha){
+    throw new Error("HP");
+  }
+
+  const res = await fetch(FORMSPREE_URL, {
+    method:"POST",
+    headers:{"Content-Type":"application/json","Accept":"application/json"},
+    body:JSON.stringify(payload)
+  });
+  if(!res.ok) throw new Error("Status " + res.status);
 }
 
 /* =========================================================
-   MAILTO – sendet Stammdaten + komplette Auswertung
+   DATENSCHUTZ-MODAL
    ========================================================= */
-const RECIPIENT_EMAIL = "mariogott90@gmail.com"; // <-- HIER ÄNDERN für andere Adresse
-
-function sendByMail(){
-  if(!lastResults) return;
-  const { total, totalZone, catResults, top3 } = lastResults;
-  const totalRound = Math.round(total);
-  const summary = executiveSummary(catResults, totalZone);
-
-  const subject = `Potenzialanalyse — ${masterData.md_name || "Anfrage"} (Score ${totalRound} %)`;
-
-  let body = "";
-  body += "POTENZIALANALYSE — AUSWERTUNG\n";
-  body += "================================\n\n";
-  body += "KONTAKT\n";
-  body += "-------\n";
-  body += `Name:           ${masterData.md_name}\n`;
-  body += `Rolle:          ${masterData.md_role}\n`;
-  body += `E-Mail:         ${masterData.md_email}\n`;
-  body += "\n";
-  body += "GESAMT-REIFEGRAD\n";
-  body += "----------------\n";
-  body += `Score:          ${totalRound} % (${zoneDe(totalZone)})\n`;
-  body += `Bewertung:      ${verdictText(totalZone)} — ${verdictDetail(totalZone)}\n\n`;
-  body += "EXECUTIVE SUMMARY\n";
-  body += "-----------------\n";
-  body += summary + "\n\n";
-  body += "KATEGORIE-SCORES\n";
-  body += "----------------\n";
-  catResults.forEach(c=>{
-    body += `• ${padRight(c.title, 32)} ${String(Math.round(c.pct)).padStart(3," ")} %  (${zoneDe(c.zone)})\n`;
-  });
-  body += "\n";
-  body += "TOP-3 HEBEL\n";
-  body += "-----------\n";
-  top3.forEach((h,i)=>{
-    body += `${i+1}. [${h.cat}] Stufe ${h.score}/5\n   ${h.qtext}\n`;
-  });
-  body += "\n";
-  body += "EINZELANTWORTEN (1=niedrig, 5=hoch)\n";
-  body += "-----------------------------------\n";
-  CATEGORIES.forEach(c=>{
-    body += `[${c.title}]\n`;
-    c.questions.forEach(q=>{
-      body += `  ${q.id}: ${answers[q.id].score}/5\n`;
-    });
-  });
-  body += "\n--\nVersendet aus der eLearneffect Potenzialanalyse\n";
-
-  const url = `mailto:${encodeURIComponent(RECIPIENT_EMAIL)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  window.location.href = url;
+function openPrivacy(){
+  const m = document.getElementById("legalModal");
+  if(!m) return;
+  m.classList.add("active");
+  document.body.style.overflow = "hidden";
+  if(window.lucide) lucide.createIcons();
 }
-
-function zoneDe(z){ return z==="red"?"Rot":z==="yellow"?"Gelb":"Grün"; }
-function padRight(s,n){ return s.length>=n ? s : s + " ".repeat(n-s.length); }
+function closePrivacy(){
+  const m = document.getElementById("legalModal");
+  if(!m) return;
+  m.classList.remove("active");
+  document.body.style.overflow = "";
+}
+document.addEventListener("keydown", (e) => {
+  if(e.key === "Escape"){
+    const m = document.getElementById("legalModal");
+    if(m && m.classList.contains("active")) closePrivacy();
+  }
+});
 
 /* init */
 updateProgress();
+document.getElementById("brandBar").style.display = "none"; // Step 0 aktiv beim Laden
 if(window.lucide) lucide.createIcons();
 </script>
 </body>
