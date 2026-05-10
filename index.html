@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>eLearneffect — Potenzialanalyse</title>
+
+<link rel="icon" type="image/png" href="assets/logo-mark.png" />
+
+<!-- Inter from Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+  /* =========================================================
+     eLearneffect Tokens
+     ========================================================= */
+  :root{
+    --ele-ink-0:#05080F;
+    --ele-ink-1:#0A1020;
+    --ele-ink-2:#111A2E;
+    --ele-ink-3:#1A2540;
+
+    --ele-gold-50:#FBEFC8;
+    --ele-gold-100:#F2DDA0;
+    --ele-gold-200:#E6C77A;
+    --ele-gold-300:#D9B25A;
+    --ele-gold-400:#C99A3D;
+    --ele-gold-500:#B07F26;
+    --ele-gold-600:#8C6418;
+
+    --ele-bg:var(--ele-ink-1);
+    --ele-bg-elev:var(--ele-ink-2);
+    --ele-fg-1:#F4F0E4;
+    --ele-fg-2:#BFB8A4;
+    --ele-fg-3:#7E7867;
+    --ele-accent:var(--ele-gold-300);
+    --ele-accent-strong:var(--ele-gold-400);
+    --ele-border:rgba(217,178,90,0.18);
+    --ele-border-strong:rgba(217,178,90,0.35);
+
+    --ele-success:#5C8A5A;
+    --ele-warning:#C99A3D;
+    --ele-danger:#A8423A;
+
+    --ele-grad-gold:linear-gradient(135deg,#8C6418 0%,#B07F26 18%,#D9B25A 38%,#F2DDA0 55%,#FBEFC8 65%,#E6C77A 80%,#B07F26 100%);
+    --ele-grad-stage:radial-gradient(ellipse at 50% 40%,#14203A 0%,#0A1020 45%,#05080F 100%);
+    --ele-grad-divider:linear-gradient(90deg,transparent 0%,rgba(217,178,90,0.5) 50%,transparent 100%);
+
+    --ele-s-1:4px; --ele-s-2:8px; --ele-s-3:12px; --ele-s-4:16px;
+    --ele-s-5:24px; --ele-s-6:32px; --ele-s-7:48px; --ele-s-8:64px;
+    --ele-s-9:96px; --ele-s-10:128px;
+
+    --ele-r-xs:2px; --ele-r-sm:4px; --ele-r-md:8px; --ele-r-lg:14px; --ele-r-pill:999px;
+
+    --ele-shadow-1:0 1px 2px rgba(0,0,0,.30),0 1px 1px rgba(0,0,0,.20);
+    --ele-shadow-2:0 6px 18px rgba(0,0,0,.35),0 2px 4px rgba(0,0,0,.25);
+    --ele-shadow-3:0 24px 60px rgba(0,0,0,.45),0 8px 16px rgba(0,0,0,.30);
+    --ele-glow-gold:0 0 0 1px rgba(217,178,90,.35),0 12px 40px rgba(217,178,90,.18),0 2px 8px rgba(217,178,90,.20);
+    --ele-inset-gold:inset 0 1px 0 rgba(251,239,200,.25),inset 0 -1px 0 rgba(140,100,24,.35);
+
+    --ele-dur-fast:140ms;
+    --ele-dur-base:220ms;
+    --ele-dur-slow:420ms;
+    --ele-ease:cubic-bezier(.16,.84,.32,1);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    font-weight:400;
+    font-size:16px;
+    line-height:1.55;
+    color:var(--ele-fg-1);
+    background:var(--ele-grad-stage);
+    background-attachment:fixed;
+    min-height:100vh;
+    padding:var(--ele-s-7) var(--ele-s-4) var(--ele-s-9);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+  .container{max-width:880px;margin:0 auto}
+
+  /* =========================================================
+     Universal Header (every step)
+     ========================================================= */
+  .brand-bar{
+    display:flex;flex-direction:column;align-items:center;
+    margin-bottom:var(--ele-s-7);
+    text-align:center;
+  }
+  .brand-bar img{
+    height:96px;width:auto;
+    filter:drop-shadow(0 6px 22px rgba(217,178,90,0.20));
+  }
+  .brand-bar .brand-title{
+    margin-top:24px;
+    font-family:'Inter',sans-serif;
+    font-size:18px;
+    font-weight:700;
+    letter-spacing:0.5em;
+    text-transform:uppercase;
+    color:var(--ele-accent);
+  }
+  /* Page 1 uses the new gold accent in the header */
+  body.intro-mode .brand-bar .brand-title{ color:#D4AF37 }
+
+  /* =========================================================
+     Eyebrow
+     ========================================================= */
+  .eyebrow{
+    font-family:'Inter',sans-serif;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--ele-accent);
+    display:inline-flex;
+    align-items:center;
+    gap:var(--ele-s-2);
+  }
+
+  /* =========================================================
+     Progress
+     ========================================================= */
+  .progress-wrap{margin-bottom:var(--ele-s-6);transition:opacity .3s}
+  .progress-meta{
+    display:flex;justify-content:space-between;
+    font-size:11px;color:var(--ele-fg-3);
+    margin-bottom:var(--ele-s-2);
+    text-transform:uppercase;letter-spacing:0.2em;
+    font-weight:600;
+  }
+  .progress-bar{
+    height:3px;background:rgba(217,178,90,0.08);
+    border-radius:var(--ele-r-pill);overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;width:0%;
+    background:var(--ele-grad-gold);
+    transition:width var(--ele-dur-slow) var(--ele-ease);
+  }
+
+  /* =========================================================
+     Card
+     ========================================================= */
+  .card{
+    background:var(--ele-bg-elev);
+    border:1px solid var(--ele-border);
+    border-radius:var(--ele-r-md);
+    padding:var(--ele-s-7) var(--ele-s-6);
+    box-shadow:var(--ele-shadow-2);
+    position:relative;
+  }
+  .card + .card{margin-top:var(--ele-s-5)}
+  .card::before{
+    content:"";
+    position:absolute;
+    top:0;left:var(--ele-s-6);right:var(--ele-s-6);height:1px;
+    background:var(--ele-grad-divider);
+  }
+
+  /* =========================================================
+     Typography (all Inter)
+     ========================================================= */
+  h1, .h1{
+    font-family:'Inter',sans-serif;
+    font-weight:700;
+    font-size:clamp(28px,3.4vw,42px);
+    line-height:1.15;
+    letter-spacing:-0.02em;
+    margin-bottom:var(--ele-s-4);
+    color:var(--ele-fg-1);
+  }
+  h2{
+    font-family:'Inter',sans-serif;
+    font-weight:700;
+    font-size:24px;
+    line-height:1.2;
+    letter-spacing:-0.01em;
+    margin-bottom:var(--ele-s-3);
+    color:var(--ele-fg-1);
+  }
+  h3{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:18px;
+    line-height:1.3;
+    margin-bottom:var(--ele-s-3);
+    color:var(--ele-fg-1);
+  }
+  .lead{
+    font-family:'Inter',sans-serif;
+    font-weight:400;
+    color:var(--ele-fg-2);
+    font-size:16px;
+    line-height:1.6;
+    margin-bottom:var(--ele-s-5);
+    max-width:64ch;
+  }
+  .accent-text{color:var(--ele-accent)}
+  .signature-claim{
+    font-family:'Inter',sans-serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:18px;
+    line-height:1.45;
+    color:var(--ele-fg-2);
+    margin:var(--ele-s-5) auto;
+    max-width:48ch;
+  }
+
+  /* =========================================================
+     Step 0: Intro (all centered)
+     ========================================================= */
+  .intro{text-align:center}
+  .intro .lead{margin-left:auto;margin-right:auto;text-align:center}
+  .intro .nav-row{justify-content:center}
+
+  /* Pillars (no subtext, larger headings) */
+  .pillars{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:var(--ele-s-4);
+    margin:var(--ele-s-6) 0 var(--ele-s-7);
+  }
+  @media(max-width:640px){
+    .pillars{grid-template-columns:1fr}
+  }
+  .pillar{
+    padding:var(--ele-s-7) var(--ele-s-4);
+    background:var(--ele-ink-1);
+    border:1px solid var(--ele-border);
+    border-radius:var(--ele-r-md);
+    text-align:center;
+    display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:var(--ele-s-4);
+    min-height:160px;
+    transition:transform var(--ele-dur-fast) var(--ele-ease),border-color var(--ele-dur-fast) var(--ele-ease);
+    position:relative;overflow:hidden;
+  }
+  .pillar::before{
+    content:"";position:absolute;
+    top:0;left:0;right:0;height:1px;
+    background:var(--ele-grad-divider);
+    opacity:0.6;
+  }
+  .pillar:hover{
+    transform:translateY(-2px);
+    border-color:var(--ele-border-strong);
+  }
+  .pillar-icon{
+    width:32px;height:32px;
+    color:var(--ele-accent);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .pillar-icon svg{width:28px;height:28px;stroke-width:1.5}
+  .pillar-title{
+    font-family:'Inter',sans-serif;
+    font-weight:700;
+    font-size:18px;
+    letter-spacing:-0.01em;
+    color:var(--ele-fg-1);
+    line-height:1.25;
+  }
+
+  /* =========================================================
+     Forms
+     ========================================================= */
+  .form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:var(--ele-s-4);
+    margin-top:var(--ele-s-5);
+  }
+  @media(max-width:640px){.form-grid{grid-template-columns:1fr}}
+  .field{display:flex;flex-direction:column;gap:var(--ele-s-2)}
+  .field.full{grid-column:1/-1}
+  label{
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    font-weight:500;
+    color:var(--ele-fg-2);
+    letter-spacing:0.01em;
+  }
+  label .req{color:var(--ele-accent);font-weight:700}
+  input[type=text],input[type=email],select,textarea{
+    background:var(--ele-ink-0);
+    border:1px solid var(--ele-border);
+    color:var(--ele-fg-1);
+    padding:14px 14px;
+    border-radius:var(--ele-r-sm);
+    font-size:15px;
+    font-family:'Inter',sans-serif;
+    font-weight:400;
+    width:100%;
+    transition:border-color var(--ele-dur-fast) var(--ele-ease),box-shadow var(--ele-dur-fast) var(--ele-ease);
+  }
+  input:focus,select:focus,textarea:focus{
+    outline:none;
+    border-color:var(--ele-accent);
+    box-shadow:0 0 0 3px rgba(217,178,90,0.18);
+  }
+  input::placeholder,textarea::placeholder{color:var(--ele-fg-3)}
+
+  /* =========================================================
+     Category Header
+     ========================================================= */
+  .category-head{
+    display:flex;align-items:flex-start;gap:var(--ele-s-4);
+    margin-bottom:var(--ele-s-3);
+  }
+  .category-icon{
+    width:48px;height:48px;border-radius:var(--ele-r-md);
+    flex-shrink:0;
+    background:var(--ele-ink-0);
+    border:1px solid var(--ele-border-strong);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--ele-accent);
+  }
+  .category-icon svg{width:22px;height:22px;stroke-width:1.5}
+  .category-aim{
+    font-family:'Inter',sans-serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:15px;
+    color:var(--ele-fg-2);
+    margin-top:4px;
+  }
+
+  /* =========================================================
+     Question (no numbers)
+     ========================================================= */
+  .question{
+    margin-bottom:var(--ele-s-7);
+    padding-bottom:var(--ele-s-7);
+    border-bottom:1px solid var(--ele-ink-3);
+  }
+  .question:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
+  .question-num{
+    font-family:'Inter',sans-serif;
+    color:var(--ele-fg-3);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    margin-bottom:var(--ele-s-2);
+  }
+  .question-text{
+    font-family:'Inter',sans-serif;
+    font-size:18px;
+    font-weight:600;
+    color:var(--ele-fg-1);
+    margin-bottom:var(--ele-s-4);
+    line-height:1.4;
+    letter-spacing:-0.005em;
+  }
+  .options{display:flex;flex-direction:column;gap:var(--ele-s-2)}
+  .option{
+    display:flex;align-items:flex-start;gap:var(--ele-s-3);
+    padding:var(--ele-s-4) var(--ele-s-5);
+    border-radius:var(--ele-r-sm);
+    cursor:pointer;
+    background:var(--ele-ink-0);
+    border:1px solid var(--ele-border);
+    transition:all var(--ele-dur-fast) var(--ele-ease);
+  }
+  .option:hover{border-color:var(--ele-border-strong);background:#0E1628}
+  .option input{
+    appearance:none;
+    width:18px;height:18px;
+    border:1.5px solid var(--ele-gold-600);
+    border-radius:var(--ele-r-pill);
+    flex-shrink:0;margin-top:3px;cursor:pointer;
+    transition:all var(--ele-dur-fast) var(--ele-ease);
+  }
+  .option input:checked{
+    border-color:var(--ele-accent);
+    background:radial-gradient(circle,var(--ele-accent) 42%,transparent 46%);
+  }
+  .option:has(input:checked){
+    border-color:var(--ele-accent);
+    background:linear-gradient(135deg,rgba(217,178,90,0.10) 0%,rgba(217,178,90,0.02) 100%);
+  }
+  .option-text{
+    font-family:'Inter',sans-serif;
+    font-weight:500;
+    font-size:15px;
+    line-height:1.5;
+    color:var(--ele-fg-1);
+  }
+
+  /* =========================================================
+     Buttons
+     ========================================================= */
+  .nav-row{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-top:var(--ele-s-7);gap:var(--ele-s-3);flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'Inter',sans-serif;
+    cursor:pointer;border:none;
+    letter-spacing:0.01em;
+    transition:all var(--ele-dur-fast) var(--ele-ease);
+    display:inline-flex;align-items:center;gap:var(--ele-s-2);
+    text-decoration:none;
+    line-height:1;
+  }
+  .btn-primary{
+    background:var(--ele-grad-gold);
+    color:#0A1020;
+    padding:18px 32px;
+    border-radius:var(--ele-r-sm);
+    font-weight:700;font-size:15px;
+    box-shadow:var(--ele-glow-gold),var(--ele-inset-gold);
+    animation:breathe 1.6s ease-in-out infinite;
+  }
+  .btn-primary:hover{
+    background:linear-gradient(135deg,#B07F26 0%,#D9B25A 30%,#F2DDA0 55%,#FBEFC8 70%,#E6C77A 100%);
+    box-shadow:0 0 0 2px rgba(217,178,90,0.5),0 16px 50px rgba(217,178,90,0.3),0 2px 8px rgba(217,178,90,0.30),var(--ele-inset-gold);
+  }
+  .btn-primary:active{transform:translateY(1px);animation:none}
+  .btn-primary:disabled{opacity:0.35;cursor:not-allowed;animation:none}
+  .btn-primary svg{width:16px;height:16px;stroke-width:2.2}
+
+  .btn-secondary{
+    background:transparent;
+    color:var(--ele-fg-1);
+    border:1px solid var(--ele-border-strong);
+    padding:17px 22px;
+    border-radius:var(--ele-r-sm);
+    font-weight:500;font-size:14px;
+  }
+  .btn-secondary:hover{border-color:var(--ele-accent);color:var(--ele-accent)}
+  .btn-secondary svg{width:16px;height:16px;stroke-width:2}
+
+  .btn-ghost{
+    background:transparent;
+    color:var(--ele-accent);
+    padding:12px 16px;
+    font-weight:500;font-size:14px;
+    border:none;
+  }
+  .btn-ghost:hover{color:var(--ele-gold-200)}
+  .btn-ghost svg{width:14px;height:14px;stroke-width:2}
+
+  @keyframes breathe{
+    0%,100%{box-shadow:var(--ele-glow-gold),var(--ele-inset-gold)}
+    50%{box-shadow:0 0 0 2px rgba(217,178,90,0.5),0 14px 42px rgba(217,178,90,0.28),0 2px 8px rgba(217,178,90,0.24),var(--ele-inset-gold)}
+  }
+
+  *:focus-visible{
+    outline:2px solid var(--ele-accent);
+    outline-offset:3px;
+    border-radius:var(--ele-r-sm);
+  }
+
+  .error-msg{
+    color:var(--ele-danger);
+    font-size:13px;
+    margin-top:var(--ele-s-3);
+    display:none;
+    font-weight:500;
+  }
+  .error-msg.show{display:block}
+
+  /* =========================================================
+     Result Hero
+     ========================================================= */
+  .result-hero{
+    text-align:center;
+    padding:var(--ele-s-7) var(--ele-s-5) var(--ele-s-6);
+  }
+  .score-gauge{
+    position:relative;width:240px;height:240px;
+    margin:var(--ele-s-5) auto var(--ele-s-5);
+  }
+  .score-gauge svg{width:100%;height:100%;transform:rotate(-90deg)}
+  .score-gauge-track{stroke:rgba(217,178,90,0.08);fill:none;stroke-width:10}
+  .score-gauge-fill{
+    fill:none;stroke-width:10;stroke-linecap:round;
+    transition:stroke-dashoffset 1.4s var(--ele-ease);
+  }
+  .score-gauge-num{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    text-align:center;
+  }
+  .score-gauge-num .big{
+    font-family:'Inter',sans-serif;
+    font-size:64px;font-weight:700;
+    letter-spacing:-0.04em;line-height:1;
+  }
+  .score-gauge-num .pct{
+    font-size:22px;color:var(--ele-fg-3);font-weight:500;margin-left:2px;
+  }
+  .score-label-eyebrow{
+    font-size:11px;text-transform:uppercase;letter-spacing:0.2em;
+    color:var(--ele-fg-3);font-weight:600;
+  }
+  .verdict{
+    display:inline-flex;align-items:center;gap:var(--ele-s-2);
+    padding:var(--ele-s-2) var(--ele-s-4);
+    border-radius:var(--ele-r-pill);
+    font-family:'Inter',sans-serif;
+    font-size:13px;font-weight:600;
+    text-transform:uppercase;letter-spacing:0.1em;
+  }
+  .verdict::before{
+    content:"";width:6px;height:6px;border-radius:50%;
+  }
+  .verdict.red{background:rgba(168,66,58,0.12);color:var(--ele-danger);border:1px solid rgba(168,66,58,0.4)}
+  .verdict.red::before{background:var(--ele-danger)}
+  .verdict.yellow{background:rgba(201,154,61,0.12);color:var(--ele-warning);border:1px solid rgba(201,154,61,0.4)}
+  .verdict.yellow::before{background:var(--ele-warning)}
+  .verdict.green{background:rgba(92,138,90,0.14);color:var(--ele-success);border:1px solid rgba(92,138,90,0.4)}
+  .verdict.green::before{background:var(--ele-success)}
+
+  /* Executive Summary */
+  .exec-summary{
+    margin:var(--ele-s-6) auto 0;
+    max-width:60ch;
+    padding:var(--ele-s-5) var(--ele-s-6);
+    background:var(--ele-ink-1);
+    border:1px solid var(--ele-border);
+    border-radius:var(--ele-r-md);
+    text-align:left;
+    position:relative;
+  }
+  .exec-summary::before{
+    content:"";position:absolute;
+    top:0;left:var(--ele-s-5);right:var(--ele-s-5);height:1px;
+    background:var(--ele-grad-divider);
+  }
+  .exec-summary .eyebrow-inline{
+    display:block;
+    font-size:10px;font-weight:700;letter-spacing:0.24em;
+    text-transform:uppercase;color:var(--ele-accent);
+    margin-bottom:var(--ele-s-3);
+  }
+  .exec-summary p{
+    font-family:'Inter',sans-serif;
+    font-size:15px;line-height:1.6;
+    color:var(--ele-fg-1);font-weight:400;
+  }
+
+  /* =========================================================
+     Category Cards (Result, centered)
+     ========================================================= */
+  .category-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:var(--ele-s-3);
+    margin:var(--ele-s-5) auto 0;
+    justify-items:stretch;
+  }
+  @media(max-width:768px){
+    .category-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:420px){
+    .category-grid{grid-template-columns:1fr}
+  }
+  .cat-card{
+    background:var(--ele-ink-1);
+    border:1px solid var(--ele-border);
+    border-radius:var(--ele-r-md);
+    padding:var(--ele-s-5) var(--ele-s-3);
+    text-align:center;
+    display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+    gap:var(--ele-s-3);
+  }
+  .cat-icon-result{
+    width:32px;height:32px;
+    color:var(--ele-accent);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .cat-icon-result svg{width:24px;height:24px;stroke-width:1.5}
+  .cat-name{
+    font-family:'Inter',sans-serif;
+    font-weight:500;
+    font-size:12px;
+    color:var(--ele-fg-2);
+    line-height:1.3;
+    min-height:32px;
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;
+  }
+  .cat-score{
+    font-family:'Inter',sans-serif;
+    font-weight:700;
+    font-size:32px;
+    letter-spacing:-0.03em;
+    line-height:1;
+  }
+  .cat-score-pct{
+    font-size:14px;color:var(--ele-fg-3);
+    font-weight:500;margin-left:2px;
+  }
+  .cat-bar{
+    width:100%;
+    height:3px;background:rgba(217,178,90,0.08);
+    border-radius:var(--ele-r-pill);
+    overflow:hidden;
+  }
+  .cat-bar-fill{height:100%;border-radius:var(--ele-r-pill);transition:width 1.2s var(--ele-ease)}
+
+  .red-fill{background:linear-gradient(90deg,#7A2F2A,var(--ele-danger))}
+  .yellow-fill{background:var(--ele-grad-gold)}
+  .green-fill{background:linear-gradient(90deg,#3F6240,var(--ele-success))}
+  .red-stroke{stroke:var(--ele-danger)}
+  .yellow-stroke{stroke:var(--ele-warning)}
+  .green-stroke{stroke:var(--ele-success)}
+  .red-text{color:var(--ele-danger)}
+  .yellow-text{color:var(--ele-warning)}
+  .green-text{color:var(--ele-success)}
+
+  /* =========================================================
+     Spider
+     ========================================================= */
+  .spider-wrap{display:flex;justify-content:center;padding:var(--ele-s-5) 0}
+  .spider{width:100%;max-width:460px;height:auto}
+  .spider-grid{stroke:rgba(217,178,90,0.10);fill:none}
+  .spider-axis{stroke:rgba(217,178,90,0.15);fill:none}
+  .spider-fill{fill:rgba(217,178,90,0.18);stroke:var(--ele-accent);stroke-width:1.5}
+  .spider-point{fill:var(--ele-gold-100);stroke:var(--ele-accent-strong);stroke-width:1.5}
+  .spider-label{fill:var(--ele-fg-2);font-size:11px;font-weight:500;font-family:'Inter',sans-serif}
+
+  /* =========================================================
+     Top Hebel
+     ========================================================= */
+  .hebel-list{display:flex;flex-direction:column;gap:var(--ele-s-3);margin-top:var(--ele-s-4)}
+  .hebel-item{
+    display:flex;gap:var(--ele-s-4);
+    padding:var(--ele-s-4) var(--ele-s-5);
+    border-radius:var(--ele-r-md);
+    background:var(--ele-ink-1);
+    border:1px solid var(--ele-border);
+  }
+  .hebel-rank{
+    width:36px;height:36px;border-radius:var(--ele-r-pill);flex-shrink:0;
+    background:var(--ele-grad-gold);
+    box-shadow:var(--ele-inset-gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Inter',sans-serif;
+    font-weight:700;color:#0A1020;font-size:15px;
+  }
+  .hebel-cat{
+    font-family:'Inter',sans-serif;
+    font-size:11px;color:var(--ele-accent);
+    text-transform:uppercase;letter-spacing:0.14em;
+    margin-bottom:var(--ele-s-1);font-weight:600;
+  }
+  .hebel-text{
+    font-family:'Inter',sans-serif;
+    font-weight:500;
+    font-size:15px;line-height:1.5;color:var(--ele-fg-1);
+  }
+  .hebel-meta{
+    color:var(--ele-fg-3);font-size:12px;margin-top:var(--ele-s-1);
+    font-family:'Inter',sans-serif;font-weight:500;
+  }
+
+  /* =========================================================
+     Recommendations (1 per category)
+     ========================================================= */
+  .reco-section{margin-top:var(--ele-s-4)}
+  .reco-cat{
+    background:var(--ele-ink-1);
+    border:1px solid var(--ele-border);
+    border-radius:var(--ele-r-md);
+    padding:var(--ele-s-5) var(--ele-s-6);
+    margin-bottom:var(--ele-s-3);
+  }
+  .reco-cat-head{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:var(--ele-s-3);gap:var(--ele-s-3);flex-wrap:wrap;
+  }
+  .reco-cat-title{
+    font-family:'Inter',sans-serif;
+    font-size:16px;font-weight:700;
+    display:inline-flex;align-items:center;gap:var(--ele-s-3);
+    color:var(--ele-fg-1);
+  }
+  .reco-cat-title svg{width:18px;height:18px;color:var(--ele-accent);stroke-width:1.5}
+  .reco-text{
+    font-family:'Inter',sans-serif;
+    font-size:15px;color:var(--ele-fg-1);
+    line-height:1.55;font-weight:500;
+    display:flex;gap:var(--ele-s-3);align-items:flex-start;
+  }
+  .reco-text::before{
+    content:"→";
+    color:var(--ele-accent);
+    font-weight:700;flex-shrink:0;
+  }
+
+  /* =========================================================
+     CTA Card
+     ========================================================= */
+  .cta-card{
+    text-align:center;
+    background:linear-gradient(135deg,rgba(217,178,90,0.08),rgba(217,178,90,0.02));
+    border:1px solid var(--ele-border-strong);
+  }
+  .cta-card .lead{
+    margin:var(--ele-s-3) auto var(--ele-s-5);
+    color:var(--ele-fg-2);
+    text-align:center;
+  }
+  .cta-buttons{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:var(--ele-s-3);
+    margin-top:var(--ele-s-5);
+  }
+
+  /* =========================================================
+     Success
+     ========================================================= */
+  .success-wrap{
+    text-align:center;
+    padding:var(--ele-s-7) var(--ele-s-4);
+  }
+  .success-icon{
+    width:72px;height:72px;
+    margin:0 auto var(--ele-s-5);
+    border-radius:var(--ele-r-pill);
+    background:linear-gradient(135deg,rgba(92,138,90,0.18),rgba(92,138,90,0.06));
+    border:1px solid rgba(92,138,90,0.4);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--ele-success);
+  }
+  .success-icon svg{width:36px;height:36px;stroke-width:2}
+
+  /* =========================================================
+     Steps
+     ========================================================= */
+  .step{display:none}
+  .step.active{display:block;animation:fadeUp var(--ele-dur-slow) var(--ele-ease)}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+  @media print{
+    body{background:white;color:black;padding:0}
+    .btn,.nav-row,.progress-wrap,.brand-bar{display:none}
+    .card{box-shadow:none;border:1px solid #ccc;page-break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ============= UNIVERSAL HEADER ============= -->
+  <div class="brand-bar">
+    <img src="assets/logo-mark.png" alt="eLearneffect" />
+    <div class="brand-title">Potenzialanalyse</div>
+  </div>
+
+  <!-- ============= PROGRESS ============= -->
+  <div class="progress-wrap" id="progressWrap" style="display:none">
+    <div class="progress-meta">
+      <span id="progressLabel">Schritt 1 von 5</span>
+      <span id="progressPct">0 %</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <!-- ============= STEP 0: INTRO (Premium Hero, no card) ============= -->
+  <div class="step active" id="step-0">
+    <div class="hero-stage">
+      <h1 class="hero-headline">Erkennen, wie viel Potenzial im Führungssystem <span class="hero-accent">verborgen liegt.</span></h1>
+      <p class="hero-sub">Viele Unternehmen haben Führungskräfte.<br/>Wenige haben ein <span class="hero-accent">wirksames Führungssystem</span>.</p>
+
+      <div class="hero-divider"></div>
+
+      <div class="trust-row">
+        <div class="trust-item">
+          <div class="trust-icon"><i data-lucide="timer"></i></div>
+          <div class="trust-text">
+            <div class="trust-main">In nur 5 Minuten</div>
+            <div class="trust-sub">schnell und unkompliziert</div>
+          </div>
+        </div>
+        <div class="trust-divider-v"></div>
+        <div class="trust-item">
+          <div class="trust-icon"><i data-lucide="shield-check"></i></div>
+          <div class="trust-text">
+            <div class="trust-main">100&nbsp;% vertraulich</div>
+            <div class="trust-sub">Ihre Daten sind sicher</div>
+          </div>
+        </div>
+        <div class="trust-divider-v"></div>
+        <div class="trust-item">
+          <div class="trust-icon"><i data-lucide="target"></i></div>
+          <div class="trust-text">
+            <div class="trust-main">Für Produktion &amp; Logistik</div>
+            <div class="trust-sub">speziell entwickelt</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="hero-cta" onclick="goTo(1)">
+        <span>Potenzial jetzt prüfen</span>
+        <i data-lucide="arrow-right"></i>
+      </button>
+
+      <div class="security-line">
+        <i data-lucide="lock"></i>
+        <span>Keine Verpflichtung. Keine Kosten.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============= STEPS 1–5: CATEGORIES (rendered by JS) ============= -->
+  <div class="step" id="step-1"></div>
+  <div class="step" id="step-2"></div>
+  <div class="step" id="step-3"></div>
+  <div class="step" id="step-4"></div>
+  <div class="step" id="step-5"></div>
+
+  <!-- ============= STEP 6: RESULT ============= -->
+  <div class="step" id="step-6"></div>
+
+  <!-- ============= STEP 7: LEAD FORM (Stammdaten) ============= -->
+  <div class="step" id="step-7">
+    <div class="card">
+      <div class="eyebrow" style="margin-bottom:16px">Letzter Schritt</div>
+      <h1>Wir besprechen deine Auswertung</h1>
+      <p class="lead">Wenn du eine persönliche Einordnung deiner Ergebnisse möchtest, hinterlasse kurz deine Kontaktdaten. Wir melden uns mit einem konkreten Vorschlag für die nächsten Schritte.</p>
+
+      <div class="form-grid">
+        <div class="field full">
+          <label>Name <span class="req">*</span></label>
+          <input type="text" id="md_name" autocomplete="name" required />
+        </div>
+        <div class="field full">
+          <label>Rolle <span class="req">*</span></label>
+          <select id="md_role" required>
+            <option value="">Bitte wählen …</option>
+            <option>Geschäftsführung / Vorstand</option>
+            <option>COO / Operations-Direktion</option>
+            <option>Werks-/Standortleitung</option>
+            <option>Produktionsleitung</option>
+            <option>Logistikleitung</option>
+            <option>Bereichs-/Abteilungsleitung</option>
+            <option>Schicht-/Teamleitung</option>
+            <option>HR / Personalentwicklung</option>
+            <option>Sonstige</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label>E-Mail <span class="req">*</span></label>
+          <input type="email" id="md_email" autocomplete="email" required />
+        </div>
+      </div>
+
+      <div class="error-msg" id="md_error">Bitte alle Pflichtfelder (*) ausfüllen.</div>
+
+      <div class="nav-row" style="justify-content:center">
+        <button class="btn btn-primary" onclick="submitLead()">Absenden <i data-lucide="send"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============= STEP 8: SUCCESS ============= -->
+  <div class="step" id="step-8">
+    <div class="card">
+      <div class="success-wrap">
+        <div class="success-icon"><i data-lucide="check"></i></div>
+        <h1>Deine Anfrage ist auf dem Weg</h1>
+        <p class="lead" style="margin-left:auto;margin-right:auto;text-align:center">Wir melden uns innerhalb von 1–2 Werktagen mit einer persönlichen Einordnung deiner Auswertung und einem konkreten Vorschlag für die nächsten Schritte.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* =========================================================
+   DATA
+   ========================================================= */
+const SCALE_TEXT = [
+  { lvl:1, label:"Nicht vorhanden" },
+  { lvl:2, label:"Ansätze" },
+  { lvl:3, label:"Definiert" },
+  { lvl:4, label:"Gesteuert" },
+  { lvl:5, label:"Optimiert" }
+];
+
+const CATEGORIES = [
+  {
+    id:"C1", icon:"target", weight:0.20,
+    title:"Zielklarheit & Fokus",
+    aim:"Wird an den richtigen Dingen gearbeitet?",
+    leverShort:"klare KPI-Definition und konsequente Zielkaskadierung",
+    questions:[
+      {
+        id:"Q1",
+        text:"Sind die wichtigsten KPIs (OTD, Produktivität, Qualität, Kosten) klar definiert und mit Zielwerten hinterlegt?",
+        anchors:[
+          "Keine systematischen KPIs erfasst.",
+          "Einzelne Kennzahlen vorhanden, ohne klare Zielwerte.",
+          "KPIs definiert, Zielwerte teilweise hinterlegt.",
+          "Alle Kern-KPIs mit Zielwerten, regelmäßig nachgehalten.",
+          "Integriertes KPI-System mit kaskadierten Zielwerten und kontinuierlicher Justierung."
+        ]
+      },
+      {
+        id:"Q2",
+        text:"Sind die Ziele bis auf Team-/Schichtebene heruntergebrochen und im Alltag präsent?",
+        anchors:[
+          "Ziele sind nicht heruntergebrochen.",
+          "Vereinzelt auf Bereichsebene, nicht durchgängig.",
+          "Auf Teamebene definiert, im Alltag aber selten präsent.",
+          "Bis Schichtebene heruntergebrochen, sichtbar (z. B. Visual Management).",
+          "Tägliche Präsenz — jeder Mitarbeiter kennt seine Ziele jederzeit."
+        ]
+      },
+      {
+        id:"Q3",
+        text:"Sind aktuell die 2–3 wichtigsten Hebel zur Ergebnisverbesserung klar definiert und priorisiert?",
+        anchors:[
+          "Keine Priorisierung wesentlicher Hebel.",
+          "Diskussion vorhanden, ohne klare Festlegung.",
+          "Hebel benannt, Priorisierung uneinheitlich.",
+          "2–3 Top-Hebel klar priorisiert und kommuniziert.",
+          "Top-Hebel mit Maßnahmen-Roadmap, Verantwortlichen und Zeitplan."
+        ]
+      }
+    ]
+  },
+  {
+    id:"C2", icon:"sliders-horizontal", weight:0.25,
+    title:"Steuerung & Verantwortlichkeit",
+    aim:"Wird aktiv gesteuert — und ist klar, wer handeln muss?",
+    leverShort:"konsequentere KPI-Führung und klarere Ownership-Strukturen",
+    questions:[
+      {
+        id:"Q4",
+        text:"Gibt es regelmäßige Soll-Ist-Vergleiche, die Abweichungen sofort sichtbar machen?",
+        anchors:[
+          "Keine systematischen Vergleiche.",
+          "Sporadisch, manuell, mit großer Verzögerung.",
+          "Regelmäßig, aber nicht zeitnah genug zur Reaktion.",
+          "Tagesaktuell oder am Schichtende — Abweichungen sofort sichtbar.",
+          "Echtzeit-Monitoring mit automatischer Eskalation."
+        ]
+      },
+      {
+        id:"Q5",
+        text:"Ist eindeutig geregelt, wer bei KPI-Abweichungen handeln MUSS?",
+        anchors:[
+          "Niemand fühlt sich zuständig.",
+          "Implizit, situativ — stark personenabhängig.",
+          "Grundsätzlich geregelt, Lücken bestehen.",
+          "Klare Eskalationsmatrix, allen Beteiligten bekannt.",
+          "Routiniert gelebt, automatische Trigger und klare Übernahme."
+        ]
+      },
+      {
+        id:"Q6",
+        text:"Gibt es klare Regeln, was bei Abweichungen konkret passieren muss?",
+        anchors:[
+          "Keine festen Regeln, Reaktion ist Zufall.",
+          "Reaktion situativ, nicht standardisiert.",
+          "Standardprozess vorhanden, nicht immer angewendet.",
+          "Standardisierter Reaktionsprozess, dokumentiert und gelebt.",
+          "Closed-Loop mit PDCA — Wirksamkeit wird systematisch überprüft."
+        ]
+      }
+    ]
+  },
+  {
+    id:"C3", icon:"users-round", weight:0.20,
+    title:"Leistungsfähigkeit im Team",
+    aim:"Kann das Team die geforderte Leistung überhaupt erbringen?",
+    leverShort:"passgenaue Personalentwicklung und klare Leistungserwartungen",
+    questions:[
+      {
+        id:"Q7",
+        text:"Sind die richtigen Personen auf den richtigen Positionen eingesetzt?",
+        anchors:[
+          "Besetzung historisch gewachsen, keine Eignungsprüfung.",
+          "Punktuell hinterfragt, keine systematische Bewertung.",
+          "Strukturierte Bewertung vorhanden, Anpassungen verzögert.",
+          "Kompetenzprofile vorhanden, regelmäßiger Soll-Ist-Abgleich.",
+          "Skill-Matrix mit Entwicklungspfaden, aktiv gesteuert."
+        ]
+      },
+      {
+        id:"Q8",
+        text:"Gibt es klare Erwartungen an Leistung und Verhalten?",
+        anchors:[
+          "Erwartungen sind unklar oder unausgesprochen.",
+          "Mündlich, nicht einheitlich kommuniziert.",
+          "Definiert, nicht durchgängig kommuniziert.",
+          "Klar formuliert, dokumentiert, im Alltag präsent.",
+          "Regelmäßiger Abgleich, fest in Feedback-Routinen verankert."
+        ]
+      },
+      {
+        id:"Q9",
+        text:"Werden Mitarbeiter gezielt entwickelt und befähigt, ihre Leistung zu erbringen?",
+        anchors:[
+          "Keine systematische Entwicklung.",
+          "Bei Bedarf, ad-hoc und reaktiv.",
+          "Schulungsplan vorhanden, Umsetzung lückenhaft.",
+          "Strukturierte Entwicklungspläne, regelmäßig gepflegt.",
+          "Lernkultur als Kernelement — kontinuierliche Befähigung systematisch verankert."
+        ]
+      }
+    ]
+  },
+  {
+    id:"C4", icon:"puzzle", weight:0.20,
+    title:"Problemlösung & Konsequenz",
+    aim:"Werden Probleme nachhaltig gelöst und Leistung eingefordert?",
+    leverShort:"systematische Ursachenanalyse und konsequentes Handeln",
+    questions:[
+      {
+        id:"Q10",
+        text:"Wird systematisch nach Ursachen gesucht (z. B. 5 Why / PDCA)?",
+        anchors:[
+          "Symptombekämpfung — Ursachen werden nicht gesucht.",
+          "Ursachensuche nur bei großen Problemen.",
+          "Methoden bekannt, nicht durchgängig angewendet.",
+          "5 Why / PDCA / A3 standardmäßig genutzt.",
+          "Kultur der Root-Cause-Analyse in allen Bereichen."
+        ]
+      },
+      {
+        id:"Q11",
+        text:"Werden Probleme nachhaltig gelöst oder treten sie wieder auf?",
+        anchors:[
+          "Probleme treten wiederholt auf.",
+          "Vereinzelt nachhaltige Lösungen.",
+          "Nachhaltigkeit gewünscht, Wiederauftreten häufig.",
+          "Lösungen werden überprüft, hohe Trefferquote.",
+          "Lessons Learned systematisch dokumentiert und übertragen."
+        ]
+      },
+      {
+        id:"Q12",
+        text:"Wird bei Abweichungen und Leistungsproblemen konsequent gehandelt?",
+        anchors:[
+          "Konflikt-/Konsequenzvermeidung dominiert.",
+          "Inkonsistent, abhängig von Person und Situation.",
+          "Grundsätzlich, aber zu spät und mit Lücken.",
+          "Klar, zeitnah und fair umgesetzt.",
+          "Kultur der Klarheit — frühzeitig und konsequent, ohne Eskalation."
+        ]
+      }
+    ]
+  },
+  {
+    id:"C5", icon:"search", weight:0.15,
+    title:"Kultur der Realität",
+    aim:"Werden Probleme sichtbar gemacht und ehrlich adressiert?",
+    leverShort:"verlässliche Datenbasis und offene Problemkultur",
+    questions:[
+      {
+        id:"Q13",
+        text:"Gibt es verlässliche und aktuelle Zahlen als Grundlage für Entscheidungen?",
+        anchors:[
+          "Zahlen veraltet oder unzuverlässig.",
+          "Manuelle Datenpflege, hohe Zeitverzögerung.",
+          "Grundsätzlich verlässlich, Aktualität schwankt.",
+          "Tagesaktuell und qualitätsgesichert.",
+          "Echtzeitdaten mit automatisierter Validierung."
+        ]
+      },
+      {
+        id:"Q14",
+        text:"Werden Probleme frühzeitig sichtbar gemacht — statt erst, wenn sie eskalieren?",
+        anchors:[
+          "Probleme werden erst bei Eskalation bekannt.",
+          "Hinweise existieren, werden ignoriert.",
+          "Frühindikatoren vorhanden, Reaktion verzögert.",
+          "Frühwarnsysteme aktiv, schnelle Reaktion.",
+          "Predictive Monitoring — präventive Steuerung etabliert."
+        ]
+      },
+      {
+        id:"Q15",
+        text:"Werden auch unangenehme Themen offen angesprochen (statt beschönigt)?",
+        anchors:[
+          "Unangenehme Themen werden vermieden oder beschönigt.",
+          "Selten thematisiert, nur in geschütztem Rahmen.",
+          "Gelegentlich offen, abhängig von Personen.",
+          "Offene Diskussionskultur, Themen werden dokumentiert adressiert.",
+          "Psychologische Sicherheit — Probleme gelten als Verbesserungschance."
+        ]
+      }
+    ]
+  }
+];
+
+/* Eine Empfehlung pro Kategorie und Zone — fokussiert auf Hebelwirkung */
+const RECOMMENDATIONS = {
+  C1:{
+    red:"Kern-KPI-Set definieren (OTD, Produktivität, Qualität, Kosten) und verbindlich auf Bereichs- und Schichtebene kaskadieren.",
+    yellow:"Zielwerte einheitlich nachhalten und im Visual Management auf Schichtebene sichtbar machen.",
+    green:"Reviewzyklus der Top-Hebel verschärfen (Hoshin-Kanri-Catchball) und Zielanpassung aktiv steuern."
+  },
+  C2:{
+    red:"Tägliches Shopfloor-Management mit Soll-Ist-Vergleich einführen und klare Eskalationsmatrix verankern.",
+    yellow:"Reaktionsplan für KPI-Abweichungen verbindlich machen und Wirksamkeit im Closed-Loop überprüfen.",
+    green:"Echtzeit-Monitoring mit automatischen Triggern ausbauen und Selbststeuerung der Teams stärken."
+  },
+  C3:{
+    red:"Skill-/Kompetenzmatrix pro Funktion aufbauen und Soll-Ist-Lücken systematisch schließen.",
+    yellow:"Strukturierte Entwicklungspläne mit Lernpfaden ausrollen und Feedback-Routinen verbindlich machen.",
+    green:"Lernkultur über Peer-Learning und interne Trainer skalieren und mit Personalplanung verzahnen."
+  },
+  C4:{
+    red:"Standardmethodik (5 Why, A3, PDCA) einführen und Führungskräfte konsequent darauf trainieren.",
+    yellow:"Wirksamkeit von Maßnahmen systematisch nachhalten und Leistungsprobleme früher ansprechen.",
+    green:"Problemlösungskompetenz auf alle Mitarbeiterebenen ausweiten und Best Practices standortübergreifend übertragen."
+  },
+  C5:{
+    red:"Daten-Single-Source-of-Truth schaffen und Datenqualität als Pflichtaufgabe etablieren.",
+    yellow:"Frühwarnsignale systematisch in die Steuerungslogik einbauen und Tabuthemen aktiv adressieren.",
+    green:"Predictive Analytics für proaktive Steuerung nutzen und Reflexionsroutinen auf allen Ebenen verankern."
+  }
+};
+
+/* =========================================================
+   STATE
+   ========================================================= */
+let currentStep = 0;
+const TOTAL_STEPS = 9; // 0=intro, 1-5=cats, 6=result, 7=lead, 8=success
+const answers = {};
+const masterData = {};
+let lastResults = null; // cached for sendByMail
+
+/* =========================================================
+   RENDER CATEGORY STEPS
+   ========================================================= */
+function renderCategorySteps(){
+  CATEGORIES.forEach((cat, idx)=>{
+    const step = document.getElementById(`step-${idx+1}`);
+    let html = `
+      <div class="card">
+        <div class="eyebrow" style="margin-bottom:16px">Kategorie ${idx+1} von 5</div>
+        <div class="category-head">
+          <div class="category-icon"><i data-lucide="${cat.icon}"></i></div>
+          <div>
+            <h1 style="margin-bottom:4px">${cat.title}</h1>
+            <div class="category-aim">${cat.aim}</div>
+          </div>
+        </div>
+
+        ${cat.questions.map((q)=>`
+          <div class="question">
+            <div class="question-num">Frage ${q.id.replace("Q","")} / 15</div>
+            <div class="question-text">${q.text}</div>
+            <div class="options" data-qid="${q.id}">
+              ${q.anchors.map((a,i)=>`
+                <label class="option">
+                  <input type="radio" name="${q.id}" value="${i+1}" />
+                  <div class="option-text">${a}</div>
+                </label>
+              `).join("")}
+            </div>
+          </div>
+        `).join("")}
+
+        <div class="error-msg" id="err-${cat.id}">Bitte alle ${cat.questions.length} Fragen dieser Kategorie beantworten.</div>
+
+        <div class="nav-row">
+          <button class="btn btn-ghost" onclick="goTo(${idx===0?0:idx})"><i data-lucide="arrow-left"></i> Zurück</button>
+          <button class="btn btn-primary" onclick="validateCategory('${cat.id}', ${idx+1}, ${idx+2})">${idx===CATEGORIES.length-1?"Auswertung anzeigen":"Weiter"} <i data-lucide="arrow-right"></i></button>
+        </div>
+      </div>
+    `;
+    step.innerHTML = html;
+  });
+}
+renderCategorySteps();
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+function goTo(step){
+  document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
+  document.getElementById(`step-${step}`).classList.add("active");
+  currentStep = step;
+  updateProgress();
+  window.scrollTo({top:0, behavior:"smooth"});
+  if(step===6) renderResult();
+  if(window.lucide) lucide.createIcons();
+}
+
+function updateProgress(){
+  const wrap = document.getElementById("progressWrap");
+  // Zeige Progress nur während der 5 Frage-Schritte
+  if(currentStep>=1 && currentStep<=5){
+    wrap.style.display="block";
+    const pct = Math.round((currentStep/5)*100);
+    document.getElementById("progressFill").style.width = pct+"%";
+    document.getElementById("progressLabel").textContent = `Schritt ${currentStep} von 5`;
+    document.getElementById("progressPct").textContent = pct+" %";
+  } else {
+    wrap.style.display="none";
+  }
+}
+
+/* =========================================================
+   VALIDATION
+   ========================================================= */
+function validateCategory(catId, _curStep, nextStep){
+  const cat = CATEGORIES.find(c=>c.id===catId);
+  let ok = true;
+  cat.questions.forEach(q=>{
+    const sel = document.querySelector(`input[name="${q.id}"]:checked`);
+    if(!sel){ ok=false; }
+    else{
+      answers[q.id] = { score: parseInt(sel.value,10), evidence: "" };
+    }
+  });
+  document.getElementById(`err-${catId}`).classList.toggle("show", !ok);
+  if(!ok) return;
+  goTo(nextStep);
+}
+
+function validateLead(){
+  const ids = ["md_name","md_role","md_email"];
+  let ok = true;
+  ids.forEach(id=>{
+    const el = document.getElementById(id);
+    if(!el.value.trim()){ el.style.borderColor="var(--ele-danger)"; ok=false; }
+    else el.style.borderColor="";
+  });
+  const email = document.getElementById("md_email").value.trim();
+  if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    document.getElementById("md_email").style.borderColor="var(--ele-danger)";
+    ok=false;
+  }
+  document.getElementById("md_error").classList.toggle("show", !ok);
+  if(!ok) return false;
+  ids.forEach(id=>masterData[id]=document.getElementById(id).value.trim());
+  return true;
+}
+
+function submitLead(){
+  if(!validateLead()) return;
+  sendByMail();
+  goTo(8);
+}
+
+/* =========================================================
+   SCORING
+   ========================================================= */
+function scoreToPct(s){ return ((s-1)/4)*100; }
+function categoryScore(cat){
+  const vals = cat.questions.map(q=>answers[q.id].score);
+  const avg = vals.reduce((a,b)=>a+b,0)/vals.length;
+  return { avgRaw:avg, pct: ((avg-1)/4)*100 };
+}
+function totalScore(){
+  let sum=0;
+  CATEGORIES.forEach(c=>{
+    const cs = categoryScore(c);
+    sum += cs.pct * c.weight;
+  });
+  return sum;
+}
+function trafficLight(pct){
+  if(pct < 60) return "red";
+  if(pct <= 80) return "yellow";
+  return "green";
+}
+function verdictText(zone){
+  return {
+    red:    "Akuter Handlungsbedarf",
+    yellow: "Gezielte Optimierung",
+    green:  "Feinjustierung"
+  }[zone];
+}
+function verdictDetail(zone){
+  return {
+    red:    "Grundlagen schaffen",
+    yellow: "Lücken systematisch schließen",
+    green:  "Best Practices etablieren"
+  }[zone];
+}
+
+/* Executive Summary — dynamisch */
+function executiveSummary(catResults, totalZone){
+  const sorted = [...catResults].sort((a,b)=>a.pct-b.pct);
+  const weakest = sorted[0];
+  const strongest = sorted[sorted.length-1];
+
+  const opening = {
+    red:    `Dein Führungssystem befindet sich noch im Aufbau und zeigt deutliche Lücken in ${weakest.title}.`,
+    yellow: `Dein Führungssystem zeigt erste stabile Ansätze, besitzt jedoch klare Hebel in ${weakest.title}.`,
+    green:  `Dein Führungssystem ist überdurchschnittlich entwickelt — mit Feinjustierungspotenzial in ${weakest.title}.`
+  }[totalZone];
+
+  const middle = `Besonders durch ${weakest.leverShort} kann kurzfristig wirtschaftlicher Impact entstehen.`;
+
+  const closing = strongest.pct - weakest.pct >= 15
+    ? `Stärkster Bereich: ${strongest.title} — eine solide Basis, auf der aufgebaut werden kann.`
+    : `Insgesamt zeigt sich ein gleichmäßiges Profil ohne klaren Spitzenbereich.`;
+
+  return `${opening} ${middle} ${closing}`;
+}
+
+/* =========================================================
+   RESULT RENDER
+   ========================================================= */
+function renderResult(){
+  const total = totalScore();
+  const totalZone = trafficLight(total);
+  const catResults = CATEGORIES.map(c=>{
+    const cs = categoryScore(c);
+    return { ...c, ...cs, zone: trafficLight(cs.pct) };
+  });
+
+  const items = [];
+  CATEGORIES.forEach(c=>{
+    c.questions.forEach(q=>{
+      const score = answers[q.id].score;
+      const pct = scoreToPct(score);
+      const deficit = (100-pct) * c.weight;
+      items.push({ qid:q.id, qtext:q.text, cat:c.title, catId:c.id, icon:c.icon, score, pct, deficit });
+    });
+  });
+  items.sort((a,b)=>b.deficit - a.deficit);
+  const top3 = items.slice(0,3);
+
+  // Cache for sendByMail
+  lastResults = { total, totalZone, catResults, top3 };
+
+  const summary = executiveSummary(catResults, totalZone);
+
+  const step = document.getElementById("step-6");
+  step.innerHTML = `
+    <div class="card">
+      <div class="result-hero">
+        <div class="score-label-eyebrow">Gesamt-Reifegrad</div>
+        <div class="score-gauge">
+          ${gaugeSvg(total, totalZone)}
+          <div class="score-gauge-num">
+            <div class="big ${totalZone}-text">${Math.round(total)}<span class="pct">%</span></div>
+          </div>
+        </div>
+        <div class="verdict ${totalZone}">${verdictText(totalZone)} — ${verdictDetail(totalZone)}</div>
+
+        <div class="exec-summary">
+          <span class="eyebrow-inline">Executive Summary</span>
+          <p>${summary}</p>
+        </div>
+      </div>
+
+      <h2 style="margin-top:32px;margin-bottom:16px;text-align:center">Auswertung pro Kategorie</h2>
+      <div class="category-grid">
+        ${catResults.map(c=>`
+          <div class="cat-card">
+            <div class="cat-icon-result"><i data-lucide="${c.icon}"></i></div>
+            <div class="cat-name">${c.title}</div>
+            <div class="cat-score ${c.zone}-text">${Math.round(c.pct)}<span class="cat-score-pct">%</span></div>
+            <div class="cat-bar"><div class="cat-bar-fill ${c.zone}-fill" style="width:${c.pct}%"></div></div>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow" style="margin-bottom:16px">Profil</div>
+      <h2>Stärken-/Schwächen-Profil</h2>
+      <p class="lead">Visualisierung über alle fünf Kategorien.</p>
+      <div class="spider-wrap">${spiderSvg(catResults)}</div>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow" style="margin-bottom:16px">Top 3 Hebel</div>
+      <h2>Höchstes Wirkpotenzial</h2>
+      <p class="lead">Niedriger Reifegrad × hohes Kategoriegewicht — hier liegt der größte Hebel.</p>
+      <div class="hebel-list">
+        ${top3.map((h,i)=>`
+          <div class="hebel-item">
+            <div class="hebel-rank">${i+1}</div>
+            <div>
+              <div class="hebel-cat">${h.cat}</div>
+              <div class="hebel-text">${h.qtext}</div>
+              <div class="hebel-meta">Stufe ${h.score}/5 · ${Math.round(h.pct)} %</div>
+            </div>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow" style="margin-bottom:16px">Empfehlungen</div>
+      <h2>Konkrete nächste Schritte</h2>
+      <p class="lead">Pro Kategorie eine Maßnahme — die mit der größten Hebelwirkung.</p>
+      <div class="reco-section">
+        ${catResults.map(c=>{
+          const reco = RECOMMENDATIONS[c.id][c.zone];
+          return `
+            <div class="reco-cat">
+              <div class="reco-cat-head">
+                <div class="reco-cat-title"><i data-lucide="${c.icon}"></i>${c.title}</div>
+                <span class="verdict ${c.zone}">${Math.round(c.pct)}&nbsp;% · ${verdictText(c.zone)}</span>
+              </div>
+              <div class="reco-text">${reco}</div>
+            </div>
+          `;
+        }).join("")}
+      </div>
+    </div>
+
+    <div class="card cta-card">
+      <h1 style="margin-bottom:8px">Gespräch zu nächsten Schritten anfragen</h1>
+      <p class="lead">Wir besprechen deine Auswertung in 30 Minuten — mit konkreter Einordnung deiner Hebel und einem klaren Vorschlag, wie es weitergeht.</p>
+      <div class="cta-buttons">
+        <button class="btn btn-primary" onclick="goTo(7)">Gespräch anfragen <i data-lucide="arrow-right"></i></button>
+        <button class="btn btn-secondary" onclick="window.print()"><i data-lucide="printer"></i> Auswertung drucken</button>
+      </div>
+    </div>
+  `;
+  if(window.lucide) lucide.createIcons();
+}
+
+/* =========================================================
+   SVG HELPERS
+   ========================================================= */
+function gaugeSvg(pct, zone){
+  const r = 100, c = 2*Math.PI*r;
+  const offset = c - (pct/100)*c;
+  return `
+    <svg viewBox="0 0 240 240">
+      <circle class="score-gauge-track" cx="120" cy="120" r="${r}" />
+      <circle class="score-gauge-fill ${zone}-stroke" cx="120" cy="120" r="${r}"
+        stroke-dasharray="${c}" stroke-dashoffset="${offset}" />
+    </svg>
+  `;
+}
+
+function spiderSvg(catResults){
+  const cx=200, cy=200, r=140, n=catResults.length;
+  const angle = i => -Math.PI/2 + (2*Math.PI*i/n);
+  const point = (i, frac) => [cx + frac*r*Math.cos(angle(i)), cy + frac*r*Math.sin(angle(i))];
+  let grid="";
+  [0.2,0.4,0.6,0.8,1.0].forEach(f=>{
+    const pts = catResults.map((_,i)=>point(i,f).join(",")).join(" ");
+    grid += `<polygon class="spider-grid" points="${pts}" />`;
+  });
+  let axes="", labels="";
+  catResults.forEach((c,i)=>{
+    const [x,y] = point(i,1);
+    axes += `<line class="spider-axis" x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" />`;
+    const [lx,ly] = point(i,1.18);
+    const anchor = Math.abs(lx-cx)<2 ? "middle" : (lx>cx ? "start" : "end");
+    const colorVar = c.zone==='red' ? '#A8423A' : c.zone==='yellow' ? '#C99A3D' : '#5C8A5A';
+    labels += `
+      <text class="spider-label" x="${lx}" y="${ly}" text-anchor="${anchor}" dominant-baseline="middle">
+        <tspan x="${lx}" dy="-2">${c.title.split(" & ")[0]}</tspan>
+        ${c.title.includes(" & ") ? `<tspan x="${lx}" dy="14">&amp; ${c.title.split(" & ")[1]}</tspan>`:""}
+        <tspan x="${lx}" dy="14" fill="${colorVar}" font-weight="700">${Math.round(c.pct)}&#37;</tspan>
+      </text>
+    `;
+  });
+  const dataPts = catResults.map((c,i)=>point(i, c.pct/100).join(",")).join(" ");
+  const points = catResults.map((c,i)=>{
+    const [x,y]=point(i, c.pct/100);
+    return `<circle class="spider-point" cx="${x}" cy="${y}" r="4" />`;
+  }).join("");
+  return `
+    <svg class="spider" viewBox="0 0 400 400">
+      ${grid}
+      ${axes}
+      <polygon class="spider-fill" points="${dataPts}" />
+      ${points}
+      ${labels}
+    </svg>
+  `;
+}
+
+/* =========================================================
+   MAILTO – sendet Stammdaten + komplette Auswertung
+   ========================================================= */
+const RECIPIENT_EMAIL = "mariogott90@gmail.com"; // <-- HIER ÄNDERN für andere Adresse
+
+function sendByMail(){
+  if(!lastResults) return;
+  const { total, totalZone, catResults, top3 } = lastResults;
+  const totalRound = Math.round(total);
+  const summary = executiveSummary(catResults, totalZone);
+
+  const subject = `Potenzialanalyse — ${masterData.md_name || "Anfrage"} (Score ${totalRound} %)`;
+
+  let body = "";
+  body += "POTENZIALANALYSE — AUSWERTUNG\n";
+  body += "================================\n\n";
+  body += "KONTAKT\n";
+  body += "-------\n";
+  body += `Name:           ${masterData.md_name}\n`;
+  body += `Rolle:          ${masterData.md_role}\n`;
+  body += `E-Mail:         ${masterData.md_email}\n`;
+  body += "\n";
+  body += "GESAMT-REIFEGRAD\n";
+  body += "----------------\n";
+  body += `Score:          ${totalRound} % (${zoneDe(totalZone)})\n`;
+  body += `Bewertung:      ${verdictText(totalZone)} — ${verdictDetail(totalZone)}\n\n`;
+  body += "EXECUTIVE SUMMARY\n";
+  body += "-----------------\n";
+  body += summary + "\n\n";
+  body += "KATEGORIE-SCORES\n";
+  body += "----------------\n";
+  catResults.forEach(c=>{
+    body += `• ${padRight(c.title, 32)} ${String(Math.round(c.pct)).padStart(3," ")} %  (${zoneDe(c.zone)})\n`;
+  });
+  body += "\n";
+  body += "TOP-3 HEBEL\n";
+  body += "-----------\n";
+  top3.forEach((h,i)=>{
+    body += `${i+1}. [${h.cat}] Stufe ${h.score}/5\n   ${h.qtext}\n`;
+  });
+  body += "\n";
+  body += "EINZELANTWORTEN (1=niedrig, 5=hoch)\n";
+  body += "-----------------------------------\n";
+  CATEGORIES.forEach(c=>{
+    body += `[${c.title}]\n`;
+    c.questions.forEach(q=>{
+      body += `  ${q.id}: ${answers[q.id].score}/5\n`;
+    });
+  });
+  body += "\n--\nVersendet aus der eLearneffect Potenzialanalyse\n";
+
+  const url = `mailto:${encodeURIComponent(RECIPIENT_EMAIL)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = url;
+}
+
+function zoneDe(z){ return z==="red"?"Rot":z==="yellow"?"Gelb":"Grün"; }
+function padRight(s,n){ return s.length>=n ? s : s + " ".repeat(n-s.length); }
+
+/* init */
+updateProgress();
+if(window.lucide) lucide.createIcons();
+</script>
+</body>
+</html>
