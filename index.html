@@ -1225,7 +1225,7 @@ window.va = window.va || function () {
   }
   .q-prog-bar-wrap{
     height:3px;background:rgba(255,255,255,0.08);
-    border-radius:999px;overflow:hidden;margin-bottom:6px;
+    border-radius:999px;overflow:hidden;margin-bottom:18px;
     position:relative;z-index:2;
   }
   .q-prog-fill{
@@ -1948,11 +1948,6 @@ window.va = window.va || function () {
         Potenzial jetzt prüfen <i data-lucide="arrow-right"></i>
       </button>
 
-      <div class="hero-security">
-        <i data-lucide="lock"></i>
-        Keine Verpflichtung. Keine Kosten.
-      </div>
-
     </div><!-- /hero-content -->
 
   </div>
@@ -2397,15 +2392,14 @@ function renderSingleQuestion(stepNum){
   step.innerHTML = `
     <div class="q-page-wrapper">
 
-      <!-- Kompakte Kopfzeile: links Label, rechts Schritt + % -->
+      <!-- Kompakte Kopfzeile: links Label, rechts nur Prozent -->
       <div class="q-compact-header">
         <span class="q-brand-label">Potenzialanalyse</span>
-        <span class="q-step-label">Schritt ${stepNum} von 5 · ${pct}&thinsp;%</span>
+        <span class="q-step-label">${pct}&thinsp;%</span>
       </div>
       <div class="q-prog-bar-wrap">
         <div class="q-prog-fill" style="width:${pct}%"></div>
       </div>
-      <div class="q-motiv-text">${motivText}</div>
 
       <!-- Fragen-Karte -->
       <div class="q-card">
@@ -2419,7 +2413,6 @@ function renderSingleQuestion(stepNum){
         </div>
         <div class="cat-divider"></div>
 
-        <div class="q-num">Frage ${qNumOverall} / 15</div>
         <div class="q-text">${q.text}</div>
 
         <div class="q-options">
