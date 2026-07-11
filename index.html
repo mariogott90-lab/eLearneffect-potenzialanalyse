@@ -1117,17 +1117,14 @@ window.va = window.va || function () {
   }
   .hero-preview-label{
     font-size:12px;font-weight:700;letter-spacing:0.24em;
-    text-transform:uppercase;color:#A87918;
+    text-transform:uppercase;color:var(--ele-accent);
     margin-bottom:16px;text-align:center;
   }
-  /* Helle Sektion (Beispielauswertung) — voll­breiter warmer Kontrast zum dunklen Hero */
+  /* Beispielauswertungs-Sektion — dunkel wie der Hero (kein heller Hintergrund) */
   .hero-light{
     align-self:stretch;
-    margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
     margin-top:48px;
-    background:#F5F1E8;
-    padding:40px var(--ele-s-4) 48px;
-    box-shadow:inset 0 1px 0 rgba(0,0,0,0.06);
+    padding:0;
   }
   .hero-light-inner{
     max-width:520px;margin:0 auto;
