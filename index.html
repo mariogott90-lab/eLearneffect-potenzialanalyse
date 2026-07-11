@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Bessere Ergebnisse ohne zusätzliche Maschinen oder Personal | eLearneffect</title>
-<meta name="description" content="Die Potenzialanalyse zeigt dir in 5 Minuten, wo das Führungssystem in deinem Werk heute steht und welcher Hebel dir jetzt die größten Ergebnisse bringt." />
+<title>In nur 5 Minuten zu deiner Auswertung – Potenzialanalyse für Produktion & Logistik | eLearneffect</title>
+<meta name="description" content="In nur 5 Minuten zu deiner Auswertung – ohne E-Mail-Angabe. Potenzialanalyse für Produktion & Logistik: dein größter Hebel, dein Reifegrad und eine konkrete Maßnahme pro Bereich." />
 
 <!-- Open Graph (LinkedIn, Facebook) -->
 <meta property="og:title" content="Wie wirksam ist dein Führungssystem wirklich?">
@@ -24,8 +24,8 @@
 <!-- Inter from Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
 
 <!-- Lucide Icons -->
 <script defer src="https://unpkg.com/lucide@latest"></script>
@@ -112,7 +112,7 @@ window.va = window.va || function () {
   }
 
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
+  html,body{height:100%;overflow-x:clip}
   body{
     font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
     font-weight:400;
@@ -1043,7 +1043,7 @@ window.va = window.va || function () {
   /* Kontrollierter Umbruch: bricht nur zwischen den beiden Gruppen (mobil), "&" bleibt bei "Produktion & Logistik" */
   .hero-eyebrow .eb-part{white-space:nowrap}
   .hero-headline{
-    font-size:clamp(30px,3.6vw,50px);line-height:1.13;font-weight:700;
+    font-size:clamp(30px,3.6vw,50px);line-height:1.13;font-weight:800;
     color:#F5F1E8;max-width:740px;margin:0 auto;letter-spacing:-0.03em;
     position:relative;z-index:1;
   }
@@ -1111,14 +1111,27 @@ window.va = window.va || function () {
 
   /* Hero — Auswertungs-Vorschau (Landingpage-Optimierung) */
   .hero-preview{
-    width:100%;max-width:520px;margin:30px auto 20px;
+    width:100%;max-width:520px;margin:0 auto 28px;
     display:flex;flex-direction:column;align-items:center;
     position:relative;z-index:1;
   }
   .hero-preview-label{
     font-size:12px;font-weight:700;letter-spacing:0.24em;
-    text-transform:uppercase;color:var(--ele-accent);
+    text-transform:uppercase;color:#A87918;
     margin-bottom:16px;text-align:center;
+  }
+  /* Helle Sektion (Beispielauswertung) — voll­breiter warmer Kontrast zum dunklen Hero */
+  .hero-light{
+    align-self:stretch;
+    margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
+    margin-top:48px;
+    background:#F5F1E8;
+    padding:40px var(--ele-s-4) 48px;
+    box-shadow:inset 0 1px 0 rgba(0,0,0,0.06);
+  }
+  .hero-light-inner{
+    max-width:520px;margin:0 auto;
+    display:flex;flex-direction:column;align-items:center;width:100%;
   }
   /* Score-Kreis oben — vollständig gezeigt */
   .hero-preview-score{
@@ -1157,23 +1170,24 @@ window.va = window.va || function () {
     /* Mobiler Spacing-Rhythmus — 3 Gruppen: Positionierung / Nutzen / Handlung */
     .hero-logo img{width:64px;margin-bottom:26px}
     .hero-lbl{font-size:11px;letter-spacing:5px;margin-bottom:22px}
-    .hero-eyebrow{font-size:11px;letter-spacing:0.2em;margin-bottom:22px}
+    .hero-eyebrow{font-size:11px;letter-spacing:0.2em;margin-bottom:30px}
     .hero-headline{font-size:clamp(24px,7.4vw,34px)}
     /* Feste Desktop-Umbrüche mobil aus: würden hier eine 4. Zeile erzeugen */
     .hero-headline .hl-br{display:none}
-    .hero-subline{font-size:16px;line-height:1.5;margin-top:26px;max-width:94%}
+    .hero-subline{font-size:18px;line-height:1.5;margin-top:16px;max-width:94%}
     .hero-divider{margin:20px auto 18px}
     .hero-trust{
-      /* Block-Zentrierung: Gruppe als Einheit mittig, linke Kanten bündig, Text bleibt linksbündig */
-      flex-direction:column;gap:28px;margin:38px auto 42px;
-      align-items:flex-start;max-width:320px;padding:0;
+      /* Gruppe als Einheit optisch mittig: Wrapper schrumpft auf Inhaltsbreite und wird per margin:auto zentriert; Text bleibt linksbündig */
+      flex-direction:column;gap:28px;margin:44px auto 42px;
+      align-items:flex-start;width:fit-content;max-width:340px;padding:0;
     }
-    .hero-trust-item{flex:0 1 auto;min-width:0;width:100%;max-width:none}
+    .hero-trust-item{flex:0 1 auto;min-width:0;width:auto;max-width:100%}
+    .hero-trust-icon{width:44px}
     .hero-trust-lbl{min-height:0}
     .hero-trust-divider{display:none}
     .hero-cta{height:52px;font-size:16px;width:100%;max-width:380px;gap:14px}
     .hero-security{font-size:12px;margin-top:12px}
-    .hero-preview{max-width:100%;margin:30px auto 16px}
+    .hero-preview{max-width:100%;margin:0 auto 28px}
     .hero-preview-label{font-size:11px;letter-spacing:0.2em;margin-bottom:12px}
     .hero-microtext{font-size:12px;margin-top:20px;padding:0 6px}
   }
@@ -2003,24 +2017,24 @@ window.va = window.va || function () {
 
       <div class="hero-eyebrow"><span class="eb-part">Potenzialanalyse für</span> <span class="eb-part">Produktion &amp; Logistik</span></div>
 
-      <h1 class="hero-headline">Bessere Ergebnisse<br class="hl-br"> <span class="gold">ohne zusätzliche Maschinen<br class="hl-br"> oder Personal.</span></h1>
+      <h1 class="hero-headline">In nur <span class="gold">5&nbsp;Minuten</span> zu deiner Auswertung.</h1>
 
-      <p class="hero-subline">Ein klares Führungssystem schafft Fokus und sichert Umsetzung.</p>
+      <p class="hero-subline">Ohne E-Mail-Angabe.</p>
 
       <div class="hero-trust">
-        <div class="hero-trust-item">
-          <div class="hero-trust-icon"><i data-lucide="gauge"></i></div>
-          <div>
-            <div class="hero-trust-lbl">Dein Reifegrad in 5 Bereichen</div>
-            <div class="hero-trust-sub">Messbar statt Bauchgefühl</div>
-          </div>
-        </div>
-        <div class="hero-trust-divider"></div>
         <div class="hero-trust-item">
           <div class="hero-trust-icon"><i data-lucide="target"></i></div>
           <div>
             <div class="hero-trust-lbl">Dein größter Hebel<br>für mehr Ergebnis</div>
             <div class="hero-trust-sub">Priorität statt Aktionismus</div>
+          </div>
+        </div>
+        <div class="hero-trust-divider"></div>
+        <div class="hero-trust-item">
+          <div class="hero-trust-icon"><i data-lucide="gauge"></i></div>
+          <div>
+            <div class="hero-trust-lbl">Dein Reifegrad in 5 Bereichen</div>
+            <div class="hero-trust-sub">Messbar statt Bauchgefühl</div>
           </div>
         </div>
         <div class="hero-trust-divider"></div>
@@ -2038,11 +2052,10 @@ window.va = window.va || function () {
         Kostenlose Analyse starten <i data-lucide="arrow-right"></i>
       </button>
 
-      <p class="hero-microtext">
-        <span>Ca. 5 Min.</span> · <span>Ergebnis sofort</span> · <span>keine E-Mail</span>
-      </p>
-
-      <!-- Vorschau: Score-Kreis (oben, vollständig) + Kategorien (darunter, angeschnitten) -->
+      <!-- ===== Helle Sektion: Beispielauswertung (heller Hintergrund) ===== -->
+      <div class="hero-light">
+      <div class="hero-light-inner">
+      <!-- Vorschau: Score-Kreis (oben) + Kategorien (angeschnitten) -->
       <div class="hero-preview">
         <div class="hero-preview-label">So sieht ein Teil deiner Auswertung aus</div>
         <div class="hero-preview-score">
@@ -2068,6 +2081,8 @@ window.va = window.va || function () {
       <button class="hero-cta hero-cta-secondary" onclick="ctaStartBottom()">
         Kostenlose Analyse starten <i data-lucide="arrow-right"></i>
       </button>
+      </div><!-- /hero-light-inner -->
+      </div><!-- /hero-light -->
 
     </div><!-- /hero-content -->
 
