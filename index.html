@@ -1034,6 +1034,14 @@ window.va = window.va || function () {
     font-size:13px;font-weight:700;letter-spacing:7px;
     color:#D4AF37;text-transform:uppercase;margin-bottom:28px;
   }
+  .hero-eyebrow{
+    font-size:13px;font-weight:700;letter-spacing:0.24em;
+    text-transform:uppercase;color:#A87918;
+    text-align:center;margin-bottom:16px;
+    position:relative;z-index:1;
+  }
+  /* Kontrollierter Umbruch: bricht nur zwischen den beiden Gruppen (mobil), "&" bleibt bei "Produktion & Logistik" */
+  .hero-eyebrow .eb-part{white-space:nowrap}
   .hero-headline{
     font-size:clamp(30px,3.6vw,50px);line-height:1.13;font-weight:700;
     color:#F5F1E8;max-width:740px;margin:0 auto;letter-spacing:-0.03em;
@@ -1046,7 +1054,7 @@ window.va = window.va || function () {
     font-weight:400;
     color:#C9C3B5;
     max-width:720px;
-    margin:18px auto 0;
+    margin:var(--ele-s-5) auto 0;
     text-align:center;
     position:relative;z-index:1;
   }
@@ -1057,7 +1065,7 @@ window.va = window.va || function () {
   }
   .hero-trust{
     display:flex;align-items:flex-start;justify-content:center;
-    gap:var(--ele-s-5);width:100%;max-width:760px;margin:var(--ele-s-7) auto;
+    gap:var(--ele-s-5);width:100%;max-width:760px;margin:var(--ele-s-4) auto var(--ele-s-7);
     position:relative;z-index:1;
   }
   .hero-trust-item{
@@ -1065,7 +1073,7 @@ window.va = window.va || function () {
     text-align:left;flex:1 1 0;min-width:0;
   }
   .hero-trust-icon{flex-shrink:0;display:flex;width:36px;height:36px;align-items:center;justify-content:center}
-  .hero-trust-icon svg{width:36px;height:36px;stroke:#D4AF37;stroke-width:1.8;fill:none}
+  .hero-trust-icon svg{width:36px;height:36px;stroke:#A87918;stroke-width:1.8;fill:none}
   /* Platz für das (deferred) CTA-Pfeil-Icon reservieren — kein Layout-Shift */
   .hero-cta i[data-lucide]{display:inline-block;width:20px;height:20px;flex-shrink:0}
   .hero-trust-divider{
@@ -1143,18 +1151,21 @@ window.va = window.va || function () {
   .hero-microtext span{white-space:nowrap}
 
   @media(max-width:768px){
-    .hero-inner{min-height:auto;padding:8px 0 20px}
-    /* Fold-Fix 375×667: Hero-Kette gleichmäßig in 8px-Schritten gestrafft (40→24, 24→16, gap 28→20) */
-    .hero-logo img{width:64px;margin-bottom:24px}
+    /* Oberer Abstand: ~36px statt 48+8px, iPhone-Safe-Area berücksichtigt (redundante Doppel-Quelle entfernt) */
+    body{padding-top:max(36px, calc(env(safe-area-inset-top) + 20px))}
+    .hero-inner{min-height:auto;padding:0 0 20px}
+    /* Mobiler Spacing-Rhythmus — 3 Gruppen: Positionierung / Nutzen / Handlung */
+    .hero-logo img{width:64px;margin-bottom:26px}
     .hero-lbl{font-size:11px;letter-spacing:5px;margin-bottom:22px}
+    .hero-eyebrow{font-size:11px;letter-spacing:0.2em;margin-bottom:22px}
     .hero-headline{font-size:clamp(24px,7.4vw,34px)}
     /* Feste Desktop-Umbrüche mobil aus: würden hier eine 4. Zeile erzeugen */
     .hero-headline .hl-br{display:none}
-    .hero-subline{font-size:14px;line-height:1.5;margin-top:var(--ele-s-4);max-width:94%}
+    .hero-subline{font-size:16px;line-height:1.5;margin-top:26px;max-width:94%}
     .hero-divider{margin:20px auto 18px}
     .hero-trust{
       /* Block-Zentrierung: Gruppe als Einheit mittig, linke Kanten bündig, Text bleibt linksbündig */
-      flex-direction:column;gap:20px;margin:24px auto;
+      flex-direction:column;gap:28px;margin:38px auto 42px;
       align-items:flex-start;max-width:320px;padding:0;
     }
     .hero-trust-item{flex:0 1 auto;min-width:0;width:100%;max-width:none}
@@ -1162,9 +1173,9 @@ window.va = window.va || function () {
     .hero-trust-divider{display:none}
     .hero-cta{height:52px;font-size:16px;width:100%;max-width:380px;gap:14px}
     .hero-security{font-size:12px;margin-top:12px}
-    .hero-preview{max-width:100%;margin:56px auto 16px}
+    .hero-preview{max-width:100%;margin:30px auto 16px}
     .hero-preview-label{font-size:11px;letter-spacing:0.2em;margin-bottom:12px}
-    .hero-microtext{font-size:12px;margin-top:var(--ele-s-4);padding:0 6px}
+    .hero-microtext{font-size:12px;margin-top:20px;padding:0 6px}
   }
 
   /* =========================================================
@@ -1990,9 +2001,11 @@ window.va = window.va || function () {
         </picture>
       </div>
 
+      <div class="hero-eyebrow"><span class="eb-part">Potenzialanalyse für</span> <span class="eb-part">Produktion &amp; Logistik</span></div>
+
       <h1 class="hero-headline">Bessere Ergebnisse<br class="hl-br"> <span class="gold">ohne zusätzliche Maschinen<br class="hl-br"> oder Personal.</span></h1>
 
-      <p class="hero-subline">Die Potenzialanalyse zeigt dir in 5 Minuten, wo das Führungssystem in deinem Werk heute steht und welcher Hebel dir jetzt die größten Ergebnisse bringt.</p>
+      <p class="hero-subline">Ein klares Führungssystem schafft Fokus und sichert Umsetzung.</p>
 
       <div class="hero-trust">
         <div class="hero-trust-item">
@@ -2022,12 +2035,11 @@ window.va = window.va || function () {
 
       <!-- Primärer CTA (above the fold) -->
       <button class="hero-cta" onclick="ctaStart()">
-        15 Fragen starten <i data-lucide="arrow-right"></i>
+        Kostenlose Analyse starten <i data-lucide="arrow-right"></i>
       </button>
 
       <p class="hero-microtext">
-        <span>Ca. 5 Minuten</span> · <span>Ergebnis sofort, ohne E-Mail-Eingabe</span><br>
-        <span>Für Produktion &amp; Logistik entwickelt</span>
+        <span>Ca. 5 Min.</span> · <span>Ergebnis sofort</span> · <span>keine E-Mail</span>
       </p>
 
       <!-- Vorschau: Score-Kreis (oben, vollständig) + Kategorien (darunter, angeschnitten) -->
@@ -2054,7 +2066,7 @@ window.va = window.va || function () {
 
       <!-- Sekundärer CTA (unter der Vorschau) -->
       <button class="hero-cta hero-cta-secondary" onclick="ctaStartBottom()">
-        15 Fragen starten <i data-lucide="arrow-right"></i>
+        Kostenlose Analyse starten <i data-lucide="arrow-right"></i>
       </button>
 
     </div><!-- /hero-content -->
