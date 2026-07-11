@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>eLearneffect — Potenzialanalyse</title>
+<title>Bessere Ergebnisse ohne zusätzliche Maschinen oder Personal | eLearneffect</title>
+<meta name="description" content="Die Potenzialanalyse zeigt dir in 5 Minuten, wo das Führungssystem in deinem Werk heute steht und welcher Hebel dir jetzt die größten Ergebnisse bringt." />
 
 <!-- Open Graph (LinkedIn, Facebook) -->
 <meta property="og:title" content="Wie wirksam ist dein Führungssystem wirklich?">
@@ -23,10 +24,11 @@
 <!-- Inter from Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
 
 <!-- Lucide Icons -->
-<script src="https://unpkg.com/lucide@latest"></script>
+<script defer src="https://unpkg.com/lucide@latest"></script>
 
 <!-- Vercel Web Analytics -->
 <script>
@@ -1016,7 +1018,7 @@ window.va = window.va || function () {
   .hero-inner{
     min-height:calc(100vh - var(--ele-s-7) - var(--ele-s-9));
     display:flex;flex-direction:column;align-items:center;
-    justify-content:center;text-align:center;width:100%;
+    justify-content:flex-start;text-align:center;width:100%;
   }
   .hero-content{
     position:relative;z-index:2;
@@ -1025,7 +1027,7 @@ window.va = window.va || function () {
   }
   .hero-logo{display:flex;flex-direction:column;align-items:center}
   .hero-logo img{
-    width:82px;height:auto;margin-bottom:36px;
+    display:block;width:82px;height:auto;margin-bottom:24px;
     filter:drop-shadow(0 4px 16px rgba(212,175,55,0.22));
   }
   .hero-lbl{
@@ -1054,20 +1056,24 @@ window.va = window.va || function () {
     position:relative;z-index:1;
   }
   .hero-trust{
-    display:flex;align-items:center;justify-content:center;
-    gap:36px;margin-bottom:32px;position:relative;z-index:1;
+    display:flex;align-items:flex-start;justify-content:center;
+    gap:var(--ele-s-5);width:100%;max-width:760px;margin:var(--ele-s-7) auto;
+    position:relative;z-index:1;
   }
   .hero-trust-item{
-    display:flex;align-items:center;gap:14px;
-    text-align:left;min-width:200px;
+    display:flex;align-items:flex-start;gap:var(--ele-s-4);
+    text-align:left;flex:1 1 0;min-width:0;
   }
-  .hero-trust-icon{flex-shrink:0;display:flex}
+  .hero-trust-icon{flex-shrink:0;display:flex;width:36px;height:36px;align-items:center;justify-content:center}
   .hero-trust-icon svg{width:36px;height:36px;stroke:#D4AF37;stroke-width:1.8;fill:none}
+  /* Platz für das (deferred) CTA-Pfeil-Icon reservieren — kein Layout-Shift */
+  .hero-cta i[data-lucide]{display:inline-block;width:20px;height:20px;flex-shrink:0}
   .hero-trust-divider{
     width:1px;height:52px;background:rgba(212,175,55,0.25);flex-shrink:0;
   }
   .hero-trust-lbl{
-    font-size:16px;font-weight:700;line-height:1.2;color:#F5F1E8;margin-bottom:3px;
+    font-size:16px;font-weight:700;line-height:1.2;color:#F5F1E8;margin-bottom:var(--ele-s-1);
+    min-height:2.4em; /* Platz für 2 Titelzeilen — Sublines starten auf gleicher Höhe (Desktop) */
   }
   .hero-trust-sub{font-size:13px;font-weight:400;line-height:1.35;color:#C9C3B5}
   .hero-cta{
@@ -1086,6 +1092,7 @@ window.va = window.va || function () {
     box-shadow:0 18px 44px rgba(212,175,55,0.28),inset 0 1px 0 rgba(255,255,255,0.5);
   }
   .hero-cta:active{transform:translateY(1px)}
+  .hero-cta-secondary{margin-top:4px}
   .hero-cta svg{width:20px;height:20px;stroke-width:2.2;flex-shrink:0}
   .hero-security{
     display:flex;align-items:center;justify-content:center;gap:8px;
@@ -1094,21 +1101,70 @@ window.va = window.va || function () {
   }
   .hero-security svg{width:15px;height:15px;stroke:#D4AF37;stroke-width:1.8;fill:none;flex-shrink:0}
 
+  /* Hero — Auswertungs-Vorschau (Landingpage-Optimierung) */
+  .hero-preview{
+    width:100%;max-width:520px;margin:30px auto 20px;
+    display:flex;flex-direction:column;align-items:center;
+    position:relative;z-index:1;
+  }
+  .hero-preview-label{
+    font-size:12px;font-weight:700;letter-spacing:0.24em;
+    text-transform:uppercase;color:var(--ele-accent);
+    margin-bottom:16px;text-align:center;
+  }
+  /* Score-Kreis oben — vollständig gezeigt */
+  .hero-preview-score{
+    width:100%;border-radius:14px;overflow:hidden;
+    border:1px solid var(--ele-border);
+    box-shadow:0 24px 60px rgba(0,0,0,.45),0 8px 16px rgba(0,0,0,.30);
+    margin-bottom:14px;
+  }
+  .hero-preview-score img{display:block;width:100%;height:auto}
+  /* Kategorien darunter — unten leicht angeschnitten */
+  .hero-preview-frame{
+    position:relative;width:100%;
+    border-radius:14px;overflow:hidden;
+    border:1px solid var(--ele-border);
+    box-shadow:0 24px 60px rgba(0,0,0,.45),0 8px 16px rgba(0,0,0,.30);
+    /* Crop: Schnitt knapp oberhalb der 5. Kategoriezeile (Kartenkante sichtbar, keine halbierten Buchstaben) */
+    aspect-ratio:1289 / 940;
+  }
+  .hero-preview-frame img{display:block;width:100%;height:auto}
+  .hero-preview-caption{
+    margin-top:12px;font-size:12px;font-weight:400;
+    color:var(--ele-fg-3);text-align:center;letter-spacing:0.01em;
+  }
+  .hero-microtext{
+    margin-top:16px;max-width:460px;
+    font-size:13px;font-weight:400;line-height:1.55;
+    color:var(--ele-fg-2);text-align:center;
+    position:relative;z-index:1;
+  }
+  .hero-microtext span{white-space:nowrap}
+
   @media(max-width:768px){
     .hero-inner{min-height:auto;padding:8px 0 20px}
-    .hero-logo img{width:70px;margin-bottom:24px}
+    /* Fold-Fix 375×667: Hero-Kette gleichmäßig in 8px-Schritten gestrafft (40→24, 24→16, gap 28→20) */
+    .hero-logo img{width:64px;margin-bottom:24px}
     .hero-lbl{font-size:11px;letter-spacing:5px;margin-bottom:22px}
-    .hero-headline{font-size:clamp(26px,8vw,36px)}
-    .hero-subline{font-size:14px;line-height:1.5;margin-top:14px;max-width:90%}
+    .hero-headline{font-size:clamp(24px,7.4vw,34px)}
+    /* Feste Desktop-Umbrüche mobil aus: würden hier eine 4. Zeile erzeugen */
+    .hero-headline .hl-br{display:none}
+    .hero-subline{font-size:14px;line-height:1.5;margin-top:var(--ele-s-4);max-width:94%}
     .hero-divider{margin:20px auto 18px}
     .hero-trust{
-      flex-direction:column;gap:18px;margin-bottom:26px;
-      align-items:flex-start;padding:0 8px;
+      /* Block-Zentrierung: Gruppe als Einheit mittig, linke Kanten bündig, Text bleibt linksbündig */
+      flex-direction:column;gap:20px;margin:24px auto;
+      align-items:flex-start;max-width:320px;padding:0;
     }
-    .hero-trust-item{min-width:unset;width:100%;max-width:320px}
+    .hero-trust-item{flex:0 1 auto;min-width:0;width:100%;max-width:none}
+    .hero-trust-lbl{min-height:0}
     .hero-trust-divider{display:none}
     .hero-cta{height:52px;font-size:16px;width:100%;max-width:380px;gap:14px}
     .hero-security{font-size:12px;margin-top:12px}
+    .hero-preview{max-width:100%;margin:56px auto 16px}
+    .hero-preview-label{font-size:11px;letter-spacing:0.2em;margin-bottom:12px}
+    .hero-microtext{font-size:12px;margin-top:var(--ele-s-4);padding:0 6px}
   }
 
   /* =========================================================
@@ -1928,43 +1984,77 @@ window.va = window.va || function () {
     <div class="hero-content">
 
       <div class="hero-logo">
-        <img src="assets/logo-mark.png" alt="eLearneffect" />
+        <picture>
+          <source srcset="assets/logo-mark.webp" type="image/webp" />
+          <img src="assets/logo-mark.png" alt="eLearneffect" width="82" height="82" fetchpriority="high" />
+        </picture>
       </div>
 
-      <h1 class="hero-headline">Erkennen, wie viel Potenzial im<br>Führungssystem <span class="gold">verborgen liegt.</span></h1>
+      <h1 class="hero-headline">Bessere Ergebnisse<br class="hl-br"> <span class="gold">ohne zusätzliche Maschinen<br class="hl-br"> oder Personal.</span></h1>
 
-      <p class="hero-subline">Erhalte in wenigen Minuten eine klare Einschätzung, wie wirksam dein Führungssystem heute bereits ist, inklusive individueller Auswertung mit Reifegrad, größten Wirkhebeln und konkreten Verbesserungspotenzialen.</p>
-
-      <div class="hero-divider"></div>
+      <p class="hero-subline">Die Potenzialanalyse zeigt dir in 5 Minuten, wo das Führungssystem in deinem Werk heute steht und welcher Hebel dir jetzt die größten Ergebnisse bringt.</p>
 
       <div class="hero-trust">
         <div class="hero-trust-item">
-          <div class="hero-trust-icon"><i data-lucide="clock"></i></div>
-          <div>
-            <div class="hero-trust-lbl">In nur 5 Minuten</div>
-            <div class="hero-trust-sub">schnell und unkompliziert</div>
-          </div>
-        </div>
-        <div class="hero-trust-divider"></div>
-        <div class="hero-trust-item">
           <div class="hero-trust-icon"><i data-lucide="gauge"></i></div>
           <div>
-            <div class="hero-trust-lbl">Individuelle Auswertung</div>
-            <div class="hero-trust-sub">konkrete Hebel statt Standardtipps</div>
+            <div class="hero-trust-lbl">Dein Reifegrad in 5 Bereichen</div>
+            <div class="hero-trust-sub">Messbar statt Bauchgefühl</div>
           </div>
         </div>
         <div class="hero-trust-divider"></div>
         <div class="hero-trust-item">
           <div class="hero-trust-icon"><i data-lucide="target"></i></div>
           <div>
-            <div class="hero-trust-lbl">Für Produktion &amp; Logistik</div>
-            <div class="hero-trust-sub">speziell entwickelt</div>
+            <div class="hero-trust-lbl">Dein größter Hebel<br>für mehr Ergebnis</div>
+            <div class="hero-trust-sub">Priorität statt Aktionismus</div>
+          </div>
+        </div>
+        <div class="hero-trust-divider"></div>
+        <div class="hero-trust-item">
+          <div class="hero-trust-icon"><i data-lucide="list-checks"></i></div>
+          <div>
+            <div class="hero-trust-lbl">Pro Bereich eine konkrete Maßnahme</div>
+            <div class="hero-trust-sub">Keine Standardtipps</div>
           </div>
         </div>
       </div>
 
-      <button class="hero-cta" onclick="goTo(1)">
-        Potenzial jetzt prüfen <i data-lucide="arrow-right"></i>
+      <!-- Primärer CTA (above the fold) -->
+      <button class="hero-cta" onclick="ctaStart()">
+        15 Fragen starten <i data-lucide="arrow-right"></i>
+      </button>
+
+      <p class="hero-microtext">
+        <span>Ca. 5 Minuten</span> · <span>Ergebnis sofort, ohne E-Mail-Eingabe</span><br>
+        <span>Für Produktion &amp; Logistik entwickelt</span>
+      </p>
+
+      <!-- Vorschau: Score-Kreis (oben, vollständig) + Kategorien (darunter, angeschnitten) -->
+      <div class="hero-preview">
+        <div class="hero-preview-label">So sieht ein Teil deiner Auswertung aus</div>
+        <div class="hero-preview-score">
+          <picture>
+            <source srcset="auswertung-score.webp" type="image/webp" />
+            <img src="auswertung-score.jpg" width="1289" height="1208"
+                 alt="Beispielauswertung der Potenzialanalyse: Gesamt-Reifegrad als Prozentwert im Kreis"
+                 loading="lazy" decoding="async" />
+          </picture>
+        </div>
+        <div class="hero-preview-frame">
+          <picture>
+            <source srcset="auswertung-vorschau.webp" type="image/webp" />
+            <img src="auswertung-vorschau.jpg" width="1289" height="1237"
+                 alt="Beispielauswertung der Potenzialanalyse: Reifegrad in fünf Kategorien mit farbigen Balken"
+                 loading="lazy" decoding="async" />
+          </picture>
+        </div>
+        <div class="hero-preview-caption">Beispielauswertung</div>
+      </div>
+
+      <!-- Sekundärer CTA (unter der Vorschau) -->
+      <button class="hero-cta hero-cta-secondary" onclick="ctaStartBottom()">
+        15 Fragen starten <i data-lucide="arrow-right"></i>
       </button>
 
     </div><!-- /hero-content -->
@@ -2465,6 +2555,18 @@ function renderSingleQuestion(stepNum){
 /* =========================================================
    NAVIGATION
    ========================================================= */
+function ctaStart(){
+  // Analytics: primärer CTA (oben) — Baseline-Tracking (Vercel Web Analytics)
+  try{ if(window.va) window.va('event', { name: 'cta_start_click' }); }catch(e){}
+  goTo(1);
+}
+
+function ctaStartBottom(){
+  // Analytics: sekundärer CTA (unter der Vorschau) — eigener Eventname für A/B-Vergleich
+  try{ if(window.va) window.va('event', { name: 'cta_start_click_bottom' }); }catch(e){}
+  goTo(1);
+}
+
 function goTo(step, qIdx){
   if(step >= 1 && step <= 5){
     currentQuestionIdx = (qIdx !== undefined) ? qIdx : 0;
@@ -2975,7 +3077,9 @@ document.addEventListener("keydown", (e) => {
 /* init */
 updateProgress();
 document.getElementById("brandBar").style.display = "none"; // Step 0 aktiv beim Laden
-if(window.lucide) lucide.createIcons();
+// Lucide lädt via defer — Icons erst nach dessen Ausführung erzeugen (verhindert Render-Blocking)
+if(window.lucide){ lucide.createIcons(); }
+else { document.addEventListener("DOMContentLoaded", function(){ if(window.lucide) lucide.createIcons(); }); }
 </script>
 </body>
 </html>
