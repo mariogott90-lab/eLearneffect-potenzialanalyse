@@ -1167,7 +1167,7 @@ window.va = window.va || function () {
     /* Mobiler Spacing-Rhythmus — 3 Gruppen: Positionierung / Nutzen / Handlung */
     .hero-logo img{width:64px;margin-bottom:26px}
     .hero-lbl{font-size:11px;letter-spacing:5px;margin-bottom:22px}
-    .hero-eyebrow{font-size:11px;letter-spacing:0.2em;margin-bottom:30px}
+    .hero-eyebrow{font-size:12px;letter-spacing:0.2em;margin-bottom:30px}
     .hero-headline{font-size:clamp(24px,7.4vw,34px)}
     /* Feste Desktop-Umbrüche mobil aus: würden hier eine 4. Zeile erzeugen */
     .hero-headline .hl-br{display:none}
@@ -1180,7 +1180,8 @@ window.va = window.va || function () {
     }
     .hero-trust-item{flex:0 1 auto;min-width:0;width:auto;max-width:100%}
     .hero-trust-icon{width:44px}
-    .hero-trust-lbl{min-height:0}
+    .hero-trust-lbl{min-height:0;margin-bottom:0}
+    .hero-trust-sub{display:none}
     .hero-trust-divider{display:none}
     .hero-cta{height:52px;font-size:16px;width:100%;max-width:380px;gap:14px}
     .hero-security{font-size:12px;margin-top:12px}
@@ -2014,13 +2015,13 @@ window.va = window.va || function () {
 
       <div class="hero-eyebrow"><span class="eb-part">Potenzialanalyse für</span> <span class="eb-part">Produktion &amp; Logistik</span></div>
 
-      <h1 class="hero-headline">In nur <span class="gold">5&nbsp;Minuten</span> zu deiner Auswertung.</h1>
+      <h1 class="hero-headline">In nur <span class="gold">5&nbsp;Minuten</span> zu deiner Auswertung</h1>
 
-      <p class="hero-subline">Ohne E-Mail-Angabe.</p>
+      <p class="hero-subline">Ohne E-Mail-Angabe</p>
 
       <div class="hero-trust">
         <div class="hero-trust-item">
-          <div class="hero-trust-icon"><i data-lucide="target"></i></div>
+          <div class="hero-trust-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
           <div>
             <div class="hero-trust-lbl">Dein größter Hebel<br>für mehr Ergebnis</div>
             <div class="hero-trust-sub">Priorität statt Aktionismus</div>
@@ -2028,7 +2029,7 @@ window.va = window.va || function () {
         </div>
         <div class="hero-trust-divider"></div>
         <div class="hero-trust-item">
-          <div class="hero-trust-icon"><i data-lucide="gauge"></i></div>
+          <div class="hero-trust-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg></div>
           <div>
             <div class="hero-trust-lbl">Dein Reifegrad in 5 Bereichen</div>
             <div class="hero-trust-sub">Messbar statt Bauchgefühl</div>
@@ -2036,7 +2037,7 @@ window.va = window.va || function () {
         </div>
         <div class="hero-trust-divider"></div>
         <div class="hero-trust-item">
-          <div class="hero-trust-icon"><i data-lucide="list-checks"></i></div>
+          <div class="hero-trust-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg></div>
           <div>
             <div class="hero-trust-lbl">Pro Bereich eine konkrete Maßnahme</div>
             <div class="hero-trust-sub">Keine Standardtipps</div>
@@ -2046,7 +2047,7 @@ window.va = window.va || function () {
 
       <!-- Primärer CTA (above the fold) -->
       <button class="hero-cta" onclick="ctaStart()">
-        Kostenlose Analyse starten <i data-lucide="arrow-right"></i>
+        Kostenlose Analyse starten <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </button>
 
       <!-- ===== Helle Sektion: Beispielauswertung (heller Hintergrund) ===== -->
@@ -2076,7 +2077,7 @@ window.va = window.va || function () {
 
       <!-- Sekundärer CTA (unter der Vorschau) -->
       <button class="hero-cta hero-cta-secondary" onclick="ctaStartBottom()">
-        Kostenlose Analyse starten <i data-lucide="arrow-right"></i>
+        Kostenlose Analyse starten <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </button>
       </div><!-- /hero-light-inner -->
       </div><!-- /hero-light -->
