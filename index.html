@@ -1175,11 +1175,15 @@ window.va = window.va || function () {
     .hero-divider{margin:20px auto 18px}
     .hero-trust{
       /* Gruppe als Einheit optisch mittig: Wrapper schrumpft auf Inhaltsbreite und wird per margin:auto zentriert; Text bleibt linksbündig */
+      /* Fester Grid-Block: alle Zeilen gleich breit -> Gruppe per margin-inline:auto exakt mittig */
       flex-direction:column;gap:28px;margin:44px auto 42px;
-      align-items:flex-start;width:fit-content;max-width:340px;padding:0;
+      align-items:center;width:fit-content;max-width:calc(100vw - 48px);padding:0;
     }
-    .hero-trust-item{flex:0 1 auto;min-width:0;width:auto;max-width:100%}
-    .hero-trust-icon{width:44px}
+    .hero-trust-item{
+      display:grid;grid-template-columns:48px minmax(0,1fr);column-gap:20px;align-items:center;
+      width:min(320px, calc(100vw - 48px));text-align:left;
+    }
+    .hero-trust-icon{width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
     .hero-trust-lbl{min-height:0;margin-bottom:0}
     .hero-trust-sub{display:none}
     .hero-trust-divider{display:none}
