@@ -65,6 +65,8 @@ window.va = window.va || function () {
     --ele-accent-strong:var(--ele-gold-400);
     --ele-border:rgba(217,178,90,0.18);
     --ele-border-strong:rgba(217,178,90,0.35);
+    /* Einheitliche Blockbreite der Auswertungsseite (Desktop, Referenz: Empfehlungs-Block) */
+    --result-width:880px;
 
     --ele-success:#5C8A5A;
     --ele-warning:#C99A3D;
@@ -1734,7 +1736,19 @@ window.va = window.va || function () {
   .more-details-chevron svg{width:14px;height:14px;stroke-width:2}
 
   /* Detail-Bereich (below the fold) — schmaler Wrapper für Lesbarkeit */
-  .results-detail-wrap{max-width:880px;margin:0 auto}
+  .results-detail-wrap{max-width:var(--result-width);margin:0 auto}
+
+  /* Desktop: einheitliche Außenbreite aller Ergebnisblöcke (Referenz: Empfehlungs-Block).
+     Greift nur ab 881px — Mobile/Tablet (<=880px) bleiben vollständig unverändert. */
+  @media(min-width:881px){
+    .results-hero-grid,
+    .main-lever-card,
+    .dashboard-single .dashboard-card{
+      max-width:var(--result-width);
+      margin-left:auto;
+      margin-right:auto;
+    }
+  }
 
   /* Mobile Responsive für Hero */
   @media(max-width:1100px){
@@ -2379,13 +2393,13 @@ const CATEGORIES = [
       },
       {
         id:"Q11",
-        text:"Werden Probleme nachhaltig gelöst oder treten sie wieder auf?",
+        text:"Wie konsequent werden Probleme bis zur Ursache gelöst und nachhaltig abgestellt?",
         anchors:[
-          "Probleme treten wiederholt auf.",
-          "Vereinzelt nachhaltige Lösungen.",
-          "Nachhaltigkeit gewünscht, Wiederauftreten häufig.",
-          "Lösungen werden überprüft, hohe Trefferquote.",
-          "Lessons Learned systematisch dokumentiert und übertragen."
+          "Probleme werden meist kurzfristig behoben. Gleiche Fehler treten regelmäßig wieder auf.",
+          "Ursachen werden teilweise untersucht, Maßnahmen aber nicht konsequent nachverfolgt.",
+          "Probleme werden strukturiert bearbeitet, die Wirksamkeit der Maßnahmen wird jedoch nicht immer überprüft.",
+          "Ursachen werden systematisch analysiert, Maßnahmen konsequent nachgehalten und auf Wirksamkeit geprüft.",
+          "Nachhaltige Problemlösung ist Standard. Wirksame Lösungen werden dokumentiert und auf vergleichbare Bereiche übertragen."
         ]
       },
       {
