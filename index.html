@@ -1644,7 +1644,7 @@ window.va = window.va || function () {
   }
   .dashboard-card-eyebrow{
     font-family:'Inter',sans-serif;
-    font-size:11px;font-weight:700;letter-spacing:0.32em;
+    font-size:12px;font-weight:700;letter-spacing:0.32em;
     text-transform:uppercase;color:var(--ele-accent);
     margin-bottom:18px;
   }
@@ -1778,6 +1778,8 @@ window.va = window.va || function () {
     .result-badge{font-size:11px;letter-spacing:1.8px;padding:8px 16px}
     .score-ring{width:clamp(170px,62vw,210px);height:clamp(170px,62vw,210px)}
     .result-score{font-size:clamp(64px,18vw,92px)}
+    /* Kategorien-Label auf Mobile unverändert (11px), nur Desktop/Tablet auf 12px angeglichen */
+    .dashboard-card-eyebrow{font-size:11px}
     /* Kategoriezeile zweizeilig: Zeile 1 Icon+Name · Zeile 2 Balken+Prozent+Punkt */
     .cat-row{
       grid-template-columns:auto 1fr auto;
@@ -2895,7 +2897,7 @@ function renderResult(){
       <div class="card">
         <div class="eyebrow" style="margin-bottom:12px">Empfehlungen</div>
         <h2>Konkrete nächste Schritte</h2>
-        <p class="section-sub">Pro Kategorie eine Maßnahme — die mit der größten Hebelwirkung.</p>
+        <p class="section-sub">Pro Kategorie eine Maßnahme mit der größten Hebelwirkung.</p>
         <div class="reco-section">
           ${catResults.map(c=>{
             const reco = RECOMMENDATIONS[c.id][c.zone];
