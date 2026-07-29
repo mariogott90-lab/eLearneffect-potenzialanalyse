@@ -1748,6 +1748,21 @@ window.va = window.va || function () {
       margin-left:auto;
       margin-right:auto;
     }
+    /* Desktop-Typografie an Referenzen im Empfehlungs-Block angleichen.
+       "Auswertung nach Kategorien" == h2 "Konkrete nächste Schritte". */
+    .dashboard-card-eyebrow{
+      font-size:clamp(24px,2.4vw,28px);
+      font-weight:700;
+      line-height:1.15;
+      letter-spacing:-0.015em;
+    }
+    /* Kategorienamen == .section-sub "Pro Kategorie eine Maßnahme …". */
+    .cat-row-title{
+      font-size:15px;
+      font-weight:400;
+      line-height:1.55;
+      letter-spacing:normal;
+    }
   }
 
   /* Mobile Responsive für Hero */
@@ -2393,13 +2408,13 @@ const CATEGORIES = [
       },
       {
         id:"Q11",
-        text:"Wie konsequent werden Probleme bis zur Ursache gelöst und nachhaltig abgestellt?",
+        text:"Wie systematisch werden Probleme im Arbeitsalltag gelöst?",
         anchors:[
-          "Probleme werden meist kurzfristig behoben. Gleiche Fehler treten regelmäßig wieder auf.",
-          "Ursachen werden teilweise untersucht, Maßnahmen aber nicht konsequent nachverfolgt.",
-          "Probleme werden strukturiert bearbeitet, die Wirksamkeit der Maßnahmen wird jedoch nicht immer überprüft.",
-          "Ursachen werden systematisch analysiert, Maßnahmen konsequent nachgehalten und auf Wirksamkeit geprüft.",
-          "Nachhaltige Problemlösung ist Standard. Wirksame Lösungen werden dokumentiert und auf vergleichbare Bereiche übertragen."
+          "Probleme werden meist nur kurzfristig behoben.",
+          "Ursachen werden teilweise untersucht.",
+          "Ursachen werden strukturiert analysiert und Maßnahmen umgesetzt.",
+          "Maßnahmen werden konsequent nachverfolgt und auf Wirksamkeit geprüft.",
+          "Wirksame Lösungen werden standardisiert und auf andere Bereiche übertragen."
         ]
       },
       {
