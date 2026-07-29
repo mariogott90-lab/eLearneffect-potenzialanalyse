@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>In nur 5 Minuten zu Ihrer Auswertung – Potenzialanalyse für Produktion & Logistik | eLearneffect</title>
-<meta name="description" content="In nur 5 Minuten zu Ihrer Auswertung – ohne E-Mail-Angabe. Potenzialanalyse für Produktion & Logistik: Ihr größter Hebel, Ihr Reifegrad und eine konkrete Maßnahme pro Bereich." />
+<title>In nur 5 Minuten zu Ihrer Auswertung | Potenzialanalyse für Produktion & Logistik | eLearneffect</title>
+<meta name="description" content="In nur 5 Minuten zu Ihrer Auswertung, ganz ohne E-Mail-Angabe. Potenzialanalyse für Produktion & Logistik: Ihr größter Hebel, Ihr Reifegrad und eine konkrete Maßnahme pro Bereich." />
 
 <!-- Open Graph (LinkedIn, Facebook) -->
 <meta property="og:title" content="Wie wirksam ist Ihr Führungssystem wirklich?">
@@ -551,7 +551,7 @@ window.va = window.va || function () {
     padding:var(--ele-s-2) var(--ele-s-4);
     border-radius:var(--ele-r-pill);
     font-family:'Inter',sans-serif;
-    font-size:13px;font-weight:600;
+    font-size:12px;font-weight:600;
     text-transform:uppercase;letter-spacing:0.1em;
   }
   .verdict::before{
@@ -1438,7 +1438,7 @@ window.va = window.va || function () {
   }
   .score-eyebrow{
     font-family:'Inter',sans-serif;
-    font-size:13px;font-weight:700;
+    font-size:12px;font-weight:700;
     letter-spacing:4px;text-transform:uppercase;
     color:var(--ele-accent);
     margin-bottom:6px;
@@ -1540,7 +1540,7 @@ window.va = window.va || function () {
   }
   .summary-eyebrow{
     font-family:'Inter',sans-serif;
-    font-size:13px;font-weight:700;
+    font-size:12px;font-weight:700;
     letter-spacing:4px;text-transform:uppercase;
     color:var(--ele-accent);
     margin-bottom:14px;
@@ -1592,14 +1592,14 @@ window.va = window.va || function () {
   .ml-icon svg{width:42px;height:42px;stroke-width:1.4}
   .main-lever-eyebrow{
     font-family:'Inter',sans-serif;
-    font-size:11px;font-weight:700;letter-spacing:0.32em;
+    font-size:12px;font-weight:700;letter-spacing:0.32em;
     text-transform:uppercase;color:var(--ele-accent);
     margin-bottom:6px;
   }
   .main-lever-title{
     font-family:'Inter',sans-serif;
-    font-size:clamp(24px,2.4vw,30px);font-weight:700;
-    color:var(--ele-fg-1);letter-spacing:-0.02em;
+    font-size:clamp(24px,2.4vw,28px);font-weight:700;
+    color:var(--ele-fg-1);letter-spacing:-0.015em;
     line-height:1.15;margin-bottom:8px;
   }
   .main-lever-explain{
@@ -1621,7 +1621,7 @@ window.va = window.va || function () {
     font-weight:500;margin-left:2px;
   }
   .ml-score-label{
-    font-size:11px;font-weight:600;letter-spacing:0.18em;
+    font-size:12px;font-weight:600;letter-spacing:0.18em;
     text-transform:uppercase;color:var(--ele-fg-3);
     margin-top:6px;
   }
@@ -1644,8 +1644,9 @@ window.va = window.va || function () {
   }
   .dashboard-card-eyebrow{
     font-family:'Inter',sans-serif;
-    font-size:12px;font-weight:700;letter-spacing:0.32em;
-    text-transform:uppercase;color:var(--ele-accent);
+    font-size:clamp(18px,1.8vw,22px);font-weight:700;
+    letter-spacing:-0.015em;line-height:1.2;
+    color:#F5F1E8;
     margin-bottom:18px;
   }
   /* Kategorie-Liste (kompakt, dashboard-style) */
@@ -1764,7 +1765,6 @@ window.va = window.va || function () {
     .executive-summary-text{font-size:17px;line-height:1.4}
     /* Einheitliche Card-Innenabstände (18px horizontal) + vertikaler Rhythmus (16px) */
     .main-lever-card{padding:20px 18px;gap:18px;margin-bottom:16px}
-    .main-lever-title{font-size:22px}
     .main-lever-explain{font-size:14px}
     .dashboard-single{margin-bottom:16px}
     .dashboard-card{padding:20px 18px}
@@ -1778,8 +1778,8 @@ window.va = window.va || function () {
     .result-badge{font-size:11px;letter-spacing:1.8px;padding:8px 16px}
     .score-ring{width:clamp(170px,62vw,210px);height:clamp(170px,62vw,210px)}
     .result-score{font-size:clamp(64px,18vw,92px)}
-    /* Kategorien-Label auf Mobile unverändert (11px), nur Desktop/Tablet auf 12px angeglichen */
-    .dashboard-card-eyebrow{font-size:11px}
+    /* Kategorien-Label auf Mobile unverändert (kleines goldenes Uppercase-Eyebrow, 11px) */
+    .dashboard-card-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.32em;text-transform:uppercase;color:var(--ele-accent);line-height:normal}
     /* Kategoriezeile zweizeilig: Zeile 1 Icon+Name · Zeile 2 Balken+Prozent+Punkt */
     .cat-row{
       grid-template-columns:auto 1fr auto;
@@ -2262,17 +2262,17 @@ const CATEGORIES = [
           "Vereinzelt auf Bereichsebene, nicht durchgängig.",
           "Auf Teamebene definiert, im Alltag aber selten präsent.",
           "Bis Schichtebene heruntergebrochen, sichtbar (z. B. Visual Management).",
-          "Tägliche Präsenz — jeder Mitarbeiter kennt seine Ziele jederzeit."
+          "Tägliche Präsenz. Jeder Mitarbeiter kennt seine Ziele jederzeit."
         ]
       },
       {
         id:"Q3",
-        text:"Sind aktuell die 2–3 wichtigsten Hebel zur Ergebnisverbesserung klar definiert und priorisiert?",
+        text:"Sind aktuell die 2 bis 3 wichtigsten Hebel zur Ergebnisverbesserung klar definiert und priorisiert?",
         anchors:[
           "Keine Priorisierung wesentlicher Hebel.",
           "Diskussion vorhanden, ohne klare Festlegung.",
           "Hebel benannt, Priorisierung uneinheitlich.",
-          "2–3 Top-Hebel klar priorisiert und kommuniziert.",
+          "2 bis 3 Top-Hebel klar priorisiert und kommuniziert.",
           "Top-Hebel mit Maßnahmen-Roadmap, Verantwortlichen und Zeitplan."
         ]
       }
@@ -2281,7 +2281,7 @@ const CATEGORIES = [
   {
     id:"C2", icon:"sliders-horizontal", weight:0.25,
     title:"Steuerung & Verantwortlichkeit",
-    aim:"Wird aktiv gesteuert — und ist klar, wer handeln muss?",
+    aim:"Wird aktiv gesteuert und ist klar, wer handeln muss?",
     leverShort:"konsequentere KPI-Führung und klarere Ownership-Strukturen",
     questions:[
       {
@@ -2291,7 +2291,7 @@ const CATEGORIES = [
           "Keine systematischen Vergleiche.",
           "Sporadisch, manuell, mit großer Verzögerung.",
           "Regelmäßig, aber nicht zeitnah genug zur Reaktion.",
-          "Tagesaktuell oder am Schichtende — Abweichungen sofort sichtbar.",
+          "Tagesaktuell oder am Schichtende. Abweichungen sind sofort sichtbar.",
           "Fester Steuerungsrhythmus im Team verankert, Abweichungen werden noch am selben Tag gesteuert."
         ]
       },
@@ -2300,7 +2300,7 @@ const CATEGORIES = [
         text:"Ist eindeutig geregelt, wer bei KPI-Abweichungen handeln MUSS?",
         anchors:[
           "Niemand fühlt sich zuständig.",
-          "Implizit, situativ — stark personenabhängig.",
+          "Implizit, situativ und stark personenabhängig.",
           "Grundsätzlich geregelt, Lücken bestehen.",
           "Klare Eskalationsmatrix, allen Beteiligten bekannt.",
           "Routiniert gelebt, automatische Trigger und klare Übernahme."
@@ -2314,7 +2314,7 @@ const CATEGORIES = [
           "Reaktion situativ, nicht standardisiert.",
           "Standardprozess vorhanden, nicht immer angewendet.",
           "Standardisierter Reaktionsprozess, dokumentiert und gelebt.",
-          "Closed-Loop mit PDCA — Wirksamkeit wird systematisch überprüft."
+          "Closed-Loop mit PDCA. Die Wirksamkeit wird systematisch überprüft."
         ]
       }
     ]
@@ -2355,7 +2355,7 @@ const CATEGORIES = [
           "Bei Bedarf, ad-hoc und reaktiv.",
           "Schulungsplan vorhanden, Umsetzung lückenhaft.",
           "Strukturierte Entwicklungspläne, regelmäßig gepflegt.",
-          "Lernkultur als Kernelement — kontinuierliche Befähigung systematisch verankert."
+          "Lernkultur als Kernelement. Kontinuierliche Befähigung ist systematisch verankert."
         ]
       }
     ]
@@ -2370,7 +2370,7 @@ const CATEGORIES = [
         id:"Q10",
         text:"Wird systematisch nach Ursachen gesucht (z. B. 5 Why / PDCA)?",
         anchors:[
-          "Symptombekämpfung — Ursachen werden nicht gesucht.",
+          "Symptombekämpfung. Ursachen werden nicht gesucht.",
           "Ursachensuche nur bei großen Problemen.",
           "Methoden bekannt, nicht durchgängig angewendet.",
           "5 Why / PDCA / A3 standardmäßig genutzt.",
@@ -2396,7 +2396,7 @@ const CATEGORIES = [
           "Inkonsistent, abhängig von Person und Situation.",
           "Grundsätzlich, aber zu spät und mit Lücken.",
           "Klar, zeitnah und fair umgesetzt.",
-          "Kultur der Klarheit — frühzeitig und konsequent, ohne Eskalation."
+          "Kultur der Klarheit mit frühzeitigem und konsequentem Handeln ohne Eskalation."
         ]
       }
     ]
@@ -2420,7 +2420,7 @@ const CATEGORIES = [
       },
       {
         id:"Q14",
-        text:"Werden Probleme frühzeitig sichtbar gemacht — statt erst, wenn sie eskalieren?",
+        text:"Werden Probleme frühzeitig sichtbar gemacht, bevor sie eskalieren?",
         anchors:[
           "Probleme werden erst bei Eskalation bekannt.",
           "Hinweise existieren, werden ignoriert.",
@@ -2437,7 +2437,7 @@ const CATEGORIES = [
           "Selten thematisiert, nur in geschütztem Rahmen.",
           "Gelegentlich offen, abhängig von Personen.",
           "Offene Diskussionskultur, Themen werden dokumentiert adressiert.",
-          "Psychologische Sicherheit — Probleme gelten als Verbesserungschance."
+          "Psychologische Sicherheit ist etabliert. Probleme gelten als Verbesserungschance."
         ]
       }
     ]
@@ -2499,7 +2499,7 @@ function renderSingleQuestion(stepNum){
   const rem = 15 - qNumOverall;
   const motivText = rem > 0
     ? `✦  Noch ${rem} ${rem === 1 ? 'Schritt' : 'Schritte'} bis zu Ihrer persönlichen Auswertung.`
-    : `✦  Letzte Frage — gleich erhalten Sie Ihre Auswertung.`;
+    : `✦  Letzte Frage. Gleich erhalten Sie Ihre Auswertung.`;
 
   const step = document.getElementById(`step-${stepNum}`);
   step.innerHTML = `
