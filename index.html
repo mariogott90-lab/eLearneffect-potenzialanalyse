@@ -1607,7 +1607,7 @@ window.va = window.va || function () {
     font-size:15px;line-height:1.55;
     color:var(--ele-fg-2);max-width:60ch;
   }
-  .ml-score-wrap{text-align:right}
+  .ml-score-wrap{text-align:right;align-self:start}
   .ml-score{
     font-family:'Inter',sans-serif;
     font-size:60px;font-weight:700;
@@ -1626,13 +1626,14 @@ window.va = window.va || function () {
     margin-top:6px;
   }
 
-  /* Dashboard Grid */
-  .dashboard-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:24px;
+  /* Dashboard — einzelne, zentrierte Karte */
+  .dashboard-single{
     margin-bottom:var(--ele-s-8);
-    align-items:stretch;
+  }
+  .dashboard-single .dashboard-card{
+    width:100%;
+    max-width:720px;
+    margin-inline:auto;
   }
   .dashboard-card{
     background:rgba(16,28,49,0.72);
@@ -1647,45 +1648,6 @@ window.va = window.va || function () {
     text-transform:uppercase;color:var(--ele-accent);
     margin-bottom:18px;
   }
-  /* Impact-Rows — Verbesserungen mit Icon + Title + Description */
-  .impact-rows{display:flex;flex-direction:column;gap:10px}
-  .impact-row{
-    display:flex;align-items:flex-start;gap:16px;
-    padding:14px 16px;
-    border-radius:14px;
-    background:rgba(255,255,255,0.025);
-    border:1px solid rgba(212,175,55,0.10);
-    transition:background var(--ele-dur-fast) var(--ele-ease),border-color var(--ele-dur-fast) var(--ele-ease),transform var(--ele-dur-fast) var(--ele-ease);
-  }
-  .impact-row:hover{
-    background:rgba(255,255,255,0.04);
-    border-color:rgba(212,175,55,0.22);
-    transform:translateX(2px);
-  }
-  .impact-icon{
-    width:38px;height:38px;min-width:38px;
-    border-radius:12px;
-    display:flex;align-items:center;justify-content:center;
-    color:var(--ele-accent);
-    background:rgba(212,175,55,0.08);
-    border:1px solid rgba(212,175,55,0.16);
-  }
-  .impact-icon svg{width:18px;height:18px;stroke-width:1.6}
-  .impact-text{flex:1;min-width:0}
-  .impact-title{
-    font-family:'Inter',sans-serif;
-    font-size:15px;font-weight:700;
-    color:var(--ele-fg-1);
-    letter-spacing:-0.005em;
-    line-height:1.25;
-    margin-bottom:3px;
-  }
-  .impact-description{
-    font-family:'Inter',sans-serif;
-    font-size:13.5px;line-height:1.45;
-    color:var(--ele-fg-2);
-  }
-
   /* Kategorie-Liste (kompakt, dashboard-style) */
   .cat-list{display:flex;flex-direction:column;gap:8px}
   .cat-row{
@@ -1785,7 +1747,6 @@ window.va = window.va || function () {
     .ml-icon{width:64px;height:64px;border-radius:14px}
     .ml-icon svg{width:32px;height:32px}
     .ml-score{font-size:48px}
-    .dashboard-grid{grid-template-columns:1fr;gap:18px}
   }
   @media(max-width:768px){
     /* Mobile-Alignment: alle Ergebnis-Cards auf gemeinsame Außenkante (body 16px) */
@@ -1805,7 +1766,7 @@ window.va = window.va || function () {
     .main-lever-card{padding:20px 18px;gap:18px;margin-bottom:16px}
     .main-lever-title{font-size:22px}
     .main-lever-explain{font-size:14px}
-    .dashboard-grid{margin-bottom:16px}
+    .dashboard-single{margin-bottom:16px}
     .dashboard-card{padding:20px 18px}
     .results-detail-wrap .card:not(.cta-final){padding:22px 18px}
     .results-detail-wrap .card + .card{margin-top:16px}
@@ -1817,6 +1778,18 @@ window.va = window.va || function () {
     .result-badge{font-size:11px;letter-spacing:1.8px;padding:8px 16px}
     .score-ring{width:clamp(170px,62vw,210px);height:clamp(170px,62vw,210px)}
     .result-score{font-size:clamp(64px,18vw,92px)}
+    /* Kategoriezeile zweizeilig: Zeile 1 Icon+Name · Zeile 2 Balken+Prozent+Punkt */
+    .cat-row{
+      grid-template-columns:auto 1fr auto;
+      grid-template-areas:
+        "icon title title"
+        "bar  bar   meta";
+      gap:10px 12px;
+    }
+    .cat-row-icon{grid-area:icon}
+    .cat-row-title{grid-area:title;align-self:center}
+    .cat-row-bar{grid-area:bar;align-self:center}
+    .cat-row-meta{grid-area:meta}
   }
 
   @media print{
@@ -2823,7 +2796,6 @@ function renderResult(){
   const sortedCats = [...catResults].sort((a,b)=>a.pct-b.pct);
   const weakest = sortedCats[0];
   const strongest = sortedCats[sortedCats.length - 1];
-  const impacts = OPERATIVE_IMPACTS[weakest.id] || [];
 
   // Cache für Mailversand
   lastResults = { total, totalZone, catResults, top3, weakest, strongest };
@@ -2889,26 +2861,8 @@ function renderResult(){
         </div>
       </div>
 
-      <!-- Dashboard Grid: Operative Auswirkungen · Kategorien -->
-      <div class="dashboard-grid">
-
-        <!-- Verbesserungen durch den größten Wirkhebel — Impact Rows -->
-        <div class="dashboard-card">
-          <div class="dashboard-card-eyebrow">Verbesserungen durch den größten Wirkhebel</div>
-          <div class="impact-rows">
-            ${impacts.map(it => `
-              <div class="impact-row">
-                <div class="impact-icon"><i data-lucide="${it.icon}"></i></div>
-                <div class="impact-text">
-                  <div class="impact-title">${it.title}</div>
-                  <div class="impact-description">${it.desc}</div>
-                </div>
-              </div>
-            `).join("")}
-          </div>
-        </div>
-
-        <!-- Auswertung nach Kategorien -->
+      <!-- Auswertung nach Kategorien — zentriert unter „Größter Wirkhebel" -->
+      <div class="dashboard-single">
         <div class="dashboard-card">
           <div class="dashboard-card-eyebrow">Auswertung nach Kategorien</div>
           <div class="cat-list">
@@ -2930,7 +2884,6 @@ function renderResult(){
             }).join("")}
           </div>
         </div>
-
       </div>
 
     </div>
