@@ -2178,7 +2178,7 @@ window.va = window.va || function () {
 <footer class="page-footer">
   <button class="footer-link" type="button" onclick="openPrivacy()">Datenschutz</button>
   <span class="footer-sep">·</span>
-  <span class="footer-disabled" title="Folgt in Kürze">Impressum</span>
+  <button class="footer-link" type="button" onclick="openImprint()">Impressum</button>
 </footer>
 
 <!-- ============= DATENSCHUTZ-MODAL ============= -->
@@ -2190,64 +2190,140 @@ window.va = window.va || function () {
 
     <div class="legal-eyebrow">Datenschutz</div>
     <h2 class="legal-title" id="legalTitle">Datenschutzerklärung</h2>
+    <p class="legal-p" style="margin-top:-6px;opacity:.7">Stand: September 2026</p>
 
     <div class="legal-section">
-      <div class="legal-h">Verantwortlicher</div>
-      <p class="legal-p">Verantwortlich für diese Webseite:</p>
-      <p class="legal-p">Mario Gott<br />
-        <a class="legal-mail" href="mailto:mariogott90@gmail.com">mariogott90@gmail.com</a>
+      <div class="legal-h">1. Verantwortlicher</div>
+      <p class="legal-p">Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
+      <p class="legal-p">eLearneffect<br />
+        Inhaber: Mario Gott<br />
+        Scharrerstr. 17<br />
+        94481 Grafenau<br />
+        Deutschland
+      </p>
+      <p class="legal-p">E-Mail: <a class="legal-mail" href="mailto:info@elearneffect.com">info@elearneffect.com</a></p>
+    </div>
+
+    <div class="legal-section">
+      <div class="legal-h">2. Hosting über Vercel</div>
+      <p class="legal-p">Diese Website wird über die Infrastruktur von Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA, bereitgestellt.</p>
+      <p class="legal-p">Beim Aufruf der Website werden technisch erforderliche Daten verarbeitet, um die Website sicher und zuverlässig auszuliefern. Hierzu können insbesondere die IP-Adresse, technische Informationen zum verwendeten Gerät und Browser, System- und Konfigurationsinformationen, Logdaten sowie aus der IP-Adresse abgeleitete ungefähre Standortinformationen gehören.</p>
+      <p class="legal-p">Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Mein berechtigtes Interesse liegt in der sicheren, stabilen und effizienten Bereitstellung dieser Website.</p>
+      <p class="legal-p">Soweit Vercel personenbezogene Daten in meinem Auftrag verarbeitet, erfolgt dies auf Grundlage einer Vereinbarung zur Auftragsverarbeitung. Für Übermittlungen personenbezogener Daten in die USA sieht Vercel geeignete Datenschutzmechanismen vor. Vercel ist nach eigenen Angaben unter dem EU-U.S. Data Privacy Framework zertifiziert und sieht in seinem Data Processing Addendum zusätzlich die Standardvertragsklauseln der Europäischen Kommission für entsprechende Datenübermittlungen vor.</p>
+      <p class="legal-p">Vercel weist ausdrücklich darauf hin, dass bei der Nutzung von Kundenseiten unter anderem IP-Adressen, aus der IP-Adresse abgeleitete Standortinformationen und technische Systeminformationen verarbeitet werden können.</p>
+    </div>
+
+    <div class="legal-section">
+      <div class="legal-h">3. Durchführung der Potenzialanalyse</div>
+      <p class="legal-p">Die Potenzialanalyse wird vollständig im Browser des Nutzers durchgeführt.</p>
+      <p class="legal-p">Die während der Analyse ausgewählten Antworten sowie das daraus erzeugte Analyseergebnis werden nicht auf Servern von eLearneffect gespeichert und nicht an eine externe Datenbank übertragen.</p>
+      <p class="legal-p">Für die Durchführung der Potenzialanalyse ist keine Registrierung und kein Benutzerkonto erforderlich.</p>
+      <p class="legal-p">Eine Übermittlung personenbezogener Daten erfolgt erst, wenn Sie sich nach Abschluss der Potenzialanalyse aktiv dazu entscheiden, eine Kontaktaufnahme oder ein Folgegespräch anzufragen.</p>
+      <p class="legal-p">In diesem Fall können – abhängig von den von Ihnen gemachten Angaben – insbesondere Ihr Name, Ihre E-Mail-Adresse, Ihre Rolle beziehungsweise Funktion und weitere freiwillig eingegebene Informationen verarbeitet werden. Sofern das Ergebnis der Potenzialanalyse Bestandteil Ihrer Anfrage ist, wird auch dieses im Rahmen der Kontaktanfrage verarbeitet.</p>
+    </div>
+
+    <div class="legal-section">
+      <div class="legal-h">4. Kontaktaufnahme und Formspree</div>
+      <p class="legal-p">Für die technische Übermittlung von Kontaktanfragen wird Formspree, Inc., USA, eingesetzt.</p>
+      <p class="legal-p">Wenn Sie das Kontaktformular absenden, werden die von Ihnen eingegebenen Daten an Formspree übermittelt. Hierzu können insbesondere Name, E-Mail-Adresse, Rolle beziehungsweise Funktion sowie weitere freiwillig eingegebene Angaben gehören.</p>
+      <p class="legal-p">Formspree kann im Zusammenhang mit der Formularübermittlung zusätzlich technische Daten verarbeiten. Dazu können insbesondere die IP-Adresse, Browsertyp, Domaininformationen, Zugriffszeit und Referrer-Informationen gehören.</p>
+      <p class="legal-p">Formspree speichert Formularübermittlungen im Formspree-Konto und kann diese zusätzlich per E-Mail an die von eLearneffect hinterlegte Empfängeradresse weiterleiten. Die Verarbeitung durch Formspree erfolgt ausschließlich im Zusammenhang mit der Bereitstellung und Absicherung des Formulardienstes.</p>
+      <p class="legal-p">Soweit Ihre Anfrage auf die Anbahnung oder Durchführung eines Vertrags gerichtet ist, erfolgt die Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO.</p>
+      <p class="legal-p">Bei sonstigen geschäftlichen Anfragen erfolgt die Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Mein berechtigtes Interesse liegt in der Bearbeitung und Beantwortung der an mich gerichteten Anfrage.</p>
+      <p class="legal-p">Formspree betreibt seine Cloud-Infrastruktur nach eigenen Angaben über Amazon Web Services in den USA. Für Datenübermittlungen im Rahmen der DSGVO gibt Formspree an, als Auftragsverarbeiter auf die Standardvertragsklauseln der Europäischen Kommission zurückzugreifen.</p>
+      <p class="legal-p">Formspree bestätigt aktuell, dass Formularübermittlungen im Formspree-Konto gespeichert werden. Außerdem nennt Formspree unter anderem IP-Adresse, Browsertyp, Domainnamen, Zugriffszeiten und Referrer als mögliche technische Daten.</p>
+    </div>
+
+    <div class="legal-section">
+      <div class="legal-h">5. E-Mail-Kommunikation und Google Workspace</div>
+      <p class="legal-p">Kontaktanfragen können über Formspree an die geschäftliche E-Mail-Adresse von eLearneffect weitergeleitet und anschließend per E-Mail bearbeitet werden.</p>
+      <p class="legal-p">Für die geschäftliche E-Mail-Kommunikation wird Google Workspace eingesetzt.</p>
+      <p class="legal-p">Anbieter für Kunden im Europäischen Wirtschaftsraum ist grundsätzlich:</p>
+      <p class="legal-p">Google Ireland Limited<br />
+        Gordon House<br />
+        Barrow Street<br />
+        Dublin 4<br />
+        Irland
+      </p>
+      <p class="legal-p">Im Rahmen der E-Mail-Kommunikation können insbesondere Ihre E-Mail-Adresse, Ihr Name, der Inhalt Ihrer Nachricht sowie weitere von Ihnen übermittelte Informationen verarbeitet werden.</p>
+      <p class="legal-p">Die Verarbeitung erfolgt bei vorvertraglichen oder vertraglichen Anfragen auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO und bei sonstigen geschäftlichen Anfragen auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.</p>
+      <p class="legal-p">Google stellt für Google-Workspace-Kunden ein Data Processing Addendum zur Verfügung. Für gegebenenfalls erforderliche internationale Datenübermittlungen sieht Google unter anderem die Standardvertragsklauseln beziehungsweise andere nach der DSGVO zulässige Übermittlungsmechanismen vor.</p>
+    </div>
+
+    <div class="legal-section">
+      <div class="legal-h">6. Speicherdauer</div>
+      <p class="legal-p">Personenbezogene Daten aus einer Kontaktanfrage werden grundsätzlich nur so lange verarbeitet, wie dies zur Bearbeitung der Anfrage und einer gegebenenfalls daraus entstehenden Geschäftsbeziehung erforderlich ist.</p>
+      <p class="legal-p">Ergibt sich aus der Kontaktaufnahme ein Vertrags- oder Geschäftsverhältnis, können die Daten darüber hinaus gespeichert werden, soweit dies für die Durchführung des Vertrags oder aufgrund gesetzlicher Aufbewahrungspflichten erforderlich ist.</p>
+      <p class="legal-p">Nach Wegfall des jeweiligen Verarbeitungszwecks und Ablauf etwaiger gesetzlicher Aufbewahrungsfristen werden die Daten gelöscht.</p>
+      <p class="legal-p">Formularübermittlungen können zusätzlich im Formspree-Konto gespeichert werden. Formspree gibt an, Daten so lange aufzubewahren, wie dies für die Bereitstellung seiner Dienste, die jeweiligen Verarbeitungszwecke oder gesetzliche Verpflichtungen erforderlich ist. Die konkrete verfügbare Speicherung von Formularübermittlungen hängt zudem vom verwendeten Formspree-Tarif ab.</p>
+    </div>
+
+    <div class="legal-section">
+      <div class="legal-h">7. Cookies, Analyse- und Trackingtechnologien</div>
+      <p class="legal-p">Auf dieser Website werden derzeit keine externen Marketing-, Werbe- oder Analysewerkzeuge wie Google Analytics, Meta Pixel oder vergleichbare Dienste eingesetzt.</p>
+      <p class="legal-p">Die Potenzialanalyse verwendet keine Tracking-Technologien zur Erstellung personenbezogener Nutzungsprofile.</p>
+      <p class="legal-p">Die Antworten der Potenzialanalyse werden nicht dauerhaft im Browser oder auf Servern von eLearneffect gespeichert.</p>
+      <p class="legal-p">Sollten zukünftig Dienste eingesetzt werden, die nicht technisch notwendige Cookies oder vergleichbare Technologien verwenden, wird diese Datenschutzerklärung entsprechend angepasst und – soweit gesetzlich erforderlich – vor deren Einsatz eine Einwilligung eingeholt.</p>
+    </div>
+
+    <div class="legal-section">
+      <div class="legal-h">8. Empfänger personenbezogener Daten</div>
+      <p class="legal-p">Personenbezogene Daten können im Rahmen des Betriebs dieser Website insbesondere durch Vercel Inc. für Hosting und technische Bereitstellung, Formspree, Inc. für die Verarbeitung von Kontaktformularen sowie Google Workspace für die geschäftliche E-Mail-Kommunikation verarbeitet werden.</p>
+      <p class="legal-p">Eine Weitergabe an weitere Dritte erfolgt nur, wenn dies zur Erfüllung der genannten Zwecke erforderlich ist, eine gesetzliche Verpflichtung besteht oder eine andere datenschutzrechtliche Rechtsgrundlage vorliegt.</p>
+    </div>
+
+    <div class="legal-section">
+      <div class="legal-h">9. Ihre Rechte</div>
+      <p class="legal-p">Sie haben im Rahmen der gesetzlichen Voraussetzungen insbesondere das Recht auf Auskunft gemäß Art. 15 DSGVO, Berichtigung gemäß Art. 16 DSGVO, Löschung gemäß Art. 17 DSGVO, Einschränkung der Verarbeitung gemäß Art. 18 DSGVO, Datenübertragbarkeit gemäß Art. 20 DSGVO sowie Widerspruch gemäß Art. 21 DSGVO.</p>
+      <p class="legal-p">Soweit eine Verarbeitung auf Ihrer Einwilligung beruht, können Sie eine erteilte Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.</p>
+      <p class="legal-p">Zur Wahrnehmung Ihrer Rechte genügt eine Nachricht an: <a class="legal-mail" href="mailto:info@elearneffect.com">info@elearneffect.com</a></p>
+    </div>
+
+    <div class="legal-section">
+      <div class="legal-h">10. Widerspruch gegen Verarbeitung aufgrund berechtigter Interessen</div>
+      <p class="legal-p">Soweit personenbezogene Daten auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO verarbeitet werden, haben Sie gemäß Art. 21 DSGVO das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit Widerspruch gegen diese Verarbeitung einzulegen.</p>
+      <p class="legal-p">Zur Ausübung Ihres Widerspruchsrechts genügt eine Nachricht an: <a class="legal-mail" href="mailto:info@elearneffect.com">info@elearneffect.com</a></p>
+    </div>
+
+    <div class="legal-section">
+      <div class="legal-h">11. Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde</div>
+      <p class="legal-p">Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten zu beschweren.</p>
+      <p class="legal-p">Sie können sich insbesondere an die Datenschutz-Aufsichtsbehörde Ihres gewöhnlichen Aufenthaltsortes, Ihres Arbeitsplatzes oder des Ortes des mutmaßlichen Datenschutzverstoßes wenden.</p>
+    </div>
+
+    <div class="legal-section">
+      <div class="legal-h">12. Aktualität dieser Datenschutzerklärung</div>
+      <p class="legal-p">Diese Datenschutzerklärung entspricht dem Stand September 2026.</p>
+      <p class="legal-p">Ich behalte mir vor, diese Datenschutzerklärung anzupassen, wenn sich die eingesetzten Dienste, die technischen Abläufe oder die rechtlichen Anforderungen ändern.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============= IMPRESSUM-MODAL ============= -->
+<div class="legal-modal" id="imprintModal" role="dialog" aria-modal="true" aria-labelledby="imprintTitle" onclick="if(event.target===this) closeImprint()">
+  <div class="legal-card">
+    <button class="legal-close" type="button" onclick="closeImprint()" aria-label="Schließen">
+      <i data-lucide="x"></i>
+    </button>
+
+    <div class="legal-eyebrow">Impressum</div>
+    <h2 class="legal-title" id="imprintTitle">Impressum</h2>
+
+    <div class="legal-section">
+      <div class="legal-h">Angaben gemäß § 5 DDG</div>
+      <p class="legal-p">eLearneffect<br />
+        Inhaber: Mario Gott
+      </p>
+      <p class="legal-p">Scharrerstr. 17<br />
+        94481 Grafenau<br />
+        Deutschland
       </p>
     </div>
 
     <div class="legal-section">
-      <div class="legal-h">Zweck der Verarbeitung</div>
-      <p class="legal-p">Die Daten werden ausschließlich verarbeitet, um Ihre Anfrage zur Potenzialanalyse und ein mögliches Folgegespräch zu bearbeiten.</p>
-    </div>
-
-    <div class="legal-section">
-      <div class="legal-h">Welche Daten verarbeitet werden</div>
-      <p class="legal-p">Erst nach aktivem Klick auf „Gespräch anfragen" werden folgende Daten übertragen:</p>
-      <ul class="legal-list">
-        <li>Name</li>
-        <li>Rolle</li>
-        <li>E-Mail-Adresse</li>
-        <li>Ergebnisse Ihrer Potenzialanalyse</li>
-      </ul>
-    </div>
-
-    <div class="legal-section">
-      <div class="legal-h">Keine dauerhafte Speicherung</div>
-      <p class="legal-p">Die Analyse selbst wird nicht dauerhaft auf dieser Webseite gespeichert. Sie läuft ausschließlich im Browser des Nutzers.</p>
-    </div>
-
-    <div class="legal-section">
-      <div class="legal-h">Versanddienstleister</div>
-      <p class="legal-p">Die Übermittlung Ihrer Anfrage erfolgt über den Dienstleister Formspree. Formspree leitet die Anfrage als E-Mail an die hinterlegte Empfängeradresse weiter.</p>
-    </div>
-
-    <div class="legal-section">
-      <div class="legal-h">Rechtsgrundlage</div>
-      <p class="legal-p">Die Verarbeitung erfolgt auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO.</p>
-    </div>
-
-    <div class="legal-section">
-      <div class="legal-h">Widerruf</div>
-      <p class="legal-p">Die Einwilligung kann jederzeit ohne Angabe von Gründen widerrufen werden. Eine kurze Mitteilung per E-Mail an <a class="legal-mail" href="mailto:mariogott90@gmail.com">mariogott90@gmail.com</a> genügt.</p>
-    </div>
-
-    <div class="legal-section">
-      <div class="legal-h">Keine Weitergabe</div>
-      <p class="legal-p">Eine Weitergabe an unbeteiligte Dritte findet nicht statt. Die Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage und für die Kontaktaufnahme verwendet.</p>
-    </div>
-
-    <div class="legal-section">
-      <div class="legal-h">Cookies, Tracking, Analyse</div>
-      <p class="legal-p">Diese Webseite setzt keine Cookies, kein Tracking, keine Analyse-Tools und keine externen Skripte zur Profilbildung ein.</p>
-    </div>
-
-    <div class="legal-section">
-      <div class="legal-h">Ihre Rechte</div>
-      <p class="legal-p">Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung sowie auf Datenübertragbarkeit. Sie können der Verarbeitung jederzeit widersprechen und sich bei einer Datenschutz-Aufsichtsbehörde beschweren.</p>
+      <div class="legal-h">Kontakt</div>
+      <p class="legal-p">E-Mail: <a class="legal-mail" href="mailto:info@elearneffect.com">info@elearneffect.com</a></p>
     </div>
 
   </div>
@@ -3080,10 +3156,25 @@ function closePrivacy(){
   m.classList.remove("active");
   document.body.style.overflow = "";
 }
+function openImprint(){
+  const m = document.getElementById("imprintModal");
+  if(!m) return;
+  m.classList.add("active");
+  document.body.style.overflow = "hidden";
+  if(window.lucide) lucide.createIcons();
+}
+function closeImprint(){
+  const m = document.getElementById("imprintModal");
+  if(!m) return;
+  m.classList.remove("active");
+  document.body.style.overflow = "";
+}
 document.addEventListener("keydown", (e) => {
   if(e.key === "Escape"){
-    const m = document.getElementById("legalModal");
-    if(m && m.classList.contains("active")) closePrivacy();
+    const p = document.getElementById("legalModal");
+    if(p && p.classList.contains("active")) closePrivacy();
+    const i = document.getElementById("imprintModal");
+    if(i && i.classList.contains("active")) closeImprint();
   }
 });
 
