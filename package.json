@@ -1,0 +1,16 @@
+{
+  "name": "elearneffect-potenzialanalyse",
+  "version": "1.0.0",
+  "description": "eLearneffect Potenzialanalyse - A potential analysis tool",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "elearneffect",
+    "potenzialanalyse",
+    "analysis"
+  ],
+  "author": "",
+  "license": "ISC"
+}
