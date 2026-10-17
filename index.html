@@ -1230,6 +1230,31 @@ window.va = window.va || function () {
     width:36px;height:2px;background:#D4AF37;opacity:0.7;
     margin:14px 0 16px;border-radius:999px;
   }
+  /* Bereichs-Startseite (Cover) */
+  .cat-cover{
+    max-width:680px;margin:0 auto;min-height:48vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:36px 24px;
+  }
+  .cat-cover-icon{
+    width:62px;height:62px;border-radius:16px;
+    background:rgba(212,175,55,0.10);border:1px solid rgba(212,175,55,0.28);
+    display:flex;align-items:center;justify-content:center;color:#D4AF37;margin-bottom:22px;
+  }
+  .cat-cover-icon svg{width:30px;height:30px;stroke-width:1.5}
+  .cat-cover-eyebrow{
+    font-size:11px;letter-spacing:3px;color:#D4AF37;text-transform:uppercase;
+    font-weight:600;margin-bottom:14px;
+  }
+  .cat-cover-title{
+    font-size:clamp(28px,3.6vw,42px);font-weight:700;line-height:1.12;
+    color:#F5F1E8;letter-spacing:-0.02em;margin:0 0 14px;
+  }
+  .cat-cover-aim{
+    font-size:clamp(15px,1.7vw,18px);font-style:italic;color:#C9C3B5;
+    line-height:1.5;max-width:560px;margin:0 0 34px;
+  }
+  .cover-nav{max-width:560px;width:100%}
   .q-num{
     font-size:11px;letter-spacing:2px;color:#9FA7B8;
     text-transform:uppercase;margin-bottom:8px;font-weight:600;
@@ -1306,7 +1331,8 @@ window.va = window.va || function () {
   /* =========================================================
      Fragen-Seiten: Kopfzeile + Fortschritt (Steps 1–5)
      ========================================================= */
-  .q-page-wrapper{position:relative}
+  /* Frage-/Cover-Seiten etwas kompakter (entspricht ~90 % Zoom) */
+  .q-page-wrapper{position:relative;zoom:0.9}
   /* Kompakte Kopfzeile */
   .q-compact-header{
     display:flex;justify-content:space-between;align-items:center;
@@ -2547,20 +2573,47 @@ let lastResults = null;
 function renderSingleQuestion(stepNum){
   const catIdx = stepNum - 1;
   const cat = CATEGORIES[catIdx];
+  const step = document.getElementById(`step-${stepNum}`);
+  const totalQuestions = CATEGORIES.length * 3;
+
+  // ---- Bereichs-Startseite (Cover): currentQuestionIdx < 0 ----
+  if(currentQuestionIdx < 0){
+    const donePct = Math.round((catIdx * 3 / totalQuestions) * 100);
+    step.innerHTML = `
+    <div class="q-page-wrapper">
+      <div class="q-compact-header">
+        <span class="q-brand-label">Potenzialanalyse</span>
+        <span class="q-step-label">Bereich ${stepNum}&thinsp;/&thinsp;${CATEGORIES.length}</span>
+      </div>
+      <div class="q-prog-bar-wrap">
+        <div class="q-prog-fill" style="width:${donePct}%"></div>
+      </div>
+
+      <div class="cat-cover">
+        <div class="cat-cover-icon"><i data-lucide="${cat.icon}"></i></div>
+        <div class="cat-cover-eyebrow">Bereich ${stepNum} von ${CATEGORIES.length}</div>
+        <h2 class="cat-cover-title">${cat.title}</h2>
+        <p class="cat-cover-aim">${cat.aim}</p>
+        <div class="q-nav cover-nav">
+          <button class="btn-back" onclick="coverBack(${stepNum})">
+            <i data-lucide="arrow-left"></i> Zurück
+          </button>
+          <button class="btn-next" onclick="startCategory(${stepNum})">
+            ${stepNum === 1 ? 'Analyse starten' : 'Weiter'} <i data-lucide="arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>`;
+    if(window.lucide) lucide.createIcons();
+    return;
+  }
+
+  // ---- Frageseite ----
   const qIdx = currentQuestionIdx;
   const q = cat.questions[qIdx];
   const qNumOverall = catIdx * 3 + qIdx + 1;
   const isLast = (catIdx === CATEGORIES.length - 1 && qIdx === cat.questions.length - 1);
-
-  // Fortschritt berechnen
-  const totalQuestions = CATEGORIES.length * 3;
   const pct = Math.round((qNumOverall / totalQuestions) * 100);
-  const rem = totalQuestions - qNumOverall;
-  const motivText = rem > 0
-    ? `✦  Noch ${rem} ${rem === 1 ? 'Schritt' : 'Schritte'} bis zu Ihrer persönlichen Auswertung.`
-    : `✦  Letzte Frage. Gleich erhalten Sie Ihre Auswertung.`;
-
-  const step = document.getElementById(`step-${stepNum}`);
   step.innerHTML = `
     <div class="q-page-wrapper">
 
@@ -2575,15 +2628,7 @@ function renderSingleQuestion(stepNum){
 
       <!-- Fragen-Karte -->
       <div class="q-card">
-        <div class="cat-label">Kategorie ${stepNum} von ${CATEGORIES.length}</div>
-        <div class="cat-head-new">
-          <div class="cat-icon-new"><i data-lucide="${cat.icon}"></i></div>
-          <div>
-            <div class="cat-title-new">${cat.title}</div>
-            <div class="cat-aim-new">${cat.aim}</div>
-          </div>
-        </div>
-        <div class="cat-divider"></div>
+        <div class="cat-label">Kategorie ${stepNum} von ${CATEGORIES.length} · Frage ${qIdx + 1} von ${cat.questions.length}</div>
 
         <div class="q-text">${q.text}</div>
 
@@ -2632,7 +2677,8 @@ function ctaStartBottom(){
 
 function goTo(step, qIdx){
   if(step >= 1 && step <= 4){
-    currentQuestionIdx = (qIdx !== undefined) ? qIdx : 0;
+    // qIdx === -1 (bzw. undefined) => Bereichs-Startseite (Cover)
+    currentQuestionIdx = (qIdx !== undefined) ? qIdx : -1;
   }
   document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
   document.getElementById(`step-${step}`).classList.add("active");
@@ -2668,6 +2714,21 @@ function goNextQuestion(catId, stepNum, qIdx){
   }
 }
 
+// Von der Bereichs-Startseite (Cover) zur ersten Frage
+function startCategory(stepNum){
+  currentQuestionIdx = 0;
+  renderSingleQuestion(stepNum);
+  updateProgress();
+  window.scrollTo({top:0, behavior:"smooth"});
+  if(window.lucide) lucide.createIcons();
+}
+
+// „Zurück" auf der Bereichs-Startseite: vorheriger Bereich (letzte Frage) bzw. Intro
+function coverBack(stepNum){
+  if(stepNum > 1){ goTo(stepNum - 1, 2); }
+  else { goTo(0); }
+}
+
 function goPrevQuestion(stepNum){
   if(currentQuestionIdx > 0){
     currentQuestionIdx--;
@@ -2675,8 +2736,10 @@ function goPrevQuestion(stepNum){
     updateProgress();
     window.scrollTo({top:0, behavior:"smooth"});
   } else {
-    if(stepNum > 1){ goTo(stepNum - 1, 2); }
-    else { goTo(0); }
+    // zurück zur Bereichs-Startseite (Cover)
+    currentQuestionIdx = -1;
+    renderSingleQuestion(stepNum);
+    window.scrollTo({top:0, behavior:"smooth"});
   }
 }
 
