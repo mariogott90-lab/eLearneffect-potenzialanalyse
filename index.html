@@ -971,10 +971,10 @@ window.va = window.va || function () {
     max-width:560px;
     margin:18px auto 0;
   }
-  /* Lead-Form (Step 7) — etwas kompakter */
-  #step-7 .card{padding:var(--ele-s-6) var(--ele-s-6) var(--ele-s-6)}
+  /* Lead-Form (Step 6) — etwas kompakter */
+  #step-6 .card{padding:var(--ele-s-6) var(--ele-s-6) var(--ele-s-6)}
   @media(max-width:768px){
-    #step-7 .card{padding:var(--ele-s-5) var(--ele-s-4)}
+    #step-6 .card{padding:var(--ele-s-5) var(--ele-s-4)}
   }
   @media(max-width:768px){
     .cta-final{padding:34px 18px}
@@ -2000,7 +2000,7 @@ window.va = window.va || function () {
   <!-- ============= PROGRESS ============= -->
   <div class="progress-wrap" id="progressWrap" style="display:none">
     <div class="progress-meta">
-      <span id="progressLabel">Schritt 1 von 5</span>
+      <span id="progressLabel">Schritt 1 von 4</span>
       <span id="progressPct">0 %</span>
     </div>
     <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
@@ -2039,7 +2039,7 @@ window.va = window.va || function () {
         <div class="hero-trust-item">
           <div class="hero-trust-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg></div>
           <div>
-            <div class="hero-trust-lbl">Reifegrad<br>in 5 Bereichen</div>
+            <div class="hero-trust-lbl">Reifegrad<br>in 4 Bereichen</div>
             <div class="hero-trust-sub">Messbar statt Bauchgefühl</div>
           </div>
         </div>
@@ -2076,7 +2076,7 @@ window.va = window.va || function () {
           <picture>
             <source srcset="auswertung-vorschau.webp" type="image/webp" />
             <img src="auswertung-vorschau.jpg" width="1289" height="1237"
-                 alt="Beispielauswertung der Potenzialanalyse: Reifegrad in fünf Kategorien mit farbigen Balken"
+                 alt="Beispielauswertung der Potenzialanalyse: Reifegrad in vier Kategorien mit farbigen Balken"
                  loading="lazy" decoding="async" />
           </picture>
         </div>
@@ -2095,18 +2095,17 @@ window.va = window.va || function () {
   </div>
   </div>
 
-  <!-- ============= STEPS 1–5: CATEGORIES (rendered by JS) ============= -->
+  <!-- ============= STEPS 1–4: CATEGORIES (rendered by JS) ============= -->
   <div class="step" id="step-1"></div>
   <div class="step" id="step-2"></div>
   <div class="step" id="step-3"></div>
   <div class="step" id="step-4"></div>
+
+  <!-- ============= STEP 5: RESULT ============= -->
   <div class="step" id="step-5"></div>
 
-  <!-- ============= STEP 6: RESULT ============= -->
-  <div class="step" id="step-6"></div>
-
-  <!-- ============= STEP 7: LEAD FORM (Stammdaten) ============= -->
-  <div class="step" id="step-7">
+  <!-- ============= STEP 6: LEAD FORM (Stammdaten) ============= -->
+  <div class="step" id="step-6">
     <div class="card">
       <h1>Gespräch anfragen</h1>
       <p class="lead">Hinterlassen Sie kurz Ihre Kontaktdaten. Wir melden uns innerhalb von 48 Stunden mit einem konkreten Vorschlag für die nächsten Schritte.</p>
@@ -2161,8 +2160,8 @@ window.va = window.va || function () {
     </div>
   </div>
 
-  <!-- ============= STEP 8: SUCCESS ============= -->
-  <div class="step" id="step-8">
+  <!-- ============= STEP 7: SUCCESS ============= -->
+  <div class="step" id="step-7">
     <div class="card">
       <div class="success-wrap">
         <div class="success-icon"><i data-lucide="check"></i></div>
@@ -2343,206 +2342,165 @@ const SCALE_TEXT = [
 
 const CATEGORIES = [
   {
-    id:"C1", icon:"target", weight:0.20,
+    id:"C1", icon:"target", weight:0.25,
     title:"Zielklarheit & Fokus",
-    aim:"Wird an den richtigen Dingen gearbeitet?",
-    leverShort:"klare KPI-Definition und konsequente Zielkaskadierung",
+    aim:"Ist definiert, welches Ergebnis zählt, wodurch es beeinflusst wird und worauf sich der Bereich im Alltag fokussieren muss?",
+    leverShort:"klare Ergebnis-KPI und konsequente Fokusregeln",
     questions:[
       {
         id:"Q1",
-        text:"Sind die wichtigsten KPIs (z.B. OTD, Produktivität, Qualität usw.) klar definiert und mit Zielwerten hinterlegt?",
+        text:"Ist für den Bereich eine primäre Ergebnis-KPI eindeutig definiert und in konkretes tägliches Verhalten übersetzt?",
         anchors:[
-          "Keine systematischen KPIs erfasst.",
-          "Einzelne Kennzahlen vorhanden, ohne klare Zielwerte.",
-          "KPIs definiert, Zielwerte teilweise hinterlegt.",
-          "Alle Kern-KPIs mit Zielwerten, regelmäßig nachgehalten.",
-          "Integriertes KPI-System mit kaskadierten Zielwerten und kontinuierlicher Justierung."
+          "Keine primäre Ergebnis-KPI eindeutig definiert.",
+          "Eine primäre Ergebnis-KPI ist benannt, aber noch nicht eindeutig operationalisiert.",
+          "Die Ergebnis-KPI ist eindeutig definiert, aber noch nicht konsequent in tägliches Verhalten übersetzt.",
+          "Die Ergebnis-KPI ist eindeutig definiert und in konkretes tägliches Führungs- und Teamverhalten übersetzt.",
+          "Das abgeleitete tägliche Verhalten ist im Team verstanden und wird im Arbeitsalltag konsequent gelebt."
         ]
       },
       {
         id:"Q2",
-        text:"Sind die Ziele bis auf Team-/Schichtebene heruntergebrochen und im Alltag präsent?",
+        text:"Sind die wichtigsten Frühindikatoren und steuerbaren Hebel der Ergebnis-KPI klar identifiziert?",
         anchors:[
-          "Ziele sind nicht heruntergebrochen.",
-          "Vereinzelt auf Bereichsebene, nicht durchgängig.",
-          "Auf Teamebene definiert, im Alltag aber selten präsent.",
-          "Bis Schichtebene heruntergebrochen, sichtbar (z. B. Visual Management).",
-          "Tägliche Präsenz. Jeder Mitarbeiter kennt seine Ziele jederzeit."
+          "Relevante Frühindikatoren und steuerbare Hebel sind nicht klar identifiziert.",
+          "Einzelne mögliche Frühindikatoren oder Hebel sind bekannt, beruhen aber überwiegend auf Annahmen oder Erfahrung.",
+          "Relevante Frühindikatoren und steuerbare Hebel sind benannt, aber ihre Wirkung ist noch nicht systematisch überprüft.",
+          "Die wichtigsten Frühindikatoren und steuerbaren Hebel sind klar identifiziert und nachvollziehbar mit der Ergebnis-KPI verknüpft.",
+          "Die angenommenen Wirkzusammenhänge werden im realen Prozess regelmäßig überprüft und bei neuen Erkenntnissen angepasst."
         ]
       },
       {
         id:"Q3",
-        text:"Sind aktuell die 2 bis 3 wichtigsten Hebel zur Ergebnisverbesserung klar definiert und priorisiert?",
+        text:"Gibt es klare Regeln dafür, was bei neuen oder konkurrierenden Aufgaben priorisiert, verschoben oder bewusst gestoppt wird?",
         anchors:[
-          "Keine Priorisierung wesentlicher Hebel.",
-          "Diskussion vorhanden, ohne klare Festlegung.",
-          "Hebel benannt, Priorisierung uneinheitlich.",
-          "2 bis 3 Top-Hebel klar priorisiert und kommuniziert.",
-          "Top-Hebel mit Maßnahmen-Roadmap, Verantwortlichen und Zeitplan."
+          "Neue Aufgaben werden überwiegend zusätzlich aufgenommen; eine bewusste Priorisierung findet kaum statt.",
+          "Aufgaben werden situativ priorisiert – häufig nach Dringlichkeit oder aktuellem Druck.",
+          "Erste Priorisierungskriterien bestehen, werden im Tagesgeschäft aber nicht konsequent angewendet.",
+          "Klare Fokusregeln bestimmen, welche Aufgaben priorisiert, verschoben oder bewusst gestoppt werden.",
+          "Die Fokusregeln werden konsequent angewendet; notwendige Umpriorisierungen erfolgen bewusst und anhand ihrer wirtschaftlichen Wirkung."
         ]
       }
     ]
   },
   {
     id:"C2", icon:"sliders-horizontal", weight:0.25,
-    title:"Steuerung & Verantwortlichkeit",
-    aim:"Wird aktiv gesteuert und ist klar, wer handeln muss?",
-    leverShort:"konsequentere KPI-Führung und klarere Ownership-Strukturen",
+    title:"Tägliche Steuerung & Reaktionslogik",
+    aim:"Werden Abweichungen früh sichtbar und zuverlässig in Handlung übersetzt?",
+    leverShort:"fester Steuerungsrhythmus und klare Reaktionsverantwortung",
     questions:[
       {
         id:"Q4",
-        text:"Gibt es regelmäßige Soll-Ist-Vergleiche, die Abweichungen sofort sichtbar machen?",
+        text:"Werden relevante KPI und Frühindikatoren in einem festen Rhythmus so aktuell verglichen, dass Abweichungen rechtzeitig erkannt werden?",
         anchors:[
-          "Keine systematischen Vergleiche.",
-          "Sporadisch, manuell, mit großer Verzögerung.",
-          "Regelmäßig, aber nicht zeitnah genug zur Reaktion.",
-          "Tagesaktuell oder am Schichtende. Abweichungen sind sofort sichtbar.",
-          "Fester Steuerungsrhythmus im Team verankert, Abweichungen werden noch am selben Tag gesteuert."
+          "Es finden keine systematischen Soll-Ist-Vergleiche statt.",
+          "Soll-Ist-Vergleiche erfolgen unregelmäßig oder erst mit deutlicher Verzögerung.",
+          "Soll-Ist-Vergleiche erfolgen regelmäßig, aber häufig zu spät für eine rechtzeitige Reaktion.",
+          "KPI und Frühindikatoren werden in einem festen tages- oder schichtbezogenen Rhythmus verglichen; Abweichungen werden zeitnah sichtbar.",
+          "Der Steuerungsrhythmus macht Risiken und Abweichungen so früh sichtbar, dass noch rechtzeitig im operativen Ablauf gegengesteuert werden kann."
         ]
       },
       {
         id:"Q5",
-        text:"Ist eindeutig geregelt, wer bei KPI-Abweichungen handeln MUSS?",
+        text:"Ist bei einer relevanten KPI-Abweichung eindeutig geregelt, wer die Verantwortung für die Reaktion übernimmt?",
         anchors:[
-          "Niemand fühlt sich zuständig.",
-          "Implizit, situativ und stark personenabhängig.",
-          "Grundsätzlich geregelt, Lücken bestehen.",
-          "Klare Eskalationsmatrix, allen Beteiligten bekannt.",
-          "Routiniert gelebt, automatische Trigger und klare Übernahme."
+          "Niemand fühlt sich eindeutig verantwortlich.",
+          "Die Verantwortung entsteht situativ und ist stark personenabhängig.",
+          "Verantwortlichkeiten sind grundsätzlich bekannt, es bestehen aber regelmäßig Lücken oder Überschneidungen.",
+          "Für relevante KPI-Abweichungen ist eindeutig geregelt, wer die Verantwortung für die Reaktion übernimmt.",
+          "Die vereinbarte Verantwortung wird im Alltag selbstverständlich und ohne zusätzliches Nachfassen übernommen."
         ]
       },
       {
         id:"Q6",
-        text:"Gibt es klare Regeln, was bei Abweichungen konkret passieren muss?",
+        text:"Wird nach vereinbarten Reaktionen konsequent nachgehalten, bis ihre Wirkung überprüft wurde?",
         anchors:[
-          "Keine festen Regeln, Reaktion ist Zufall.",
-          "Reaktion situativ, nicht standardisiert.",
-          "Standardprozess vorhanden, nicht immer angewendet.",
-          "Standardisierter Reaktionsprozess, dokumentiert und gelebt.",
-          "Closed-Loop mit PDCA. Die Wirksamkeit wird systematisch überprüft."
+          "Vereinbarte Reaktionen werden häufig nicht systematisch nachverfolgt.",
+          "Nachverfolgung erfolgt unregelmäßig und stark personenabhängig.",
+          "Die Umsetzung wird meist geprüft, die tatsächliche Wirkung jedoch nicht konsequent.",
+          "Die Wirkung wird zu einem definierten Zeitpunkt systematisch überprüft.",
+          "Die Wirksamkeitsprüfung ist fester Bestandteil der Steuerung; eine Reaktion gilt erst nach überprüfter Wirkung als abgeschlossen."
         ]
       }
     ]
   },
   {
-    id:"C3", icon:"users-round", weight:0.20,
-    title:"Leistungsfähigkeit im Team",
-    aim:"Kann das Team die geforderte Leistung überhaupt erbringen?",
-    leverShort:"passgenaue Personalentwicklung und klare Leistungserwartungen",
+    id:"C3", icon:"puzzle", weight:0.25,
+    title:"Problemlösung & Umsetzungskraft",
+    aim:"Werden Abweichungen und wiederkehrende Probleme an der Ursache gelöst und Maßnahmen wirksam umgesetzt?",
+    leverShort:"systematische Ursachenanalyse und wirksame Umsetzung",
     questions:[
       {
         id:"Q7",
-        text:"Sind die richtigen Personen auf den richtigen Positionen eingesetzt?",
+        text:"Wird bei wiederkehrenden Problemen strukturiert eine Ursachenanalyse durchgeführt?",
         anchors:[
-          "Besetzung historisch gewachsen, keine Eignungsprüfung.",
-          "Punktuell hinterfragt, keine systematische Bewertung.",
-          "Strukturierte Bewertung vorhanden, Anpassungen verzögert.",
-          "Kompetenzprofile vorhanden, regelmäßiger Soll-Ist-Abgleich.",
-          "Rollen und Fähigkeiten werden aktiv gesteuert. Besetzung folgt den Zielen, Entwicklung läuft, bevor Lücken entstehen."
+          "Wiederkehrende Probleme werden überwiegend kurzfristig behoben oder kompensiert; Ursachen werden nicht systematisch untersucht.",
+          "Ursachenanalysen erfolgen nur gelegentlich oder hauptsächlich bei größeren Problemen.",
+          "Ursachen werden untersucht, das Vorgehen ist jedoch nicht einheitlich oder konsequent.",
+          "Wiederkehrende Probleme werden strukturiert analysiert, bevor nachhaltige Maßnahmen festgelegt werden.",
+          "Ursachenanalysen sind fester Bestandteil der Problemlösung; vermutete Ursachen werden anhand von Fakten überprüft und auch mögliche Systemursachen berücksichtigt."
         ]
       },
       {
         id:"Q8",
-        text:"Was passiert, wenn eine Schlüsselperson vier Wochen ausfällt?",
+        text:"Werden vereinbarte Maßnahmen verbindlich umgesetzt?",
         anchors:[
-          "Der Bereich hat ein ernstes Problem, vieles hängt an einzelnen Personen.",
-          "Es läuft irgendwie weiter, aber mit deutlichen Leistungseinbußen.",
-          "Für einzelne Schlüsselrollen gibt es Vertretungen, viele Lücken bleiben.",
-          "Kritische Rollen sind identifiziert, Wissen ist weitgehend abgesichert.",
-          "Wissen und Aufgaben sind so verteilt, dass der Bereich stabil weiterläuft."
+          "Vereinbarte Maßnahmen werden häufig nicht umgesetzt.",
+          "Maßnahmen werden überwiegend erst nach wiederholtem Nachfassen umgesetzt.",
+          "Die meisten Maßnahmen werden umgesetzt, jedoch regelmäßig verspätet oder nicht vollständig.",
+          "Vereinbarte Maßnahmen werden zuverlässig und innerhalb der zugesagten Termine umgesetzt.",
+          "Maßnahmen werden eigenverantwortlich umgesetzt; auftretende Hindernisse werden früh adressiert, ohne dass dauerhaftes Nachfassen erforderlich ist."
         ]
       },
       {
         id:"Q9",
-        text:"Werden Mitarbeiter gezielt entwickelt und befähigt, ihre Leistung zu erbringen?",
+        text:"Wird nach der Umsetzung systematisch geprüft, ob die Maßnahme die gewünschte Wirkung erzielt?",
         anchors:[
-          "Keine systematische Entwicklung.",
-          "Bei Bedarf, ad-hoc und reaktiv.",
-          "Schulungsplan vorhanden, Umsetzung lückenhaft.",
-          "Strukturierte Entwicklungspläne, regelmäßig gepflegt.",
-          "Lernkultur als Kernelement. Kontinuierliche Befähigung ist systematisch verankert."
+          "Mit Abschluss der Maßnahme gilt das Thema als erledigt; die Wirkung wird nicht geprüft.",
+          "Die Wirkung wird überwiegend informell oder erst bei erneut auftretenden Problemen beurteilt.",
+          "Eine Wirksamkeitsprüfung erfolgt teilweise, aber nicht systematisch.",
+          "Erwartete Wirkung und Prüfzeitpunkt sind definiert und werden systematisch überprüft.",
+          "Die Wirksamkeitsprüfung ist fester Bestandteil der Problemlösung und bildet die Grundlage für die Entscheidung, ob die Lösung beibehalten, angepasst oder verworfen wird."
         ]
       }
     ]
   },
   {
-    id:"C4", icon:"puzzle", weight:0.20,
-    title:"Problemlösung & Konsequenz",
-    aim:"Werden Probleme nachhaltig gelöst und Leistung eingefordert?",
-    leverShort:"systematische Ursachenanalyse und konsequentes Handeln",
+    id:"C4", icon:"users-round", weight:0.25,
+    title:"Teamarchitektur & Leistungsfähigkeit",
+    aim:"Sind Rollen, Fähigkeiten und Routinen auf die Zielerreichung ausgerichtet und ist das Team leistungsfähig?",
+    leverShort:"zielgerichtete Rollen, Fähigkeiten und Leistungsklärung",
     questions:[
       {
         id:"Q10",
-        text:"Wird systematisch nach Ursachen gesucht (z. B. 5 Why / PDCA)?",
+        text:"Kann für jede Rolle im Team klar beantwortet werden, welchen Beitrag sie zu den aktuellen Bereichszielen leistet?",
         anchors:[
-          "Symptombekämpfung. Ursachen werden nicht gesucht.",
-          "Ursachensuche nur bei großen Problemen.",
-          "Methoden bekannt, nicht durchgängig angewendet.",
-          "5 Why / PDCA / A3 standardmäßig genutzt.",
-          "Kultur der Root-Cause-Analyse in allen Bereichen."
+          "Der konkrete Zielbeitrag der Rollen ist nicht klar.",
+          "Bei einzelnen Rollen ist ein Zielbeitrag erkennbar, aber nicht systematisch geklärt.",
+          "Für die meisten Rollen ist grundsätzlich bekannt, welchen Beitrag sie zu den Bereichszielen leisten sollen.",
+          "Für jede Rolle ist klar definiert, welchen Beitrag sie zu den aktuellen Bereichszielen leisten soll.",
+          "Die Rollenstruktur wird regelmäßig gegen die aktuellen Bereichsziele geprüft und Rollen oder prioritäre Aufgaben werden bei Bedarf angepasst."
         ]
       },
       {
         id:"Q11",
-        text:"Wie systematisch werden Probleme im Arbeitsalltag gelöst?",
+        text:"Werden die für die Zielerreichung erforderlichen Fähigkeiten und Kompetenzen systematisch mit dem aktuellen Stand im Team abgeglichen?",
         anchors:[
-          "Probleme werden meist nur kurzfristig behoben.",
-          "Ursachen werden teilweise untersucht.",
-          "Ursachen werden strukturiert analysiert und Maßnahmen umgesetzt.",
-          "Maßnahmen werden konsequent nachverfolgt und auf Wirksamkeit geprüft.",
-          "Wirksame Lösungen werden standardisiert und auf andere Bereiche übertragen."
+          "Die für die Zielerreichung erforderlichen Fähigkeiten und Kompetenzen sind nicht systematisch definiert.",
+          "Fähigkeitslücken werden überwiegend erst sichtbar, wenn operative Probleme auftreten.",
+          "Für wichtige Rollen bestehen erste Soll-Anforderungen und Einschätzungen zum aktuellen Stand.",
+          "Erforderliche und vorhandene Fähigkeiten werden systematisch in einem Soll-Ist-Vergleich gegenübergestellt.",
+          "Der Soll-Ist-Abgleich wird regelmäßig und mit Blick auf zukünftige Anforderungen aktualisiert; erkannte Lücken werden gezielt geschlossen."
         ]
       },
       {
         id:"Q12",
-        text:"Wird bei Abweichungen und Leistungsproblemen konsequent gehandelt?",
+        text:"Wird bei Leistungsabweichungen systematisch geklärt, was die Zielerreichung der betroffenen Person konkret behindert?",
         anchors:[
-          "Konflikt-/Konsequenzvermeidung dominiert.",
-          "Inkonsistent, abhängig von Person und Situation.",
-          "Grundsätzlich, aber zu spät und mit Lücken.",
-          "Klar, zeitnah und fair umgesetzt.",
-          "Kultur der Klarheit mit frühzeitigem und konsequentem Handeln ohne Eskalation."
-        ]
-      }
-    ]
-  },
-  {
-    id:"C5", icon:"search", weight:0.15,
-    title:"Kultur der Realität",
-    aim:"Werden Probleme sichtbar gemacht und ehrlich adressiert?",
-    leverShort:"verlässliche Datenbasis und offene Problemkultur",
-    questions:[
-      {
-        id:"Q13",
-        text:"Gibt es verlässliche und aktuelle Zahlen als Grundlage für Entscheidungen?",
-        anchors:[
-          "Zahlen veraltet oder unzuverlässig.",
-          "Manuelle Datenpflege, hohe Zeitverzögerung.",
-          "Grundsätzlich verlässlich, Aktualität schwankt.",
-          "Tagesaktuell und qualitätsgesichert.",
-          "Zahlen sind tagesaktuell, ehrlich und werden im Alltag zur Steuerung genutzt, ohne Schönung."
-        ]
-      },
-      {
-        id:"Q14",
-        text:"Werden Probleme frühzeitig sichtbar gemacht, bevor sie eskalieren?",
-        anchors:[
-          "Probleme werden erst bei Eskalation bekannt.",
-          "Hinweise existieren, werden ignoriert.",
-          "Frühindikatoren vorhanden, Reaktion verzögert.",
-          "Frühindikatoren sind definiert, das Team meldet Risiken von sich aus.",
-          "Probleme werden angesprochen, bevor sie in den Zahlen sichtbar sind, als gelebte Kultur."
-        ]
-      },
-      {
-        id:"Q15",
-        text:"Werden auch unangenehme Themen offen angesprochen (statt beschönigt)?",
-        anchors:[
-          "Unangenehme Themen werden vermieden oder beschönigt.",
-          "Selten thematisiert, nur in geschütztem Rahmen.",
-          "Gelegentlich offen, abhängig von Personen.",
-          "Offene Diskussionskultur, Themen werden dokumentiert adressiert.",
-          "Psychologische Sicherheit ist etabliert. Probleme gelten als Verbesserungschance."
+          "Leistungsabweichungen werden überwiegend kompensiert, hingenommen oder pauschal der Person zugeschrieben.",
+          "Mögliche Ursachen werden hauptsächlich aufgrund persönlicher Einschätzung vermutet.",
+          "Leistungsabweichungen werden angesprochen, aber ihre Ursachen nicht systematisch diagnostiziert.",
+          "Mögliche Hindernisse werden strukturiert mit der betroffenen Person analysiert und konkrete Ursachen identifiziert.",
+          "Leistungsbarrieren werden früh erkannt, gezielt bearbeitet und anschließend überprüft, ob sich die Leistungsfähigkeit tatsächlich verbessert hat."
         ]
       }
     ]
@@ -2552,29 +2510,24 @@ const CATEGORIES = [
 /* Eine Empfehlung pro Kategorie und Zone — fokussiert auf Hebelwirkung */
 const RECOMMENDATIONS = {
   C1:{
-    red:"Kern-KPI-Set definieren (OTD, Produktivität, Qualität, Kosten) und verbindlich auf Bereichs- und Schichtebene kaskadieren.",
-    yellow:"Zielwerte einheitlich nachhalten und im Visual Management auf Schichtebene sichtbar machen.",
-    green:"Reviewzyklus der Top-Hebel verschärfen (Hoshin-Kanri-Catchball) und Zielanpassung aktiv steuern."
+    red:"Eine primäre Ergebnis-KPI für den Bereich eindeutig definieren und die wichtigsten Frühindikatoren, steuerbaren Hebel und das erforderliche tägliche Verhalten daraus ableiten.",
+    yellow:"Die Verbindung zwischen Ergebnis-KPI, Hebeln und täglichem Verhalten schärfen und klare Fokusregeln für konkurrierende Aufgaben etablieren.",
+    green:"Wirkannahmen und Fokusregeln regelmäßig in der Praxis überprüfen und bei veränderten Bedingungen konsequent anpassen."
   },
   C2:{
-    red:"Tägliches Shopfloor-Management mit Soll-Ist-Vergleich einführen und klare Eskalationsmatrix verankern.",
-    yellow:"Reaktionsplan für KPI-Abweichungen verbindlich machen und Wirksamkeit im Closed-Loop überprüfen.",
-    green:"Festen Steuerungsrhythmus und Eigenverantwortung im Team weiter verankern, sodass Abweichungen ohne Eskalation direkt gesteuert werden."
+    red:"Einen festen täglichen Steuerungsrhythmus aufbauen, der relevante Abweichungen früh sichtbar macht und eindeutige Verantwortung für die Reaktion schafft.",
+    yellow:"Reaktions- und Nachverfolgungslogik verbindlich machen und sicherstellen, dass vereinbarte Reaktionen bis zur überprüften Wirkung verfolgt werden.",
+    green:"Den Steuerungsrhythmus weiter stabilisieren und Verantwortung so im Team verankern, dass Abweichungen zunehmend selbstständig erkannt, übernommen und gesteuert werden."
   },
   C3:{
-    red:"Skill-/Kompetenzmatrix pro Funktion aufbauen und Soll-Ist-Lücken systematisch schließen.",
-    yellow:"Strukturierte Entwicklungspläne mit Lernpfaden ausrollen und Feedback-Routinen verbindlich machen.",
-    green:"Lernkultur über Peer-Learning und interne Trainer skalieren und mit Personalplanung verzahnen."
+    red:"Wiederkehrende Probleme strukturiert an der Ursache analysieren und vereinbarte Maßnahmen mit klarer Verbindlichkeit umsetzen.",
+    yellow:"Maßnahmen konsequent bis zur tatsächlichen Wirkung nachverfolgen und unwirksame Lösungen gezielt anpassen.",
+    green:"Wirksame Problemlösungsroutinen weiter stabilisieren und sicherstellen, dass Erkenntnisse aus wiederkehrenden Problemen dauerhaft in den operativen Standard einfließen."
   },
   C4:{
-    red:"Standardmethodik (5 Why, A3, PDCA) einführen und Führungskräfte konsequent darauf trainieren.",
-    yellow:"Wirksamkeit von Maßnahmen systematisch nachhalten und Leistungsprobleme früher ansprechen.",
-    green:"Problemlösungskompetenz auf alle Mitarbeiterebenen ausweiten und Best Practices standortübergreifend übertragen."
-  },
-  C5:{
-    red:"Daten-Single-Source-of-Truth schaffen und Datenqualität als Pflichtaufgabe etablieren.",
-    yellow:"Frühwarnsignale systematisch in die Steuerungslogik einbauen und Tabuthemen aktiv adressieren.",
-    green:"Vorausschauende Steuerung über klare Frühindikatoren etablieren und offene Reflexionsroutinen auf allen Ebenen verankern."
+    red:"Rollen im Team gegen die aktuellen Bereichsziele prüfen und transparent machen, welchen konkreten Zielbeitrag jede Rolle leisten soll.",
+    yellow:"Erforderliche Fähigkeiten und Kompetenzen systematisch mit dem aktuellen Stand im Team abgleichen und relevante Lücken gezielt bearbeiten.",
+    green:"Rollen, Fähigkeiten und Leistungsbarrieren regelmäßig überprüfen und an veränderte Ziele und zukünftige Anforderungen anpassen."
   }
 };
 
@@ -2583,7 +2536,7 @@ const RECOMMENDATIONS = {
    ========================================================= */
 let currentStep = 0;
 let currentQuestionIdx = 0; // 0-2 innerhalb einer Kategorie
-const TOTAL_STEPS = 9; // 0=intro, 1-5=cats, 6=result, 7=lead, 8=success
+const TOTAL_STEPS = 8; // 0=intro, 1-4=cats, 5=result, 6=lead, 7=success
 const answers = {};
 const masterData = {};
 let lastResults = null;
@@ -2600,8 +2553,9 @@ function renderSingleQuestion(stepNum){
   const isLast = (catIdx === CATEGORIES.length - 1 && qIdx === cat.questions.length - 1);
 
   // Fortschritt berechnen
-  const pct = Math.round((qNumOverall / 15) * 100);
-  const rem = 15 - qNumOverall;
+  const totalQuestions = CATEGORIES.length * 3;
+  const pct = Math.round((qNumOverall / totalQuestions) * 100);
+  const rem = totalQuestions - qNumOverall;
   const motivText = rem > 0
     ? `✦  Noch ${rem} ${rem === 1 ? 'Schritt' : 'Schritte'} bis zu Ihrer persönlichen Auswertung.`
     : `✦  Letzte Frage. Gleich erhalten Sie Ihre Auswertung.`;
@@ -2621,7 +2575,7 @@ function renderSingleQuestion(stepNum){
 
       <!-- Fragen-Karte -->
       <div class="q-card">
-        <div class="cat-label">Kategorie ${stepNum} von 5</div>
+        <div class="cat-label">Kategorie ${stepNum} von ${CATEGORIES.length}</div>
         <div class="cat-head-new">
           <div class="cat-icon-new"><i data-lucide="${cat.icon}"></i></div>
           <div>
@@ -2677,20 +2631,20 @@ function ctaStartBottom(){
 }
 
 function goTo(step, qIdx){
-  if(step >= 1 && step <= 5){
+  if(step >= 1 && step <= 4){
     currentQuestionIdx = (qIdx !== undefined) ? qIdx : 0;
   }
   document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
   document.getElementById(`step-${step}`).classList.add("active");
   currentStep = step;
   updateProgress();
-  // brandBar nur bei Steps 7–8 (Lead-Formular, Erfolg) — Step 6 hat eigenen Topbar
-  document.getElementById("brandBar").style.display = step >= 7 ? "" : "none";
+  // brandBar nur bei Steps 6–7 (Lead-Formular, Erfolg) — Step 5 hat eigenen Topbar
+  document.getElementById("brandBar").style.display = step >= 6 ? "" : "none";
   // Container im Result-Mode breiter (Executive Dashboard)
-  document.querySelector(".container").classList.toggle("wide", step === 6);
+  document.querySelector(".container").classList.toggle("wide", step === 5);
   window.scrollTo({top:0, behavior:"smooth"});
-  if(step >= 1 && step <= 5) renderSingleQuestion(step);
-  if(step === 6) renderResult();
+  if(step >= 1 && step <= 4) renderSingleQuestion(step);
+  if(step === 5) renderResult();
   if(window.lucide) lucide.createIcons();
 }
 
@@ -2710,7 +2664,7 @@ function goNextQuestion(catId, stepNum, qIdx){
     window.scrollTo({top:0, behavior:"smooth"});
   } else {
     currentQuestionIdx = 0;
-    goTo(stepNum < 5 ? stepNum + 1 : 6);
+    goTo(stepNum < 4 ? stepNum + 1 : 5);
   }
 }
 
@@ -2775,7 +2729,7 @@ async function submitLead(){
     await sendAnalysis();
     leadSubmitted = true;
     if(btn){ btn.innerHTML = "Anfrage gesendet"; }
-    goTo(8);
+    goTo(7);
   } catch(e){
     console.error("Versand fehlgeschlagen:", e);
     if(btn){ btn.disabled = false; btn.innerHTML = 'Gespräch anfragen <i data-lucide="arrow-right"></i>'; }
@@ -2824,34 +2778,28 @@ function verdictDetail(zone){
 /* Operative Auswirkungen je Kategorie — nur noch für den Formspree-Mail-Body genutzt */
 const OPERATIVE_IMPACTS = {
   C1: [
-    { icon:"filter",        title:"Weniger Prioritätskonflikte",     desc:"Tägliche Entscheidungen orientieren sich klar an den wichtigsten Zielen." },
-    { icon:"bar-chart-3",   title:"Klarere KPI-Ausrichtung",          desc:"Teams arbeiten konsistent an den Kennzahlen mit der größten Wirkung." },
-    { icon:"compass",       title:"Weniger Aktionismus",              desc:"Kurzfristige Themen werden bewusster eingeordnet, Energie fließt ins Wesentliche." },
-    { icon:"list-checks",   title:"Übersetzung in den Alltag",        desc:"Strategische Ziele werden in konkretes Verhalten und Routinen überführt." }
+    { icon:"target",        title:"Klarerer Ergebnisfokus",           desc:"Führung und Team wissen, welches Ergebnis im Bereich aktuell wirklich zählt." },
+    { icon:"sliders-horizontal", title:"Gezieltere Steuerung der Hebel", desc:"Aufmerksamkeit richtet sich auf die Faktoren, die das Ergebnis tatsächlich beeinflussen." },
+    { icon:"filter",        title:"Weniger Prioritätskonflikte",      desc:"Neue Aufgaben werden bewusster priorisiert, verschoben oder gestoppt." },
+    { icon:"list-checks",   title:"Mehr Klarheit im Alltag",          desc:"Ziele werden in konkretes tägliches Führungs- und Teamverhalten übersetzt." }
   ],
   C2: [
-    { icon:"shield-check",  title:"Klarere Verantwortlichkeiten",     desc:"Abweichungen werden schneller eingeordnet und entschieden." },
-    { icon:"message-circle",title:"Weniger Abstimmungsaufwand",       desc:"Teams verbringen weniger Zeit in Rückfragen und Eskalationen." },
-    { icon:"check-circle",  title:"Schnellere Entscheidungen",        desc:"Kritische Themen werden früher priorisiert und gelöst." },
-    { icon:"bar-chart-3",   title:"Stabilere KPI-Steuerung",          desc:"Abweichungen lösen klarere Folgeaktionen aus." }
+    { icon:"eye",           title:"Frühere Abweichungserkennung",     desc:"Risiken und KPI-Abweichungen werden sichtbar, solange noch gegengesteuert werden kann." },
+    { icon:"shield-check",  title:"Klarere Verantwortlichkeit",       desc:"Bei einer Abweichung ist eindeutig, wer die Reaktion übernimmt." },
+    { icon:"message-circle",title:"Weniger Nachfassaufwand",          desc:"Vereinbarte Reaktionen werden verbindlicher übernommen und verfolgt." },
+    { icon:"bar-chart-3",   title:"Stabilere KPI-Steuerung",          desc:"Reaktionen werden nicht nur gestartet, sondern bis zur Wirkung überprüft." }
   ],
   C3: [
-    { icon:"user-check",    title:"Klarere Erwartungen",              desc:"Leistung und Verhalten sind transparent und werden konsistent eingeordnet." },
-    { icon:"trending-up",   title:"Gezieltere Entwicklung",           desc:"Lernpfade richten sich an den tatsächlichen operativen Anforderungen aus." },
-    { icon:"users",         title:"Weniger Schlüsselpersonen-Risiko", desc:"Wissen und Leistung verteilen sich breiter im Team." },
-    { icon:"zap",           title:"Höhere Umsetzungsfähigkeit",       desc:"Pläne werden zuverlässiger im Alltag in Ergebnisse überführt." }
+    { icon:"search-check",  title:"Weniger Symptombehandlung",        desc:"Wiederkehrende Probleme werden strukturiert an ihrer Ursache analysiert." },
+    { icon:"zap",           title:"Höhere Umsetzungskraft",           desc:"Vereinbarte Maßnahmen werden verbindlicher und zuverlässiger umgesetzt." },
+    { icon:"wrench",        title:"Weniger Wiederholungsprobleme",    desc:"Lösungen werden auf ihre tatsächliche Wirkung überprüft." },
+    { icon:"check-circle",  title:"Nachhaltigere Verbesserungen",     desc:"Wirksame Lösungen werden stabilisiert, statt dieselben Probleme immer wieder zu kompensieren." }
   ],
   C4: [
-    { icon:"search-check",  title:"Schnellere Ursachenklärung",       desc:"Ursachen werden methodisch ermittelt, statt an Symptomen zu arbeiten." },
-    { icon:"wrench",        title:"Weniger wiederkehrende Probleme",  desc:"Maßnahmen wirken nachhaltig, weil sie an der Ursache ansetzen." },
-    { icon:"arrow-up-right",title:"Bessere Eskalationslogik",         desc:"Themen kommen rechtzeitig an die richtige Stelle." },
-    { icon:"check-circle",  title:"Höhere Umsetzungskonsequenz",      desc:"Beschlossene Maßnahmen werden konsequent nachverfolgt und abgeschlossen." }
-  ],
-  C5: [
-    { icon:"eye",           title:"Probleme werden früher sichtbar",  desc:"Frühwarnsignale werden offen adressiert statt verdeckt." },
-    { icon:"alert-circle",  title:"Weniger verdeckte Eskalationen",   desc:"Themen werden direkt angesprochen statt umgangen." },
-    { icon:"message-circle",title:"Offenere Kommunikation",           desc:"Abweichungen werden faktenbasiert und ohne Schuldzuweisung diskutiert." },
-    { icon:"zap",           title:"Schnellere Reaktion",              desc:"Kritische Entwicklungen werden zügiger erkannt und priorisiert." }
+    { icon:"user-check",    title:"Klarerer Rollenbeitrag",           desc:"Für jede Rolle ist nachvollziehbar, wie sie zur Erreichung der Bereichsziele beiträgt." },
+    { icon:"trending-up",   title:"Gezielterer Kompetenzaufbau",      desc:"Fähigkeitslücken werden anhand realer operativer Anforderungen statt pauschaler Entwicklungswünsche bearbeitet." },
+    { icon:"users",         title:"Höhere Leistungsfähigkeit",        desc:"Hindernisse und Ursachen von Leistungsabweichungen werden systematischer erkannt und bearbeitet." },
+    { icon:"puzzle",        title:"Anpassungsfähigere Teamstruktur",  desc:"Rollen und Fähigkeiten werden bei veränderten Zielen bewusst weiterentwickelt statt historisch fortgeführt." }
   ]
 };
 
@@ -2921,7 +2869,7 @@ function renderResult(){
     high: 'Stabiler Wirkungsgrad'
   })[totalScoreTone];
 
-  const step = document.getElementById("step-6");
+  const step = document.getElementById("step-5");
   step.innerHTML = `
     <!-- ============= EXECUTIVE DASHBOARD HERO ============= -->
     <div class="results-hero">
@@ -3023,7 +2971,7 @@ function renderResult(){
       <div class="card cta-final">
         <h1 class="cta-headline">Die Analyse zeigt den Hebel.<br>Die Wirkung entsteht in der Umsetzung.</h1>
         <p class="cta-subtext">Wir zeigen Ihnen konkret, welche Veränderungen jetzt die größte Wirkung erzeugen, wie Sie sie operativ einführen und worauf es in der täglichen Umsetzung wirklich ankommt, damit aus Maßnahmen messbare Ergebnisse entstehen.</p>
-        <button class="cta-final-btn" onclick="goTo(7)">Hebel konkret besprechen <i data-lucide="arrow-right"></i></button>
+        <button class="cta-final-btn" onclick="goTo(6)">Hebel konkret besprechen <i data-lucide="arrow-right"></i></button>
       </div>
 
     </div>
