@@ -2599,7 +2599,7 @@ function renderSingleQuestion(stepNum){
             <i data-lucide="arrow-left"></i> Zurück
           </button>
           <button class="btn-next" onclick="startCategory(${stepNum})">
-            ${stepNum === 1 ? 'Analyse starten' : 'Weiter'} <i data-lucide="arrow-right"></i>
+            Weiter <i data-lucide="arrow-right"></i>
           </button>
         </div>
       </div>
@@ -2628,7 +2628,7 @@ function renderSingleQuestion(stepNum){
 
       <!-- Fragen-Karte -->
       <div class="q-card">
-        <div class="cat-label">Kategorie ${stepNum} von ${CATEGORIES.length} · Frage ${qIdx + 1} von ${cat.questions.length}</div>
+        <div class="cat-label">Kategorie ${stepNum} von ${CATEGORIES.length}</div>
 
         <div class="q-text">${q.text}</div>
 
