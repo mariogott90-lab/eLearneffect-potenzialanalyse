@@ -121,6 +121,8 @@ window.va = window.va || function () {
   body{
     position:relative;
     min-height:100vh;min-height:100svh;
+    /* Spalte: Inhalt wächst, Footer (Datenschutz · Impressum) sitzt immer am unteren Bildschirmrand */
+    display:flex;flex-direction:column;
     overflow-x:clip;
     font-family:"Inter",system-ui,-apple-system,sans-serif;
     font-weight:500;
@@ -135,7 +137,7 @@ window.va = window.va || function () {
     padding:
       max(48px,calc(env(safe-area-inset-top) + 28px))
       max(24px,env(safe-area-inset-right))
-      max(32px,env(safe-area-inset-bottom))
+      max(12px,env(safe-area-inset-bottom))
       max(24px,env(safe-area-inset-left));
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale;
@@ -143,7 +145,7 @@ window.va = window.va || function () {
   }
   button,input,select,textarea{font:inherit;color:inherit}
   button{-webkit-tap-highlight-color:transparent}
-  .container{position:relative;max-width:880px;margin:0 auto}
+  .container{position:relative;width:100%;max-width:880px;margin:0 auto;flex:1 0 auto}
 
   /* =========================================================
      Seidenhintergrund (assets/silk.js) – nur oben, läuft nach unten aus
@@ -807,7 +809,8 @@ window.va = window.va || function () {
   .page-footer{
     position:relative;
     display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;
-    margin-top:72px;padding:16px 0 4px;
+    flex-shrink:0;
+    margin-top:72px;padding:16px 0 0;
   }
   .footer-link{
     display:inline-flex;align-items:center;min-height:44px;padding:0 10px;
